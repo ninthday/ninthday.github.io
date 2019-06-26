@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on My New Hugo Site</title>
-    <link>https://ninthday.github.io/categories/</link>
-    <description>Recent content in Categories on My New Hugo Site</description>
+    <title>Categories on have a NINTHDAY</title>
+    <link>https://ninthday.github.io/categories.html</link>
+    <description>Recent content in Categories on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-tw</language>
     
 	<atom:link href="https://ninthday.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     

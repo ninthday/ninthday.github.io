@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Ninthday Blog (SEO Version)</title>
+  <title>Hello World</title>
 
   
   
@@ -25,21 +25,23 @@
   
 
   
-  <meta name="author" content="Tuvix Shih">
-  <meta name="description" content="Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again.">
+  
+  <meta name="description" content="">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@jeffyshih">
-  <meta name="twitter:title" content="Ninthday Blog (SEO Version)">
-  <meta name="twitter:description" content="Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again.">
-  <meta name="twitter:image" content="/images/avatar.png">
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jeffyshih">
+    <meta name="twitter:title" content="Hello World">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Ninthday Blog (SEO Version)">
-  <meta property="og:description" content="Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again.">
-  <meta property="og:url" content="https://ninthday.github.io/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hello World">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://ninthday.github.io/post/hello-world.html">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -48,8 +50,7 @@
 <meta name="generator" content="Hugo 0.55.6">
 
 
-<link rel="canonical" href="https://ninthday.github.io/">
-<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/index.xml" title="have a NINTHDAY">
+<link rel="canonical" href="https://ninthday.github.io/post/hello-world.html">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -102,8 +103,12 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
 
 
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
 
 
@@ -125,12 +130,15 @@
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
       
+        
+      
     </div>
     
-     <header class="site-header">
+    
+  <header class="site-header">
   <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h1 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h1>
+  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -145,9 +153,9 @@
       
       
         <li class="menu-item
-           is-active
           
-          ">
+          
+           is-active">
           <a href="https://ninthday.github.io/">Home</a>
         </li>
       
@@ -189,45 +197,27 @@
   </nav>
 </header>
 
-<section class="main post-list">
-  <header class="list-header offscreen">
-    <h2 class="list-label">All Posts</h2>
-  </header>
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Hello World</h1>
+      <p class="post-meta">@Tuvix Shih · Jun 26, 2019 · 0 min read</p>
+    </header>
+    <article class="post-content"></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+      </ul>
+      
+      <p class="post-copyright">
+        
+      </p>
+    </footer>
+    
+      
+    
+  </section>
   
-  
-   <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://ninthday.github.io/2019/06/hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E9%83%A8%E7%BD%B2%E8%87%B3-github-page.html" class="post-link">Hugo 靜態網頁部署至 GitHub Page</a></h3>
-    <p class="post-meta">@Tuvix Shih · Jun 26, 2019 · 2 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://ninthday.github.io/images/cover.jpg" alt="Hugo 靜態網頁部署至 GitHub Page" lazyload="on">
-  
-  <p class="post-summary">Hugo 靜態網頁部署至 GitHub Page 1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
- Snap Package
-snap install hugo --channel=extended or snap install hugo  apt  sudo apt install hugo 檢查 Hugo 安裝的版本
-hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
-# blog 為站臺名稱 hugo new site blog  初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
-. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题  2.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://ninthday.github.io/2019/06/hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E9%83%A8%E7%BD%B2%E8%87%B3-github-page.html">Read More →</a>
-  </footer>
-</article>
-  <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://ninthday.github.io/2019/06/hello-world.html" class="post-link">Hello World</a></h3>
-    <p class="post-meta">@Tuvix Shih · Jun 26, 2019 · 0 min read</p>
-  </header>
-  
-  <p class="post-summary"></p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://ninthday.github.io/2019/06/hello-world.html">Read More →</a>
-  </footer>
-</article>
- 
-   
-</section>
-
 <footer class="site-footer">
   <p>© 2017-2019 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
@@ -239,8 +229,33 @@ hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令
 
 
 
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
 
 
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
 
 
 
@@ -259,6 +274,7 @@ hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令
 
 
 
- 
+
+
   </body>
 </html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Hugo 靜態網頁部署至 GitHub Page</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="Hugo 靜態網頁部署至 GitHub Page 1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
+ Snap Package
+snap install hugo --channel=extended or snap install hugo  apt  sudo apt install hugo 檢查 Hugo 安裝的版本
+hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
+# blog 為站臺名稱 hugo new site blog  初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
+. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题  2.">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeffyshih">
+    <meta name="twitter:title" content="Hugo 靜態網頁部署至 GitHub Page">
+    <meta name="twitter:description" content="Hugo 靜態網頁部署至 GitHub Page 1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
+ Snap Package
+snap install hugo --channel=extended or snap install hugo  apt  sudo apt install hugo 檢查 Hugo 安裝的版本
+hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
+# blog 為站臺名稱 hugo new site blog  初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
+. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题  2.">
+    <meta name="twitter:image" content="https://ninthday.github.io/images/cover.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hugo 靜態網頁部署至 GitHub Page">
+  <meta property="og:description" content="Hugo 靜態網頁部署至 GitHub Page 1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
+ Snap Package
+snap install hugo --channel=extended or snap install hugo  apt  sudo apt install hugo 檢查 Hugo 安裝的版本
+hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
+# blog 為站臺名稱 hugo new site blog  初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
+. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题  2.">
+  <meta property="og:url" content="https://ninthday.github.io/post/ubuntu-hugo-github-page.html">
+  <meta property="og:image" content="https://ninthday.github.io/images/cover.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="https://ninthday.github.io/post/ubuntu-hugo-github-page.html">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="have a NINTHDAY">
+<meta name="msapplication-tooltip" content="have a NINTHDAY">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://ninthday.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+
+
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  
+  <p class="subtitle">~ Keep It Simple &amp; Stupid ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://ninthday.github.io/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/ninthday">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/tags/">Tags</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:tuvix@ninthday.me" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/ninthday" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/jeffyshih" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/shiuh-feng-shih" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Hugo 靜態網頁部署至 GitHub Page</h1>
+      <p class="post-meta">@Tuvix Shih · Jun 26, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<h1 id="hugo-靜態網頁部署至-github-page">Hugo 靜態網頁部署至 GitHub Page</h1>
+
+<h2 id="1-在-ubuntu-上安裝-hugo">1. 在 ubuntu 上安裝 Hugo</h2>
+
+<p>在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。</p>
+
+<ul>
+<li><p>Snap Package</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">snap install hugo --channel<span style="color:#f92672">=</span>extended
+or
+snap install hugo</code></pre></div>
+<ul>
+<li>apt</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install hugo</code></pre></div>
+<p>檢查 Hugo 安裝的版本</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo version</code></pre></div>
+<h2 id="2-初始化建立網站">2. 初始化建立網站</h2>
+
+<h3 id="2-1-新增網站">2.1 新增網站</h3>
+
+<p>利用 hugo cli 的指令建立檔案結構及必要的檔案。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># blog 為站臺名稱</span>
+hugo new site blog</code></pre></div></li>
+</ul>
+
+<p>初始化網站之後，在 <code>bolg</code> 資料夾下就會產生下面的文件結構</p>
+
+<pre><code>.
+├── archetypes # 放生成網頁內容的模板
+├── config.toml # TOML 格式設定檔
+├── content # 放 markdown 文件
+├── data # 放 Hugo 處理的數據資料
+├── layouts # 放佈局相關內容
+├── static # 放靜態文件、圖片、CSS和JS
+└── themes # 佈景主题
+</code></pre>
+
+<h3 id="2-2-設定佈景主題">2.2 設定佈景主題</h3>
+
+<p>Hugo 佈景主題網站有提供相當多的選擇，在這裡我以 <a href="https://themes.gohugo.io/hugo-theme-m10c/">m10c</a> 這個主題為例。將佈景主題複製到 theme 資料夾下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd blog
+git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c</code></pre></div>
+<p>在 <code>config.toml</code> 內加上設定內容，theme 如果有說明其他設定可以一併加入。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim config.toml
+theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;m10c&#34;</span></code></pre></div>
+<blockquote>
+<p>如果選擇的佈景主題的資料中，有 <code>exampleSite</code> 資料夾，可以參考其中的 <code>config.toml</code> 設定。</p>
+</blockquote>
+
+<h3 id="2-3-本地端啓動網站預覽">2.3 本地端啓動網站預覽</h3>
+
+<p>使用下面的語法啓動 Hugo 的伺服服務，然後就可以打開瀏覽器，連結到 <a href="http://localhost:1313">http://localhost:1313</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -t m10c</code></pre></div>
+<blockquote>
+<p><code>-t</code> 之後接的是套用的佈景主題名稱</p>
+</blockquote>
+
+<h2 id="3-部署至-github">3. 部署至 GitHub</h2>
+
+<p>GitHub Pages 有兩種形態，一種是使用者（組織）、一種為專案性質。
+- User/Organization Pages
+&gt; <code>(https://&lt;USERNAME|ORGANIZATION&gt;.github.io/)</code>
+- Project Pages
+&gt; <code>(https://&lt;USERNAME|ORGANIZATION&gt;.github.io/&lt;PROJECT&gt;/)</code></p>
+
+<p>在這裏我們使用個人的 GitHub Page 也就是 <code>https://&lt;USERNAME&gt;.github.io/</code>的形態。</p>
+
+<h3 id="3-1-在-github-上建立-repository">3.1 在 GitHub 上建立 Repository</h3>
+
+<p>在 GitHub 上建立兩個 repositories，一個為放置 Hugo 內容的程式庫 <code>ninthday-blog</code>，一個是 GitHub Page 使用的程式庫 <code>ninthday.github.io</code>。</p>
+
+<h3 id="3-2-clone-github-repository">3.2 Clone GitHub Repository</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone git@github.com:ninthday/ninthday-blog.git
+cd ninthday-blog</code></pre></div>
+<p>複製貼上目前的 Hugo 專案內容到 clone 下來的資料夾中，並確認能夠正確的啓動 Hugo 伺服器瀏覽本地端網頁內容。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -t m10c </code></pre></div>
+<h3 id="3-3-上傳-hugo-內容至-github">3.3 上傳 Hugo 內容至 GitHub</h3>
+
+<p>將 Hugo 專案的內容 push 到 GitHub 上作為備份。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span style="color:#e6db74">&#34;my first commit for hugo blog&#34;</span>
+git push origin master</code></pre></div>
+<h3 id="3-4-部署生成內容至-github-page">3.4 部署生成內容至 GitHub Page</h3>
+
+<p>前面步驟中，執行 <code>hugo server</code> 沒有真的建立一個靜態網站的內容，要生成靜態網站的內容，需要執行 <code>hugo</code> 指令，執行後會在資料夾下生成 <code>public</code>資料夾，這個資料夾下的內容才是靜態的網頁內容，也就是要部署至 GitHub Page 的內容。
+GitHub Page 的內容要連結部署至先前步驟建立的 <code>&lt;USERNAME&gt;.github.io</code> repository，在官網的建議中可以使用 <code>git submodule</code> 方式。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add -b master git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public</code></pre></div>
+<p>生成靜態網站內容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo -t m10c</code></pre></div>
+<p>切換至 <code>public</code> 資料夾，Push submodule 至 GitHub 中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd public
+git push origin master</code></pre></div>
+<h3 id="3-5-瀏覽網站">3.5 瀏覽網站</h3>
+
+<p>上傳過一陣子之後，可以開啓瀏覽器連結到自己的 GitHub Page，輸入 <code>https://&lt;USERNAME&gt;.github.io</code></p>
+
+<h2 id="4-自動部署-script">4. 自動部署 Script</h2>
+
+<p>完成上述內容，已經能夠使用 Hugo 產生靜態網站並部署至 GitHub Page。接著參考官網上的說明內容，建立一個自動部署的 shell script，讓部署的流程更為簡單。</p>
+
+<p>建立 <code>deploy.sh</code> 檔案，加入以下的內容</p>
+
+<pre><code>#!/bin/bash
+
+echo -e &quot;Deploying updates to GitHub...&quot;
+
+# Build the project.
+hugo -t m10c # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre>
+
+<p>修改 <code>deploy.sh</code> 檔案權限為可執行狀態 <code>chmod +x deploy.sh</code>，然後執行部署 script 寫下 commit 的內容。執行後就能生成靜態網站內容並部署至 <code>&lt;USERNAME&gt;.github.io</code> 上。</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://ninthday.github.io/tags/ubuntu"><span class="tag">Ubuntu</span></a></li>
+        
+          <li><a href="https://ninthday.github.io/tags/hugo"><span class="tag">Hugo</span></a></li>
+        
+          <li><a href="https://ninthday.github.io/tags/github"><span class="tag">Github</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

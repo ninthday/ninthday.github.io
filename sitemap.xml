@@ -3,17 +3,53 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://ninthday.github.io/categories/</loc>
+    <loc>https://ninthday.github.io/2019/06/hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E9%83%A8%E7%BD%B2%E8%87%B3-github-page.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/post.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/github.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ninthday.github.io/</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/tags/</loc>
+    <loc>https://ninthday.github.io/tags/hugo.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/ubuntu.html</loc>
+    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/2019/06/hello-world.html</loc>
+    <lastmod>2019-06-26T02:26:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/categories.html</loc>
     <priority>0</priority>
   </url>
   
