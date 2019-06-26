@@ -5,7 +5,8 @@
     <link>https://ninthday.github.io/tags/ubuntu.html</link>
     <description>Recent content in ubuntu on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
+    <language>zh-TW</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Wed, 26 Jun 2019 23:25:47 +0800</lastBuildDate>
     
 	<atom:link href="https://ninthday.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
@@ -13,16 +14,16 @@
     
     <item>
       <title>Hugo 靜態網頁部署至 GitHub Page</title>
-      <link>https://ninthday.github.io/2019/06/hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E9%83%A8%E7%BD%B2%E8%87%B3-github-page.html</link>
+      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page.html</link>
       <pubDate>Wed, 26 Jun 2019 23:25:47 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/2019/06/hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E9%83%A8%E7%BD%B2%E8%87%B3-github-page.html</guid>
-      <description>Hugo 靜態網頁部署至 GitHub Page 1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
+      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page.html</guid>
+      <description>1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
  Snap Package
-snap install hugo --channel=extended or snap install hugo  apt  sudo apt install hugo 檢查 Hugo 安裝的版本
+snap install hugo --channel=extended or snap install hugo  apt install  sudo apt install hugo 檢查 Hugo 安裝的版本
 hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
 # blog 為站臺名稱 hugo new site blog  初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
-. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题  2.</description>
+. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题 2.</description>
     </item>
     
   </channel>
