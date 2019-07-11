@@ -3,6 +3,7 @@ var filesToCache = [
   '404.html',
   'favicon.ico',
   'manifest.json',
+  'bee.png',
   'icons/icon-16x16.png',
   'icons/icon-32x32.png',
   'icons/icon-128x128.png',
@@ -13,13 +14,12 @@ var filesToCache = [
   'icons/icon-512x512.png',
   'images/avatar.png',
   'images/grey-prism.svg',
-  'images/qrcode.jpg',
   'styles/main-rendered.min.css',
 
   'scripts/index.min.js',
 
   // Google fonts
-  'https://fonts.googleapis.com/css?family=Lobster',
+  'https://fonts.googleapis.com/css?family=Gochi+Hand',
   'https://fonts.gstatic.com/s/lobster/v20/neILzCirqoswsqX9zoKmM4MwWJU.woff2',
 
 
