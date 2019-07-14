@@ -197,6 +197,20 @@
   
    <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme.html" class="post-link">用 Git Submodule 管理 Hugo Theme</a></h3>
+    <p class="post-meta">@Tuvix Shih · Jul 12, 2019 · 2 min read</p>
+  </header>
+  
+    <img class="post-cover" src="https://ninthday.github.io/images/hugo.png" alt="用 Git Submodule 管理 Hugo Theme" lazyload="on">
+  
+  <p class="post-summary">通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
+</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme.html">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="https://ninthday.github.io/2019/06/ubuntu-hugo-github-page.html" class="post-link">Hugo 靜態網頁部署至 GitHub Page</a></h3>
     <p class="post-meta">@Tuvix Shih · Jun 26, 2019 · 2 min read</p>
   </header>
@@ -222,9 +236,7 @@ hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令
     <img class="post-cover" src="https://ninthday.github.io/images/nginx.png" alt="Install LEMP in Ubuntu 18.04" lazyload="on">
   
   <p class="post-summary">一直以來都是使用 LAMP（Linux &#43; Apache &#43; MySQL &#43; PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化…，嘗試開始使用 LEMP 的組合。LEMP 為 Linux &#43; Nginx &#43; MariaDB &#43; PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。
-Nginx 伺服器 安裝 Nginx 網頁伺服器 Negix 已經有內建在 ubuntu 套件庫中，可以使用 apt 直接安裝，在 command line 輸入下列指令進行安裝：
-$ sudo apt update &amp;&amp; sudo apt install nginx # 確認運行狀態 $ sudo systemctl status nginx 防火牆設定 開啓 ufw 防火牆設定允許 nginx 服務通過
-$ sudo ufw allow &#39;Nginx HTTP&#39; # 如果同時要 HTTP 及 HTTPS 可以使用 &#39;Nginx Full&#39; $ sudo ufw allow &#39;Nginx Full&#39; Rule added Rule added (v6) # 啓動 ufw 防火牆 $ sudo ufw enable  開啓防火牆前，請先確認是不是已經先開啓 SSH 通過，以免把自己鎖在外面。</p>
+</p>
   <footer class="post-footer">
     <a class="read-more" href="https://ninthday.github.io/2019/05/install-lemp-on-ubuntu.html">Read More →</a>
   </footer>

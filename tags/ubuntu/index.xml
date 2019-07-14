@@ -32,10 +32,9 @@ hugo version 2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令
       <pubDate>Thu, 02 May 2019 22:11:36 +0800</pubDate>
       
       <guid>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu.html</guid>
-      <description>一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。
-Nginx 伺服器 安裝 Nginx 網頁伺服器 Negix 已經有內建在 ubuntu 套件庫中，可以使用 apt 直接安裝，在 command line 輸入下列指令進行安裝：
-$ sudo apt update &amp;amp;&amp;amp; sudo apt install nginx # 確認運行狀態 $ sudo systemctl status nginx 防火牆設定 開啓 ufw 防火牆設定允許 nginx 服務通過
-$ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS 可以使用 &amp;#39;Nginx Full&amp;#39; $ sudo ufw allow &amp;#39;Nginx Full&amp;#39; Rule added Rule added (v6) # 啓動 ufw 防火牆 $ sudo ufw enable  開啓防火牆前，請先確認是不是已經先開啓 SSH 通過，以免把自己鎖在外面。</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/images/installing-lemp.png&#34; alt=&#34;LEMP&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。&lt;/p&gt;</description>
     </item>
     
   </channel>

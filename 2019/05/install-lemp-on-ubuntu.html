@@ -27,9 +27,7 @@
   
   
   <meta name="description" content="一直以來都是使用 LAMP（Linux &#43; Apache &#43; MySQL &#43; PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux &#43; Nginx &#43; MariaDB &#43; PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。
-Nginx 伺服器 安裝 Nginx 網頁伺服器 Negix 已經有內建在 ubuntu 套件庫中，可以使用 apt 直接安裝，在 command line 輸入下列指令進行安裝：
-$ sudo apt update &amp;amp;&amp;amp; sudo apt install nginx # 確認運行狀態 $ sudo systemctl status nginx 防火牆設定 開啓 ufw 防火牆設定允許 nginx 服務通過
-$ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS 可以使用 &amp;#39;Nginx Full&amp;#39; $ sudo ufw allow &amp;#39;Nginx Full&amp;#39; Rule added Rule added (v6) # 啓動 ufw 防火牆 $ sudo ufw enable  開啓防火牆前，請先確認是不是已經先開啓 SSH 通過，以免把自己鎖在外面。">
+">
 
   
   
@@ -37,9 +35,7 @@ $ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS �
     <meta name="twitter:site" content="@jeffyshih">
     <meta name="twitter:title" content="Install LEMP in Ubuntu 18.04">
     <meta name="twitter:description" content="一直以來都是使用 LAMP（Linux &#43; Apache &#43; MySQL &#43; PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux &#43; Nginx &#43; MariaDB &#43; PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。
-Nginx 伺服器 安裝 Nginx 網頁伺服器 Negix 已經有內建在 ubuntu 套件庫中，可以使用 apt 直接安裝，在 command line 輸入下列指令進行安裝：
-$ sudo apt update &amp;amp;&amp;amp; sudo apt install nginx # 確認運行狀態 $ sudo systemctl status nginx 防火牆設定 開啓 ufw 防火牆設定允許 nginx 服務通過
-$ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS 可以使用 &amp;#39;Nginx Full&amp;#39; $ sudo ufw allow &amp;#39;Nginx Full&amp;#39; Rule added Rule added (v6) # 啓動 ufw 防火牆 $ sudo ufw enable  開啓防火牆前，請先確認是不是已經先開啓 SSH 通過，以免把自己鎖在外面。">
+">
     <meta name="twitter:image" content="https://ninthday.github.io/images/nginx.png">
   
 
@@ -47,9 +43,7 @@ $ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS �
   <meta property="og:type" content="article">
   <meta property="og:title" content="Install LEMP in Ubuntu 18.04">
   <meta property="og:description" content="一直以來都是使用 LAMP（Linux &#43; Apache &#43; MySQL &#43; PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux &#43; Nginx &#43; MariaDB &#43; PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。
-Nginx 伺服器 安裝 Nginx 網頁伺服器 Negix 已經有內建在 ubuntu 套件庫中，可以使用 apt 直接安裝，在 command line 輸入下列指令進行安裝：
-$ sudo apt update &amp;amp;&amp;amp; sudo apt install nginx # 確認運行狀態 $ sudo systemctl status nginx 防火牆設定 開啓 ufw 防火牆設定允許 nginx 服務通過
-$ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS 可以使用 &amp;#39;Nginx Full&amp;#39; $ sudo ufw allow &amp;#39;Nginx Full&amp;#39; Rule added Rule added (v6) # 啓動 ufw 防火牆 $ sudo ufw enable  開啓防火牆前，請先確認是不是已經先開啓 SSH 通過，以免把自己鎖在外面。">
+">
   <meta property="og:url" content="https://ninthday.github.io/2019/05/install-lemp-on-ubuntu.html">
   <meta property="og:image" content="https://ninthday.github.io/images/nginx.png">
 
@@ -213,9 +207,7 @@ $ sudo ufw allow &amp;#39;Nginx HTTP&amp;#39; # 如果同時要 HTTP 及 HTTPS �
       <h1 class="post-title">Install LEMP in Ubuntu 18.04</h1>
       <p class="post-meta">@Tuvix Shih · May 2, 2019 · 3 min read</p>
     </header>
-    <article class="post-content">
-
-<p><img src="https://ninthday.github.io/images/installing-lemp.png" alt="LEMP" /></p>
+    <article class="post-content"><p><img src="https://ninthday.github.io/images/installing-lemp.png" alt="LEMP" /></p>
 
 <p>一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。</p>
 
@@ -337,8 +329,7 @@ php -r <span style="color:#e6db74">&#34;if (hash_file(&#39;sha384&#39;, &#39;com
 php composer-setup.php
 php -r <span style="color:#e6db74">&#34;unlink(&#39;composer-setup.php&#39;);&#34;</span>
 sudo mv composer.phar /usr/local/bin/composer</code></pre></div>
-<p>參考：<a href="https://getcomposer.org/download/">Download Composer</a></p>
-</article>
+<p>參考：<a href="https://getcomposer.org/download/">Download Composer</a></p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
