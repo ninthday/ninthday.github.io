@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hugo on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/tags/hugo.html</link>
+    <link>https://ninthday.github.io/tags/hugo/</link>
     <description>Recent content in hugo on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
@@ -14,19 +14,19 @@
     
     <item>
       <title>用 Git Submodule 管理 Hugo Theme</title>
-      <link>https://ninthday.github.io/2019/07/git-submodule-hugo-theme.html</link>
+      <link>https://ninthday.github.io/2019/07/git-submodule-hugo-theme/</link>
       <pubDate>Fri, 12 Jul 2019 23:20:57 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/2019/07/git-submodule-hugo-theme.html</guid>
+      <guid>https://ninthday.github.io/2019/07/git-submodule-hugo-theme/</guid>
       <description>&lt;p&gt;通常在 Hugo 目錄下會有一個 &lt;code&gt;theme&lt;/code&gt; 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo 靜態網頁部署至 GitHub Page</title>
-      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page.html</link>
+      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</link>
       <pubDate>Wed, 26 Jun 2019 23:25:47 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page.html</guid>
+      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</guid>
       <description>1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
  Snap Package
 snap install hugo --channel=extended or snap install hugo  apt install  sudo apt install hugo 檢查 Hugo 安裝的版本
