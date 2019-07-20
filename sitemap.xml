@@ -4,24 +4,35 @@
   
   <url>
     <loc>https://ninthday.github.io/post.html</loc>
-    <lastmod>2019-07-12T23:20:57+08:00</lastmod>
+    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ninthday.github.io/tags.html</loc>
-    <lastmod>2019-07-12T23:20:57+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ninthday.github.io/tags/git.html</loc>
-    <lastmod>2019-07-12T23:20:57+08:00</lastmod>
+    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ninthday.github.io/</loc>
+    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/python.html</loc>
+    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser.html</loc>
+    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/git.html</loc>
     <lastmod>2019-07-12T23:20:57+08:00</lastmod>
     <priority>0</priority>
   </url>

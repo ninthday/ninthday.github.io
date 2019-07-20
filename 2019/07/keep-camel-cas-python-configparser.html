@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>保留 Configparser 儲存後英文字母大小寫</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 .ini INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 ConfigParser 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeffyshih">
+    <meta name="twitter:title" content="保留 Configparser 儲存後英文字母大小寫">
+    <meta name="twitter:description" content="對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 .ini INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 ConfigParser 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。
+">
+    <meta name="twitter:image" content="https://ninthday.github.io/images/python.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="保留 Configparser 儲存後英文字母大小寫">
+  <meta property="og:description" content="對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 .ini INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 ConfigParser 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。
+">
+  <meta property="og:url" content="https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser.html">
+  <meta property="og:image" content="https://ninthday.github.io/images/python.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser.html">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="have a NINTHDAY">
+<meta name="msapplication-tooltip" content="have a NINTHDAY">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://ninthday.github.io/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+
+
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  
+  <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://ninthday.github.io/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/ninthday">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/tags/">Tags</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:tuvix@ninthday.me" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/ninthday" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/jeffyshih" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/shiuh-feng-shih" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">保留 Configparser 儲存後英文字母大小寫</h1>
+      <p class="post-meta">@Tuvix Shih · Jul 20, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 <code>.ini</code> INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 <code>ConfigParser</code> 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。</p>
+
+<p><code>configparser.ConfigParser()</code> 起源 <code>ConfigParser.RawConfigParser()</code>，在 python 說明文件中提到
+&gt; All option names are passed through the optionxform() method. Its default implementation converts option names to lower case.</p>
+
+<p>因為所有的 option names 都會經過 <code>optionxform()</code> 方法，都會被轉換為小寫，導致我們使用 <strong>write</strong> 方式寫入保存 INI 檔的時候，Option 名稱都轉為小寫字母的原因。</p>
+
+<p>我們可以透過自定 <code>optionxform</code> 屬性來達成讀取後傳回原始的字串，如下內容將其設定為 <code>str</code>，將可以留大小寫字母區分。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cfgparser <span style="color:#f92672">=</span> ConfigParser()
+cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92672">=</span> str</code></pre></div>
+<p>參考資料：</p>
+
+<ol>
+<li><p><a href="https://docs.python.org/3/library/configparser.html">configparser - Configuration file parser</a></p></li>
+
+<li><p><a href="https://stackoverflow.com/questions/19359556/configparser-reads-capital-keys-and-make-them-lower-case">ConfigParser reads capital keys and make them lower case</a></p></li>
+</ol></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://ninthday.github.io/tags/python"><span class="tag">Python</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ninthday" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
