@@ -9,20 +9,31 @@
   
   <url>
     <loc>https://ninthday.github.io/post/</loc>
-    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+    <lastmod>2019-08-05T00:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ninthday.github.io/tags/</loc>
-    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+    <lastmod>2019-08-05T00:10:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/github/</loc>
+    <lastmod>2019-08-05T00:10:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ninthday.github.io/</loc>
-    <lastmod>2019-07-20T10:17:15+08:00</lastmod>
+    <lastmod>2019-08-05T00:10:22+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/2019/08/github-two-factor-authentication/</loc>
+    <lastmod>2019-08-05T00:10:22+08:00</lastmod>
   </url>
   
   <url>
@@ -56,12 +67,6 @@
   <url>
     <loc>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</loc>
     <lastmod>2019-06-26T23:25:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ninthday.github.io/tags/github/</loc>
-    <lastmod>2019-06-26T23:25:47+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

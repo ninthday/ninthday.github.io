@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6">
+<meta name="generator" content="Hugo 0.56.3">
 
 
 <link rel="canonical" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
@@ -255,8 +255,8 @@
 <li>要先進入 <code>.gitmodules</code> 中將不要的 submodule 區段刪除。</li>
 <li>用 <code>git rm –cached</code> 方式</li>
 <li>刪除 submodule 資料夾</li>
-<li>修改 <code>.git/config</code> 刪除不要的 submodule</li>
-</ol>
+
+<li><p>修改 <code>.git/config</code> 刪除不要的 submodule</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .gitmodules 刪除 submodule 區段</span>
 $ vim .gitmodules
 
@@ -269,7 +269,9 @@ $ vim .git/config
 <span style="color:#75715e"># 提交到 GitHub</span>
 $ git add .
 $ git commit -m <span style="color:#e6db74">&#34;remove submodule&#34;</span>
-$ git push origin master</code></pre></div>
+$ git push origin master</code></pre></div></li>
+</ol>
+
 <h1 id="clone-hugo-專案-submodule-為空">Clone Hugo 專案 submodule 為空？</h1>
 
 <p>若像我有在不同電腦進行 Hugo Blog 內文撰寫（就是懶得把電腦帶來帶去的），在另一臺用 <code>git clone</code> 下載自己的 Hugo 專案時，會發現 submodule 對應的資料夾雖然存在，但是 submodule 資料夾都是空的。<code>git clone</code>指令並不會一起下載 submodule 中的內容。</p>
