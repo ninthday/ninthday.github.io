@@ -5,7 +5,11 @@
   <meta charset="utf-8" />
 
   
-  <title>Ninthday Blog</title>
+  <title>
+  Tag → poetry
+  
+   | Ninthday Blog
+</title>
 
   
   
@@ -39,7 +43,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ninthday Blog">
   <meta property="og:description" content="Ninthday 的部落格">
-  <meta property="og:url" content="https://ninthday.github.io/post/">
+  <meta property="og:url" content="https://ninthday.github.io/post/tags/poetry/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -48,8 +52,8 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/post/">
-<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/post/index.xml" title="have a NINTHDAY">
+<link rel="canonical" href="https://ninthday.github.io/post/tags/poetry/">
+<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/post/tags/poetry/index.xml" title="have a NINTHDAY">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -127,10 +131,11 @@
       
     </div>
     
-     <header class="site-header">
+    
+  <header class="site-header">
   <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
   
-  <h1 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h1>
+  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -160,7 +165,7 @@
       
         <li class="menu-item
           
-          
+           is-active
           ">
           <a href="https://ninthday.github.io/post/tags">Tags</a>
         </li>
@@ -196,27 +201,40 @@
   </nav>
 </header>
 
-<section class="main post-list">
-  <header class="list-header offscreen">
-    <h2 class="list-label">All Posts</h2>
-  </header>
-  
-  
-   <article class="post-entry">
+  <section class="main post-list">
+    <header class="list-header offscreen">
+      <h2 class="list-label">Posts List</h2>
+    </header>
+    
+    
+      
+        <article class="post-entry">
   <header class="post-header">
-    <h3 class="post-title"><a href="https://ninthday.github.io/post/post/" class="post-link">Posts</a></h3>
-    <p class="post-meta">@Tuvix Shih · Jun 21, 2020 · 0 min read</p>
+    <h3 class="post-title"><a href="https://ninthday.github.io/post/2020/06/python-poetry/" class="post-link">Python 套件相依性管理工具 Poetry</a></h3>
+    <p class="post-meta">@Tuvix Shih · Jun 21, 2020 · 5 min read</p>
   </header>
   
-  <p class="post-summary"></p>
+    <img class="post-cover" src="https://ninthday.github.io/post/images/python.png" alt="Python 套件相依性管理工具 Poetry" lazyload="on">
+  
+  <p class="post-summary">Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.</p>
   <footer class="post-footer">
-    <a class="read-more" href="https://ninthday.github.io/post/post/">Read More →</a>
+    <a class="read-more" href="https://ninthday.github.io/post/2020/06/python-poetry/">Read More →</a>
   </footer>
 </article>
- 
-   
-</section>
 
+      
+    
+    
+  </section>
+  
 <footer class="site-footer">
   <p>© 2017-2020 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
@@ -248,6 +266,7 @@
 
 
 
- 
+
+
   </body>
 </html>
