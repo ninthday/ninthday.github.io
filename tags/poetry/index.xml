@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>poetry on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/post/tags/poetry/</link>
+    <link>https://ninthday.github.io/tags/poetry/</link>
     <description>Recent content in poetry on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/post/tags/poetry/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/tags/poetry/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python 套件相依性管理工具 Poetry</title>
-      <link>https://ninthday.github.io/post/2020/06/python-poetry/</link>
+      <link>https://ninthday.github.io/2020/06/python-poetry/</link>
       <pubDate>Sun, 21 Jun 2020 16:36:43 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2020/06/python-poetry/</guid>
+      <guid>https://ninthday.github.io/2020/06/python-poetry/</guid>
       <description>Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
 後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
  Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。

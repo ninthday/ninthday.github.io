@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/post/post/</link>
+    <link>https://ninthday.github.io/post/</link>
     <description>Recent content in Posts on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/post/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python 套件相依性管理工具 Poetry</title>
-      <link>https://ninthday.github.io/post/2020/06/python-poetry/</link>
+      <link>https://ninthday.github.io/2020/06/python-poetry/</link>
       <pubDate>Sun, 21 Jun 2020 16:36:43 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2020/06/python-poetry/</guid>
+      <guid>https://ninthday.github.io/2020/06/python-poetry/</guid>
       <description>Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
 後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
  Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
@@ -31,10 +31,10 @@ $ poetry --version Poetry version 1.0.9  Note:
     
     <item>
       <title>Ubuntu 上使用 Wacom Intuos 繪圖板</title>
-      <link>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</link>
+      <link>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</link>
       <pubDate>Sun, 17 May 2020 22:27:09 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</guid>
+      <guid>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</guid>
       <description>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
 1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
 1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
@@ -45,37 +45,37 @@ $ poetry --version Poetry version 1.0.9  Note:
     
     <item>
       <title>開啓 Github 雙因素認證</title>
-      <link>https://ninthday.github.io/post/2019/08/github-two-factor-authentication/</link>
+      <link>https://ninthday.github.io/2019/08/github-two-factor-authentication/</link>
       <pubDate>Mon, 05 Aug 2019 00:10:22 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/08/github-two-factor-authentication/</guid>
+      <guid>https://ninthday.github.io/2019/08/github-two-factor-authentication/</guid>
       <description>&lt;p&gt;越來越多的詐騙、盜用帳號，讓網路使用者受到名譽或是財物上的損失，傳統單純使用帳號密碼的方式已經不夠安全，今日一個帳號走天下（ex: 使用 gmail or facebook 登入）的各種應用情境，讓雙因素認證（Two-factor authentication）或是兩階段驗證（Two-step verification）來提高帳號使用安全性顯得更為重要。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>保留 Configparser 儲存後英文字母大小寫</title>
-      <link>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</link>
+      <link>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</link>
       <pubDate>Sat, 20 Jul 2019 10:17:15 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</guid>
+      <guid>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</guid>
       <description>&lt;p&gt;對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 &lt;code&gt;.ini&lt;/code&gt; INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 &lt;code&gt;ConfigParser&lt;/code&gt; 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用 Git Submodule 管理 Hugo Theme</title>
-      <link>https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/</link>
+      <link>https://ninthday.github.io/2019/07/git-submodule-hugo-theme/</link>
       <pubDate>Fri, 12 Jul 2019 23:20:57 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/</guid>
+      <guid>https://ninthday.github.io/2019/07/git-submodule-hugo-theme/</guid>
       <description>&lt;p&gt;通常在 Hugo 目錄下會有一個 &lt;code&gt;theme&lt;/code&gt; 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo 靜態網頁部署至 GitHub Page</title>
-      <link>https://ninthday.github.io/post/2019/06/ubuntu-hugo-github-page/</link>
+      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</link>
       <pubDate>Wed, 26 Jun 2019 23:25:47 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/06/ubuntu-hugo-github-page/</guid>
+      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</guid>
       <description>1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
   Snap Package
 1 2 3  snap install hugo --channel=extended or snap install hugo     apt install
@@ -86,11 +86,11 @@ $ poetry --version Poetry version 1.0.9  Note:
     
     <item>
       <title>Install LEMP in Ubuntu 18.04</title>
-      <link>https://ninthday.github.io/post/2019/05/install-lemp-on-ubuntu/</link>
+      <link>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</link>
       <pubDate>Thu, 02 May 2019 22:11:36 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/05/install-lemp-on-ubuntu/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/post/images/installing-lemp.png&#34; alt=&#34;LEMP&#34;&gt;&lt;/p&gt;
+      <guid>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/images/installing-lemp.png&#34; alt=&#34;LEMP&#34;&gt;&lt;/p&gt;
 &lt;p&gt;一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。&lt;/p&gt;</description>
     </item>
     

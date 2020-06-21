@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ubuntu on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/post/tags/ubuntu/</link>
+    <link>https://ninthday.github.io/tags/ubuntu/</link>
     <description>Recent content in ubuntu on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 17 May 2020 22:27:09 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/post/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu 上使用 Wacom Intuos 繪圖板</title>
-      <link>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</link>
+      <link>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</link>
       <pubDate>Sun, 17 May 2020 22:27:09 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</guid>
+      <guid>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</guid>
       <description>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
 1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
 1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
@@ -28,10 +28,10 @@
     
     <item>
       <title>Hugo 靜態網頁部署至 GitHub Page</title>
-      <link>https://ninthday.github.io/post/2019/06/ubuntu-hugo-github-page/</link>
+      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</link>
       <pubDate>Wed, 26 Jun 2019 23:25:47 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/06/ubuntu-hugo-github-page/</guid>
+      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</guid>
       <description>1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
   Snap Package
 1 2 3  snap install hugo --channel=extended or snap install hugo     apt install
@@ -42,11 +42,11 @@
     
     <item>
       <title>Install LEMP in Ubuntu 18.04</title>
-      <link>https://ninthday.github.io/post/2019/05/install-lemp-on-ubuntu/</link>
+      <link>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</link>
       <pubDate>Thu, 02 May 2019 22:11:36 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/05/install-lemp-on-ubuntu/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/post/images/installing-lemp.png&#34; alt=&#34;LEMP&#34;&gt;&lt;/p&gt;
+      <guid>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/images/installing-lemp.png&#34; alt=&#34;LEMP&#34;&gt;&lt;/p&gt;
 &lt;p&gt;一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。&lt;/p&gt;</description>
     </item>
     

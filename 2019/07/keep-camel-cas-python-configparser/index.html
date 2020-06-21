@@ -44,7 +44,7 @@
   <meta property="og:title" content="保留 Configparser 儲存後英文字母大小寫">
   <meta property="og:description" content="對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 .ini INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 ConfigParser 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。
 ">
-  <meta property="og:url" content="https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/">
+  <meta property="og:url" content="https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/">
   <meta property="og:image" content="https://ninthday.github.io/images/python.png">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/">
+<link rel="canonical" href="https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://ninthday.github.io/post/bee.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/post/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/post/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://ninthday.github.io/post/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://ninthday.github.io/post/icons/icon-152x152.png">
-<link rel="manifest" href="https://ninthday.github.io/post/manifest.json">
+<link rel="icon" href="https://ninthday.github.io/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
 
 
-<link rel="preload" href="https://ninthday.github.io/post/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
-<link rel="preload" href="https://ninthday.github.io/post/images/avatar.png" as="image">
-<link rel="preload" href="https://ninthday.github.io/post/images/manycats.jpg" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://ninthday.github.io/post/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io//post"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io//post">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/post/post">Home</a>
+          <a href="https://ninthday.github.io/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -175,14 +175,14 @@
           
           
           ">
-          <a href="https://ninthday.github.io/post/tags">Tags</a>
+          <a href="https://ninthday.github.io/tags">Tags</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://ninthday.github.io/post/about/">About</a>
+          <a href="https://ninthday.github.io/about/">About</a>
         </li>
       
     </ul>
@@ -247,7 +247,7 @@ cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/post/tags/python"><span class="tag">Python</span></a></li>
+          <li><a href="https://ninthday.github.io/tags/python"><span class="tag">Python</span></a></li>
         
       </ul>
       
@@ -321,7 +321,7 @@ cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92
 
 
 
-<script src="https://ninthday.github.io/post/scripts/index.min.js"></script>
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {

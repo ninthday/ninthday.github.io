@@ -3,8 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://ninthday.github.io/post/about/</loc>
+    <loc>https://ninthday.github.io/about/</loc>
     <lastmod>2019-06-26T01:18:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/</loc>
+    <lastmod>2020-06-21T16:36:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ninthday.github.io/tags/poetry/</loc>
+    <lastmod>2020-06-21T16:36:43+08:00</lastmod>
   </url>
   
   <url>
@@ -13,92 +23,82 @@
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/poetry/</loc>
+    <loc>https://ninthday.github.io/tags/python/</loc>
     <lastmod>2020-06-21T16:36:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/post/</loc>
+    <loc>https://ninthday.github.io/2020/06/python-poetry/</loc>
     <lastmod>2020-06-21T16:36:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/python/</loc>
+    <loc>https://ninthday.github.io/tags/</loc>
     <lastmod>2020-06-21T16:36:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2020/06/python-poetry/</loc>
-    <lastmod>2020-06-21T16:36:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ninthday.github.io/post/tags/</loc>
-    <lastmod>2020-06-21T16:36:43+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ninthday.github.io/post/tags/ubuntu/</loc>
+    <loc>https://ninthday.github.io/tags/ubuntu/</loc>
     <lastmod>2020-05-17T22:27:09+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</loc>
+    <loc>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</loc>
     <lastmod>2020-05-17T22:27:09+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/wacom/</loc>
+    <loc>https://ninthday.github.io/tags/wacom/</loc>
     <lastmod>2020-05-17T22:27:09+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/github/</loc>
+    <loc>https://ninthday.github.io/tags/github/</loc>
     <lastmod>2019-08-05T00:10:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2019/08/github-two-factor-authentication/</loc>
+    <loc>https://ninthday.github.io/2019/08/github-two-factor-authentication/</loc>
     <lastmod>2019-08-05T00:10:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</loc>
+    <loc>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</loc>
     <lastmod>2019-07-20T10:17:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/git/</loc>
+    <loc>https://ninthday.github.io/tags/git/</loc>
     <lastmod>2019-07-12T23:20:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/hugo/</loc>
+    <loc>https://ninthday.github.io/tags/hugo/</loc>
     <lastmod>2019-07-12T23:20:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/</loc>
+    <loc>https://ninthday.github.io/2019/07/git-submodule-hugo-theme/</loc>
     <lastmod>2019-07-12T23:20:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2019/06/ubuntu-hugo-github-page/</loc>
+    <loc>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</loc>
     <lastmod>2019-06-26T23:25:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/2019/05/install-lemp-on-ubuntu/</loc>
+    <loc>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</loc>
     <lastmod>2019-05-02T22:11:36+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/tags/lemp/</loc>
+    <loc>https://ninthday.github.io/tags/lemp/</loc>
     <lastmod>2019-05-02T22:11:36+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ninthday.github.io/post/categories/</loc>
+    <loc>https://ninthday.github.io/categories/</loc>
   </url>
   
 </urlset>

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/post/tags/python/</link>
+    <link>https://ninthday.github.io/tags/python/</link>
     <description>Recent content in python on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/post/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python 套件相依性管理工具 Poetry</title>
-      <link>https://ninthday.github.io/post/2020/06/python-poetry/</link>
+      <link>https://ninthday.github.io/2020/06/python-poetry/</link>
       <pubDate>Sun, 21 Jun 2020 16:36:43 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2020/06/python-poetry/</guid>
+      <guid>https://ninthday.github.io/2020/06/python-poetry/</guid>
       <description>Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
 後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
  Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
@@ -31,10 +31,10 @@ $ poetry --version Poetry version 1.0.9  Note:
     
     <item>
       <title>保留 Configparser 儲存後英文字母大小寫</title>
-      <link>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</link>
+      <link>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</link>
       <pubDate>Sat, 20 Jul 2019 10:17:15 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</guid>
+      <guid>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</guid>
       <description>&lt;p&gt;對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 &lt;code&gt;.ini&lt;/code&gt; INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 &lt;code&gt;ConfigParser&lt;/code&gt; 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。&lt;/p&gt;</description>
     </item>
     

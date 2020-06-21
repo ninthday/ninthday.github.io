@@ -44,7 +44,7 @@
   <meta property="og:title" content="用 Git Submodule 管理 Hugo Theme">
   <meta property="og:description" content="通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
 ">
-  <meta property="og:url" content="https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/">
+  <meta property="og:url" content="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
   <meta property="og:image" content="https://ninthday.github.io/images/hugo.png">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/">
+<link rel="canonical" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://ninthday.github.io/post/bee.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/post/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/post/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://ninthday.github.io/post/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://ninthday.github.io/post/icons/icon-152x152.png">
-<link rel="manifest" href="https://ninthday.github.io/post/manifest.json">
+<link rel="icon" href="https://ninthday.github.io/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
 
 
-<link rel="preload" href="https://ninthday.github.io/post/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
-<link rel="preload" href="https://ninthday.github.io/post/images/avatar.png" as="image">
-<link rel="preload" href="https://ninthday.github.io/post/images/manycats.jpg" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://ninthday.github.io/post/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io//post"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io//post">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/post/post">Home</a>
+          <a href="https://ninthday.github.io/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -175,14 +175,14 @@
           
           
           ">
-          <a href="https://ninthday.github.io/post/tags">Tags</a>
+          <a href="https://ninthday.github.io/tags">Tags</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://ninthday.github.io/post/about/">About</a>
+          <a href="https://ninthday.github.io/about/">About</a>
         </li>
       
     </ul>
@@ -372,9 +372,9 @@ $ git submodule update --init --recursive
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/post/tags/hugo"><span class="tag">Hugo</span></a></li>
+          <li><a href="https://ninthday.github.io/tags/hugo"><span class="tag">Hugo</span></a></li>
         
-          <li><a href="https://ninthday.github.io/post/tags/git"><span class="tag">Git</span></a></li>
+          <li><a href="https://ninthday.github.io/tags/git"><span class="tag">Git</span></a></li>
         
       </ul>
       
@@ -448,7 +448,7 @@ $ git submodule update --init --recursive
 
 
 
-<script src="https://ninthday.github.io/post/scripts/index.min.js"></script>
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {
