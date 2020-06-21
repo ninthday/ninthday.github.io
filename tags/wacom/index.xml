@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>wacom on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/tags/wacom/</link>
+    <link>https://ninthday.github.io/post/tags/wacom/</link>
     <description>Recent content in wacom on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sun, 17 May 2020 22:27:09 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/tags/wacom/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/post/tags/wacom/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu 上使用 Wacom Intuos 繪圖板</title>
-      <link>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</link>
+      <link>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</link>
       <pubDate>Sun, 17 May 2020 22:27:09 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</guid>
-      <description>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
-xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
-$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
-設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
-$ xsetwacom --list devices 目前電腦輸出的結果：
-Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定</description>
+      <guid>https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/</guid>
+      <description>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定</description>
     </item>
     
   </channel>

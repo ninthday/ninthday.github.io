@@ -44,7 +44,7 @@
   <meta property="og:title" content="開啓 Github 雙因素認證">
   <meta property="og:description" content="越來越多的詐騙、盜用帳號，讓網路使用者受到名譽或是財物上的損失，傳統單純使用帳號密碼的方式已經不夠安全，今日一個帳號走天下（ex: 使用 gmail or facebook 登入）的各種應用情境，讓雙因素認證（Two-factor authentication）或是兩階段驗證（Two-step verification）來提高帳號使用安全性顯得更為重要。
 ">
-  <meta property="og:url" content="https://ninthday.github.io/2019/08/github-two-factor-authentication/">
+  <meta property="og:url" content="https://ninthday.github.io/post/2019/08/github-two-factor-authentication/">
   <meta property="og:image" content="https://ninthday.github.io/images/github.png">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/2019/08/github-two-factor-authentication/">
+<link rel="canonical" href="https://ninthday.github.io/post/2019/08/github-two-factor-authentication/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://ninthday.github.io/bee.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
-<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+<link rel="icon" href="https://ninthday.github.io/post/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/post/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/post/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/post/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/post/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/post/manifest.json">
 
 
-<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://ninthday.github.io/post/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
-<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
-<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/manycats.jpg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://ninthday.github.io/post/styles/main-rendered.min.css">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -175,14 +175,14 @@
           
           
           ">
-          <a href="https://ninthday.github.io/tags">Tags</a>
+          <a href="https://ninthday.github.io/post/tags">Tags</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://ninthday.github.io/about/">About</a>
+          <a href="https://ninthday.github.io/post/about/">About</a>
         </li>
       
     </ul>
@@ -214,6 +214,14 @@
       <h1 class="post-title">開啓 Github 雙因素認證</h1>
       <p class="post-meta">@Tuvix Shih · Aug 5, 2019 · 1 min read</p>
     </header>
+    <aside>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-github-頁面中雙因素認證設定">1. GitHub 頁面中雙因素認證設定</a></li>
+    <li><a href="#2-安裝-authy-mobile-app">2. 安裝 Authy mobile app</a></li>
+  </ul>
+</nav>
+    </aside>
     <article class="post-content"><p>越來越多的詐騙、盜用帳號，讓網路使用者受到名譽或是財物上的損失，傳統單純使用帳號密碼的方式已經不夠安全，今日一個帳號走天下（ex: 使用 gmail or facebook 登入）的各種應用情境，讓雙因素認證（Two-factor authentication）或是兩階段驗證（Two-step verification）來提高帳號使用安全性顯得更為重要。</p>
 <h1 id="雙因素認證">雙因素認證</h1>
 <p>進行登入的時候，認證目前的登入對象是不是「你」是很重要的，必須不容易被他人複製，也不容易與他人重複。現在常見的認證方式：</p>
@@ -241,18 +249,18 @@
 <p>相較於 SMS 建議使用 TOTP mobile app 的方式有較高的安全性，而官方文件（<a href="https://help.github.com/en/articles/configuring-two-factor-authentication">Configuring two-factor authentication</a>）中提到的三個軟體中，我覺得 <strong>Authy</strong> 在設定上相對簡單。我想就以 Authy 作為這次設定雙因素認證的說明。</p>
 <h2 id="1-github-頁面中雙因素認證設定">1. GitHub 頁面中雙因素認證設定</h2>
 <p>1.1 登入 Github 之後在右上方點選帳號圖片，在下拉視窗中選擇 &ldquo;settings&rdquo;（如下圖）
-<img src="https://ninthday.github.io/images/2019080401.png" alt="Setting"></p>
+<img src="https://ninthday.github.io/post/images/2019080401.png" alt="Setting"></p>
 <p>1.2 在設定的左方選單中，選擇 &ldquo;Security&rdquo; 項目
-<img src="https://ninthday.github.io/images/2019080402.png" alt="Security"></p>
+<img src="https://ninthday.github.io/post/images/2019080402.png" alt="Security"></p>
 <p>1.3 尚未設定 2FA 會出現如下圖的畫面，點擊 &ldquo;<strong>Enable two-factor authentication</strong>&rdquo;
-<img src="https://ninthday.github.io/images/2019080403.png" alt="Enable 2FA"></p>
+<img src="https://ninthday.github.io/post/images/2019080403.png" alt="Enable 2FA"></p>
 <p>1.4 接下來的畫面，選擇左邊的 &ldquo;<strong>Set up using an app</strong>&rdquo;
-<img src="https://ninthday.github.io/images/2019080404.png" alt="Set up using an app"></p>
+<img src="https://ninthday.github.io/post/images/2019080404.png" alt="Set up using an app"></p>
 <p>1.5 接着會出現 Recovery codes 畫面，recovery codes 是讓我們在沒有 App 時可以透過出現在螢幕上的這些號碼做登入自己的帳號。避免手機有什麼狀況的時候會無法登入。
 可以選擇下載（Download）或是印出來（Print）收好
-<img src="https://ninthday.github.io/images/2019080405.png" alt="Recovery codes"></p>
+<img src="https://ninthday.github.io/post/images/2019080405.png" alt="Recovery codes"></p>
 <p>1.6 儲存 Recovery codes 後點擊 &ldquo;Next&rdquo; 進入 Scan QR code 頁面
-<img src="https://ninthday.github.io/images/2019080406.png" alt="Scan QR code"></p>
+<img src="https://ninthday.github.io/post/images/2019080406.png" alt="Scan QR code"></p>
 <h2 id="2-安裝-authy-mobile-app">2. 安裝 Authy mobile app</h2>
 <p>2.1 下載 Authy mobile app</p>
 <p>從平臺的線上軟體商店下載 app</p>
@@ -262,15 +270,15 @@
 </ul>
 <p>2.2 完成下載後，開啓 Authy App，依照指示輸入資料及電話，完成整個註冊程序。跟著軟體引導的步驟進行，這裏就不再多做說明。</p>
 <p>2.3 在 Authy App 中，點選新增 Account，選擇 &ldquo;Scan QR Code&rdquo;
-<img src="https://ninthday.github.io/images/2019080407.png" alt="Scan QR code"></p>
+<img src="https://ninthday.github.io/post/images/2019080407.png" alt="Scan QR code"></p>
 <p>2.4 將相機對準 step 1.6 的 QR Code 畫面，將 App 畫面中出現的 6 位數字，輸入至 QR Code 畫面下方的欄位。
-<img src="https://ninthday.github.io/images/2019080408.png" alt="Six dis-digit code"></p>
+<img src="https://ninthday.github.io/post/images/2019080408.png" alt="Six dis-digit code"></p>
 <p>2.5 按下 &ldquo;<strong>Continue</strong>&rdquo; 就完成開啓 GitHub 2FA 的步驟了。</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/tags/github"><span class="tag">Github</span></a></li>
+          <li><a href="https://ninthday.github.io/post/tags/github"><span class="tag">Github</span></a></li>
         
       </ul>
       
@@ -344,7 +352,7 @@
 
 
 
-<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+<script src="https://ninthday.github.io/post/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {

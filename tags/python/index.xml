@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/tags/python/</link>
+    <link>https://ninthday.github.io/post/tags/python/</link>
     <description>Recent content in python on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Sat, 20 Jul 2019 10:17:15 +0800</lastBuildDate>
     
-	<atom:link href="https://ninthday.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ninthday.github.io/post/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>保留 Configparser 儲存後英文字母大小寫</title>
-      <link>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</link>
+      <link>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</link>
       <pubDate>Sat, 20 Jul 2019 10:17:15 +0800</pubDate>
       
-      <guid>https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/</guid>
+      <guid>https://ninthday.github.io/post/2019/07/keep-camel-cas-python-configparser/</guid>
       <description>&lt;p&gt;對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 &lt;code&gt;.ini&lt;/code&gt; INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 &lt;code&gt;ConfigParser&lt;/code&gt; 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。&lt;/p&gt;</description>
     </item>
     

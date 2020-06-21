@@ -26,37 +26,37 @@
 
   
   <meta name="author" content="Tuvix Shih">
-  <meta name="description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
-xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
-$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
-設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
-$ xsetwacom --list devices 目前電腦輸出的結果：
-Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
+  <meta name="description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jeffyshih">
     <meta name="twitter:title" content="Ubuntu 上使用 Wacom Intuos 繪圖板">
-    <meta name="twitter:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
-xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
-$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
-設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
-$ xsetwacom --list devices 目前電腦輸出的結果：
-Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
+    <meta name="twitter:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
     <meta name="twitter:image" content="https://ninthday.github.io/images/ubuntu.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="Ubuntu 上使用 Wacom Intuos 繪圖板">
-  <meta property="og:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
-xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
-$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
-設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
-$ xsetwacom --list devices 目前電腦輸出的結果：
-Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
-  <meta property="og:url" content="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">
+  <meta property="og:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
+  <meta property="og:url" content="https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/">
   <meta property="og:image" content="https://ninthday.github.io/images/ubuntu.png">
 
 
@@ -65,7 +65,7 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">
+<link rel="canonical" href="https://ninthday.github.io/post/2020/05/wacom-intous-on-ubuntu/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -90,20 +90,20 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://ninthday.github.io/bee.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
-<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+<link rel="icon" href="https://ninthday.github.io/post/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/post/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/post/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/post/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/post/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/post/manifest.json">
 
 
-<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://ninthday.github.io/post/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
-<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
-<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/manycats.jpg" as="image">
 
 
 <style>
@@ -111,7 +111,7 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
     background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://ninthday.github.io/post/styles/main-rendered.min.css">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
@@ -153,9 +153,9 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -173,7 +173,7 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -187,14 +187,14 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
           
           
           ">
-          <a href="https://ninthday.github.io/tags">Tags</a>
+          <a href="https://ninthday.github.io/post/tags">Tags</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://ninthday.github.io/about/">About</a>
+          <a href="https://ninthday.github.io/post/about/">About</a>
         </li>
       
     </ul>
@@ -226,26 +226,83 @@ Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch 
       <h1 class="post-title">Ubuntu 上使用 Wacom Intuos 繪圖板</h1>
       <p class="post-meta">@Tuvix Shih · May 17, 2020 · 2 min read</p>
     </header>
-    <article class="post-content"><p>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。</p>
-<h2 id="xf86-input-wacom-驅動程式">xf86-input-wacom 驅動程式</h2>
-<p>首先在系統商安裝 <code>xf86-input-wacom</code> 驅動程式</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev<span style="color:#66d9ef">$(</span>dpkg -S <span style="color:#66d9ef">$(</span>which Xorg<span style="color:#66d9ef">)</span> | grep -Eo -- <span style="color:#e6db74">&#34;-hwe-[^:]*&#34;</span><span style="color:#66d9ef">)</span> libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev
-</code></pre></div><p>安裝完成後重新啓動電腦</p>
-<h2 id="設定-wacam-設備">設定 wacam 設備</h2>
+    <aside>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-安裝-xf86-input-wacom-驅動程式">1. 安裝 xf86-input-wacom 驅動程式</a></li>
+    <li><a href="#2-設定-wacam-設備">2. 設定 wacam 設備</a></li>
+    <li><a href="#3-設定對應的螢幕">3. 設定對應的螢幕</a></li>
+    <li><a href="#4-設定繪圖板作業區域與螢幕比例">4. 設定繪圖板作業區域與螢幕比例</a></li>
+    <li><a href="#5-設定繪圖軟體-gimp">5. 設定繪圖軟體 GIMP</a></li>
+  </ul>
+</nav>
+    </aside>
+    <article class="post-content"><p>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。</p>
+<h2 id="1-安裝-xf86-input-wacom-驅動程式">1. 安裝 xf86-input-wacom 驅動程式</h2>
+<p>首先在系統上安裝 <code>xf86-input-wacom</code> 驅動程式</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev<span style="color:#66d9ef">$(</span>dpkg -S <span style="color:#66d9ef">$(</span>which Xorg<span style="color:#66d9ef">)</span> | grep -Eo -- <span style="color:#e6db74">&#34;-hwe-[^:]*&#34;</span><span style="color:#66d9ef">)</span> libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev
+</code></pre></td></tr></table>
+</div>
+</div><p>安裝完成後，重新啓動電腦。</p>
+<hr>
+<h2 id="2-設定-wacam-設備">2. 設定 wacam 設備</h2>
 <p>使用 <code>xsetwacom</code> 指令列出目前的 wacom 設備</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ xsetwacom --list devices 
-</code></pre></div><p>目前電腦輸出的結果：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Wacom Intuos PT S Pen stylus    	id: 12	type: STYLUS    
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 列出目前的設備</span>
+$ xsetwacom --list devices 
+</code></pre></td></tr></table>
+</div>
+</div><p>在我的電腦上輸出的結果：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Wacom Intuos PT S Pen stylus    	id: 12	type: STYLUS    
 Wacom Intuos PT S Finger touch  	id: 13	type: TOUCH     
 Wacom Intuos PT S Pad pad       	id: 14	type: PAD       
 Wacom Intuos PT S Pen eraser    	id: 16	type: ERASER
-</code></pre></div><blockquote>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p><code>Wacom Intuos PT S Pen stylus</code> 為繪圖筆的設定
 繪圖板上面的按鍵，可以透過 <code>Wacom Intuos PT S Pad pad</code> 設定</p>
 </blockquote>
-<h2 id="設定對應的螢幕">設定對應的螢幕</h2>
+<hr>
+<h2 id="3-設定對應的螢幕">3. 設定對應的螢幕</h2>
 <p>在螢幕很便宜的世代，大部分的使用者應該跟我一樣有兩個螢幕，並且設定為延伸螢幕讓整個視野可以很大。而繪圖板在預設情形下，會對應到整個延伸之後的大小。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ xrandr -q
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 取得螢幕資訊</span>
+$ xrandr -q
 
 Screen 0: minimum <span style="color:#ae81ff">320</span> x 200, current <span style="color:#ae81ff">3840</span> x 1080, maximum <span style="color:#ae81ff">16384</span> x <span style="color:#ae81ff">16384</span>
 DisplayPort-0 connected primary 1920x1080+1920+0 <span style="color:#f92672">(</span>normal left inverted right x axis y axis<span style="color:#f92672">)</span> 598mm x 336mm
@@ -257,30 +314,94 @@ HDMI-A-0 connected 1920x1080+0+0 <span style="color:#f92672">(</span>normal left
    1680x1050     59.88  
 ... 
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ xsetwacom --set <span style="color:#ae81ff">12</span> MapToOutput DisplayPort-0 
+</code></pre></td></tr></table>
+</div>
+</div><p>這裏我們可以看到電腦目前接着的螢幕資訊，一個是接在 <code>DisplayPort-0</code> 一個是接在 <code>HDMI-A-0</code> 上。使用 <code>xsetwacom</code> 指令，將繪圖板限定在 <code>DisplayPort-0</code> 這個螢幕。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 以編號方式設定</span>
+$ xsetwacom --set <span style="color:#ae81ff">12</span> MapToOutput DisplayPort-0 
+
 or
+<span style="color:#75715e"># 以名稱方式設定</span>
 $ xsetwacom --set <span style="color:#e6db74">&#34;Wacom Intuos PT S Pen stylus&#34;</span> MapToOutput DisplayPort-0 
-</code></pre></div><h2 id="確認螢幕比例">確認螢幕比例</h2>
-<p>取得繪圖板操作區域</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ xsetwacom --get <span style="color:#ae81ff">12</span> area 
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="4-設定繪圖板作業區域與螢幕比例">4. 設定繪圖板作業區域與螢幕比例</h2>
+<p>繪圖板作用的區域和螢幕的比例並不相同，在使用時就有可能因為比例關係，讓畫正圓變成橢圓，正方形變成長方形。</p>
+<p>以 <code>xsetwacom --get</code> 取得繪圖板操作區域</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 取得操作區域</span>
+$ xsetwacom --get <span style="color:#ae81ff">12</span> area 
+
 <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">15200</span> <span style="color:#ae81ff">9500</span>
-</code></pre></div><blockquote>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>也可以使用名稱 <code>xsetwacom --get &quot;Wacom Intuos PT S Pen stylus&quot; area </code></p>
 </blockquote>
-<p>繪圖板是 15200/9500 = 1.6 = 16:10
-螢幕畫面 1920/1080= 1.7778 = 16:9
-而繪圖板是滿板與畫面對應，也就是 15200x9500 對應 1920x1080</p>
-<p>此問題會造成，如果你在板子上畫一個正方形，在畫面上看起來會是扁的長方形，因為二端的寬高比例不同而產生的變形。</p>
-<p>所以我要將繪圖板的作業區域也限定為 16:9，讓2段的比例相同。</p>
-<p>以板子的作業寬度對應螢幕的寬度，那麼板子的作業高度就必須縮小。</p>
-<p>板子的作業高度 = (1080/1920) * 21600 = 12150</p>
-<h2 id="設定繪圖軟體-gimp">設定繪圖軟體 GIMP</h2>
-<p>設定使用感壓繪圖功能
-開啓繪圖軟體 GIMP
-Edit → Preferences
-Input Devices → Configure Extended Input Devices
-選擇 device 名稱 <code>Wacom Intuos PT S Pen stylus</code>，設定至 <strong>screen</strong> mode
-儲存設定，關閉對話視窗</p>
+<p>接下來就是計算繪圖作業區域與螢幕區域，然後換算成正確的高度：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">繪圖板比例：15200/9500 = 1.6 = 16:10
+螢幕畫面比例：1920/1080 = 1.7778 = 16:9
+</code></pre></td></tr></table>
+</div>
+</div><p>繪圖板的作業區域範圍與螢幕畫面對應，也就是 <code>15200 x 9500(16:10)</code> 對應 <code>1920 x 1080 (16:9)</code>。為了能夠正常使用，我們要將繪圖板的作業區域從 16:10 限定為 16:9，讓兩個的比例相同。</p>
+<p>我們要將大的縮小，在寬度比例相同下，繪圖板的高度比例由 10 縮小到 9，所以將繪圖板設定的作業高度調整縮小。</p>
+<p>繪圖板的作業區域高度計算：
+<code>高度 = (1080/1920) * 15200 = 8550</code></p>
+<p>計算完高度後，我們把新的繪圖板作業高度寫回設定。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 設定繪圖板作業區域範圍</span>
+$ xsetwacom --set <span style="color:#ae81ff">12</span> area <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">15200</span> <span style="color:#ae81ff">8550</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-設定繪圖軟體-gimp">5. 設定繪圖軟體 GIMP</h2>
+<p>繪圖板有感壓功能，在 Linux 最常用的繪圖軟體 <code>GIMP</code> 上使用時卻沒有。我們需要到軟體裡去設定使用感壓繪圖功能。</p>
+<ol>
+<li>
+<p>開啓繪圖軟體 GIMP</p>
+</li>
+<li>
+<p><code>Edit</code> → <code>Preferences</code></p>
+</li>
+<li>
+<p><code>Input Devices</code> → <code>Configure Extended Input Devices</code></p>
+<p>選擇 device 名稱 <code>Wacom Intuos PT S Pen stylus</code>，設定至 <strong>screen</strong> mode</p>
+</li>
+<li>
+<p>儲存設定，關閉對話視窗</p>
+</li>
+</ol>
 <p>參考資料：</p>
 <ol>
 <li><a href="http://evanlab.blogspot.com/2018/12/wacom-intuos-bt-m-ctl-6100wl-ubuntu-1804.html">http://evanlab.blogspot.com/2018/12/wacom-intuos-bt-m-ctl-6100wl-ubuntu-1804.html</a></li>
@@ -293,9 +414,9 @@ Input Devices → Configure Extended Input Devices
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/tags/ubuntu"><span class="tag">Ubuntu</span></a></li>
+          <li><a href="https://ninthday.github.io/post/tags/ubuntu"><span class="tag">Ubuntu</span></a></li>
         
-          <li><a href="https://ninthday.github.io/tags/wacom"><span class="tag">Wacom</span></a></li>
+          <li><a href="https://ninthday.github.io/post/tags/wacom"><span class="tag">Wacom</span></a></li>
         
       </ul>
       
@@ -369,7 +490,7 @@ Input Devices → Configure Extended Input Devices
 
 
 
-<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+<script src="https://ninthday.github.io/post/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {

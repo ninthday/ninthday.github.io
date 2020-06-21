@@ -44,7 +44,7 @@
   <meta property="og:title" content="用 Git Submodule 管理 Hugo Theme">
   <meta property="og:description" content="通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
 ">
-  <meta property="og:url" content="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
+  <meta property="og:url" content="https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/">
   <meta property="og:image" content="https://ninthday.github.io/images/hugo.png">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
+<link rel="canonical" href="https://ninthday.github.io/post/2019/07/git-submodule-hugo-theme/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://ninthday.github.io/bee.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
-<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+<link rel="icon" href="https://ninthday.github.io/post/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/post/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/post/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/post/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/post/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/post/manifest.json">
 
 
-<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://ninthday.github.io/post/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
-<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
-<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/post/images/manycats.jpg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://ninthday.github.io/post/styles/main-rendered.min.css">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io/post/"><img class="avatar" src="https://ninthday.github.io/post/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io/post/">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -175,14 +175,14 @@
           
           
           ">
-          <a href="https://ninthday.github.io/tags">Tags</a>
+          <a href="https://ninthday.github.io/post/tags">Tags</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://ninthday.github.io/about/">About</a>
+          <a href="https://ninthday.github.io/post/about/">About</a>
         </li>
       
     </ul>
@@ -214,31 +214,77 @@
       <h1 class="post-title">用 Git Submodule 管理 Hugo Theme</h1>
       <p class="post-meta">@Tuvix Shih · Jul 12, 2019 · 2 min read</p>
     </header>
+    <aside>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#新增-submodule">新增 submodule</a></li>
+    <li><a href="#更新-submodule">更新 submodule</a></li>
+    <li><a href="#刪除-submodule">刪除 submodule</a></li>
+  </ul>
+</nav>
+    </aside>
     <article class="post-content"><p>通常在 Hugo 目錄下會有一個 <code>theme</code> 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。</p>
 <h1 id="git-submodule">Git Submodule</h1>
 <p>什麼是 git submodule？時常我們一個專案上工作時，有可能會使用到另一個 Repo 的內容，或許是一個函式庫或許是另一個套件工具，這些我們專案使用到的外部資源，都有可能是在自己的 Repo 上持續的進行中。
 如果把外部的資源複製到自己的專案下，每次在外部程式碼有更新的時候，都會需要一再重複的複製，管理上變得困難。</p>
 <p>Git 能夠通過 submodule 處理這樣問題。submodule 允許我們將一個 Git repo 當作另外一個 Git repo 的子目錄。這允許我們 clone 另外一個 repository 到自己的專案中，並且仍然保持我們的提交相對獨立。</p>
 <p>Git submodule 加入語法雷同於 clone</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add &lt;repository&gt; <span style="color:#f92672">[</span>&lt;path&gt;<span style="color:#f92672">]</span>
-</code></pre></div><h1 id="hugo-theme-以-git-submodule-方式加入">Hugo theme 以 git submodule 方式加入</h1>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add &lt;repository&gt; <span style="color:#f92672">[</span>&lt;path&gt;<span style="color:#f92672">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="hugo-theme-以-git-submodule-方式加入">Hugo theme 以 git submodule 方式加入</h1>
 <p>將 Hugo theme 以 <strong>git submodule</strong> 方式加入，我們同樣以 m10c 作為說明範例。</p>
 <h2 id="新增-submodule">新增 submodule</h2>
 <p>在 Hugo 的根目錄下，輸入下列指令</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c
-</code></pre></div><p>當指令完成之後，於根目錄下會生成一個 <code>.gitmodules</code> 設定檔，裡面記錄了 git submodule 的一些設定訊息。將這個檔案一起加入到自己的 repo 中，就能夠方便管理。<code>.gitmodules</code> 內容如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[submodule &#34;themes/m10c&#34;]</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+</code></pre></td></tr></table>
+</div>
+</div><p>當指令完成之後，於根目錄下會生成一個 <code>.gitmodules</code> 設定檔，裡面記錄了 git submodule 的一些設定訊息。將這個檔案一起加入到自己的 repo 中，就能夠方便管理。<code>.gitmodules</code> 內容如下</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[submodule &#34;themes/m10c&#34;]</span>
 	<span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">themes/m10c
 </span><span style="color:#e6db74">	url = https://github.com/vaga/hugo-theme-m10c.git</span>
-</code></pre></div><blockquote>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>如果以 submodule 加入多個 theme，<code>.gitmodules</code> 中就會有多條相關的設定內容。</p>
 </blockquote>
 <h2 id="更新-submodule">更新 submodule</h2>
 <p>如果專案下的 submodule 不多，可以進入個別的 submodule 資料夾中，執行 <code>git pull</code> 的方式去拉下更新的內容。若一次要全部一起更新所有 submodule，可以使用 <code>foreach</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule foreach --recursive git pull --rebase origin master
-</code></pre></div><p>這個方式將會遞迴進入每個 submodule 中執行 <code>git pull --rebase origin master</code> 指令 。另一個方式直接使用 <code>--remote</code> 的方式一次更新。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule update --remote --rebase
-</code></pre></div><h2 id="刪除-submodule">刪除 submodule</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule foreach --recursive git pull --rebase origin master
+</code></pre></td></tr></table>
+</div>
+</div><p>這個方式將會遞迴進入每個 submodule 中執行 <code>git pull --rebase origin master</code> 指令 。另一個方式直接使用 <code>--remote</code> 的方式一次更新。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule update --remote --rebase
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="刪除-submodule">刪除 submodule</h2>
 <p>Submodule 的刪除比加入麻煩。沒有 rm 的指令，必須要手動刪除。</p>
 <ol>
 <li>要先進入 <code>.gitmodules</code> 中將不要的 submodule 區段刪除。</li>
@@ -246,7 +292,24 @@
 <li>刪除 submodule 資料夾</li>
 <li>修改 <code>.git/config</code> 刪除不要的 submodule</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .gitmodules 刪除 submodule 區段</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .gitmodules 刪除 submodule 區段</span>
 $ vim .gitmodules
 
 $ git rm –cached themes/m10c
@@ -259,24 +322,45 @@ $ vim .git/config
 $ git add .
 $ git commit -m <span style="color:#e6db74">&#34;remove submodule&#34;</span>
 $ git push origin master
-</code></pre></div><h1 id="clone-hugo-專案-submodule-為空">Clone Hugo 專案 submodule 為空？</h1>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="clone-hugo-專案-submodule-為空">Clone Hugo 專案 submodule 為空？</h1>
 <p>若像我有在不同電腦進行 Hugo Blog 內文撰寫（就是懶得把電腦帶來帶去的），在另一臺用 <code>git clone</code> 下載自己的 Hugo 專案時，會發現 submodule 對應的資料夾雖然存在，但是 submodule 資料夾都是空的。<code>git clone</code>指令並不會一起下載 submodule 中的內容。</p>
 <p>可以使用下面的指令可以將 <code>.gitmodules</code> 中的內容寫入 <code>.git/config</code>，然後再更新下載 submodule 內容。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule init
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule init
 $ git submodule update --recursive
 
 or
 <span style="color:#75715e"># 或是合併成一行</span>
 $ git submodule update --init --recursive
-</code></pre></div><blockquote>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <ul>
 <li><code>git submodule init</code>：根據 <code>.gitmodules</code> 的名稱和設定將資訊註冊到 <code>.git/config</code> 內。（但 <code>.gitmodules</code> 內移除的 submodule 並不會自動刪除 <code>.git/config</code> 的相關內容，需手動刪除）</li>
 <li><code>git submodule update</code>：根據已註冊 <code>.git/config</code> 的 submodule 進行更新，執行這個指令前最好可以加上 <code>--init</code>。</li>
 </ul>
 </blockquote>
 <p>當然我們自己知道專案中已經包含 submodule 的時候，就可以在 clone 的時候一次一起更新下來。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone --recurse-submodules git@github.com:ninthday/ninthday-blog.git
-</code></pre></div><hr>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone --recurse-submodules git@github.com:ninthday/ninthday-blog.git
+</code></pre></td></tr></table>
+</div>
+</div><hr>
 <p>參考資料：</p>
 <ol>
 <li><a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E7%B5%84-Submodules">Git 工具 - 子模組 (Submodules)</a></li>
@@ -288,9 +372,9 @@ $ git submodule update --init --recursive
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/tags/hugo"><span class="tag">Hugo</span></a></li>
+          <li><a href="https://ninthday.github.io/post/tags/hugo"><span class="tag">Hugo</span></a></li>
         
-          <li><a href="https://ninthday.github.io/tags/git"><span class="tag">Git</span></a></li>
+          <li><a href="https://ninthday.github.io/post/tags/git"><span class="tag">Git</span></a></li>
         
       </ul>
       
@@ -364,7 +448,7 @@ $ git submodule update --init --recursive
 
 
 
-<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+<script src="https://ninthday.github.io/post/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {
