@@ -6,7 +6,9 @@
 
   
   <title>
-  About | Ninthday Blog
+  Tag → wacom
+  
+   | Ninthday Blog
 </title>
 
   
@@ -41,7 +43,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ninthday Blog">
   <meta property="og:description" content="Ninthday 的部落格">
-  <meta property="og:url" content="https://ninthday.github.io/about/">
+  <meta property="og:url" content="https://ninthday.github.io/tags/wacom/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -50,7 +52,8 @@
 <meta name="generator" content="Hugo 0.72.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/about/">
+<link rel="canonical" href="https://ninthday.github.io/tags/wacom/">
+<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/tags/wacom/index.xml" title="have a NINTHDAY">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -162,13 +165,13 @@
       
         <li class="menu-item
           
-          
+           is-active
           ">
           <a href="https://ninthday.github.io/tags">Tags</a>
         </li>
       
         <li class="menu-item
-           is-active
+          
           
           ">
           <a href="https://ninthday.github.io/about/">About</a>
@@ -198,11 +201,34 @@
   </nav>
 </header>
 
-  <section class="main post-detail">
-    <header class="post-header">
-      <h1 class="post-title">About</h1>
+  <section class="main post-list">
+    <header class="list-header offscreen">
+      <h2 class="list-label">Posts List</h2>
     </header>
-    <article class="post-content"></article>
+    
+    
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/" class="post-link">Ubuntu 上使用 Wacom Intuos 繪圖板</a></h3>
+    <p class="post-meta">@Tuvix Shih · May 17, 2020 · 2 min read</p>
+  </header>
+  
+    <img class="post-cover" src="https://ninthday.github.io/images/ubuntu.png" alt="Ubuntu 上使用 Wacom Intuos 繪圖板" lazyload="on">
+  
+  <p class="post-summary">基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
+xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
+$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &#34;-hwe-[^:]*&#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
+設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+$ xsetwacom --list devices 目前電腦輸出的結果：
+Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">Read More →</a>
+  </footer>
+</article>
+
+      
+    
     
   </section>
   

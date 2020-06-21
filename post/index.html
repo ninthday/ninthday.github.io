@@ -48,7 +48,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.3">
+<meta name="generator" content="Hugo 0.72.0">
 
 
 <link rel="canonical" href="https://ninthday.github.io/post/">
@@ -209,6 +209,26 @@
       
         <article class="post-entry">
   <header class="post-header">
+    <h3 class="post-title"><a href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/" class="post-link">Ubuntu 上使用 Wacom Intuos 繪圖板</a></h3>
+    <p class="post-meta">@Tuvix Shih · May 17, 2020 · 2 min read</p>
+  </header>
+  
+    <img class="post-cover" src="https://ninthday.github.io/images/ubuntu.png" alt="Ubuntu 上使用 Wacom Intuos 繪圖板" lazyload="on">
+  
+  <p class="post-summary">基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。
+xf86-input-wacom 驅動程式 首先在系統商安裝 xf86-input-wacom 驅動程式
+$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &#34;-hwe-[^:]*&#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev 安裝完成後重新啓動電腦
+設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+$ xsetwacom --list devices 目前電腦輸出的結果：
+Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER  Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
     <h3 class="post-title"><a href="https://ninthday.github.io/2019/08/github-two-factor-authentication/" class="post-link">開啓 Github 雙因素認證</a></h3>
     <p class="post-meta">@Tuvix Shih · Aug 5, 2019 · 1 min read</p>
   </header>
@@ -264,10 +284,10 @@
     <img class="post-cover" src="https://ninthday.github.io/images/hugo.png" alt="Hugo 靜態網頁部署至 GitHub Page" lazyload="on">
   
   <p class="post-summary">1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
- Snap Package
-snap install hugo --channel=extended or snap install hugo apt install
-sudo apt install hugo 檢查 Hugo 安裝的版本
-hugo version  2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
+  Snap Package
+snap install hugo --channel=extended or snap install hugo   apt install
+sudo apt install hugo   檢查 Hugo 安裝的版本
+hugo version   2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
 # blog 為站臺名稱 hugo new site blog 初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
 . ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题 2.</p>
   <footer class="post-footer">
@@ -297,7 +317,7 @@ hugo version  2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指�
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>© 2017-2020 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

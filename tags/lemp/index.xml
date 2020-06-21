@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>LEMP on have a NINTHDAY</title>
@@ -18,8 +18,7 @@
       <pubDate>Thu, 02 May 2019 22:11:36 +0800</pubDate>
       
       <guid>https://ninthday.github.io/2019/05/install-lemp-on-ubuntu/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/images/installing-lemp.png&#34; alt=&#34;LEMP&#34; /&gt;&lt;/p&gt;
-
+      <description>&lt;p&gt;&lt;img src=&#34;https://ninthday.github.io/images/installing-lemp.png&#34; alt=&#34;LEMP&#34;&gt;&lt;/p&gt;
 &lt;p&gt;一直以來都是使用 LAMP（Linux + Apache + MySQL + PHP） 架構居多，基於 Apache 是個胖子加上 MySQL 的黑化&amp;hellip;，嘗試開始使用 LEMP 的組合。LEMP 為 Linux + Nginx + MariaDB + PHP，後面敘述為在 ubuntu 18.04 中的安裝方式與設定。&lt;/p&gt;</description>
     </item>
     
