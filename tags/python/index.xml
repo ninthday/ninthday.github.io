@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+<<<<<<< HEAD
     <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate>
     
 	<atom:link href="https://ninthday.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+=======
+    <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate><atom:link href="https://ninthday.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 套件相依性管理工具 Poetry</title>
+      <link>https://ninthday.github.io/2020/06/python-poetry/</link>
+      <pubDate>Sun, 21 Jun 2020 16:36:43 +0800</pubDate>
+      
+      <guid>https://ninthday.github.io/2020/06/python-poetry/</guid>
+      <description>Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.</description>
+    </item>
+>>>>>>> e530afc
     
     <item>
       <title>Python 套件相依性管理工具 Poetry</title>
