@@ -7,15 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-<<<<<<< HEAD
-    <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate>
-    
-	<atom:link href="https://ninthday.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-=======
     <lastBuildDate>Sun, 21 Jun 2020 16:36:43 +0800</lastBuildDate><atom:link href="https://ninthday.github.io/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> e530afc
     <item>
       <title>About</title>
       <link>https://ninthday.github.io/about/</link>

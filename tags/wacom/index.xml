@@ -7,15 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-<<<<<<< HEAD
-    <lastBuildDate>Sun, 17 May 2020 22:27:09 +0800</lastBuildDate>
-    
-	<atom:link href="https://ninthday.github.io/tags/wacom/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-=======
     <lastBuildDate>Sun, 17 May 2020 22:27:09 +0800</lastBuildDate><atom:link href="https://ninthday.github.io/tags/wacom/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> e530afc
     <item>
       <title>Ubuntu 上使用 Wacom Intuos 繪圖板</title>
       <link>https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/</link>
@@ -31,8 +23,4 @@
     </item>
     
   </channel>
-<<<<<<< HEAD
 </rss>
-=======
-</rss>
->>>>>>> e530afc
