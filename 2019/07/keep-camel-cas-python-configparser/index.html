@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.3">
+<meta name="generator" content="Hugo 0.80.0">
 
 
 <link rel="canonical" href="https://ninthday.github.io/2019/07/keep-camel-cas-python-configparser/">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -215,21 +215,30 @@
       <p class="post-meta">@Tuvix Shih · Jul 20, 2019 · 1 min read</p>
     </header>
     <article class="post-content"><p>對於程式執行階段，因為可能在不同設備或是環境有不同設定內容，使用 <code>.ini</code> INI 設定檔讀取或寫入的方式管理相當方便。利用 Python 內建的 <code>ConfigParser</code> 來處理 INI 設定檔相當方便，但在讀取後再儲存保留時，會將內容全都轉換為小寫字母。在區分字母大小寫的 Linux 系統中，希望能夠保留原來字母大小，便於閱讀和再使用。</p>
-
-<p><code>configparser.ConfigParser()</code> 起源 <code>ConfigParser.RawConfigParser()</code>，在 python 說明文件中提到
-&gt; All option names are passed through the optionxform() method. Its default implementation converts option names to lower case.</p>
-
+<p><code>configparser.ConfigParser()</code> 起源 <code>ConfigParser.RawConfigParser()</code>，在 python 說明文件中提到</p>
+<blockquote>
+<p>All option names are passed through the optionxform() method. Its default implementation converts option names to lower case.</p>
+</blockquote>
 <p>因為所有的 option names 都會經過 <code>optionxform()</code> 方法，都會被轉換為小寫，導致我們使用 <strong>write</strong> 方式寫入保存 INI 檔的時候，Option 名稱都轉為小寫字母的原因。</p>
-
 <p>我們可以透過自定 <code>optionxform</code> 屬性來達成讀取後傳回原始的字串，如下內容將其設定為 <code>str</code>，將可以留大小寫字母區分。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cfgparser <span style="color:#f92672">=</span> ConfigParser()
-cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92672">=</span> str</code></pre></div>
-<p>參考資料：</p>
-
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cfgparser <span style="color:#f92672">=</span> ConfigParser()
+cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92672">=</span> str
+</code></pre></td></tr></table>
+</div>
+</div><p>參考資料：</p>
 <ol>
-<li><p><a href="https://docs.python.org/3/library/configparser.html">configparser - Configuration file parser</a></p></li>
-
-<li><p><a href="https://stackoverflow.com/questions/19359556/configparser-reads-capital-keys-and-make-them-lower-case">ConfigParser reads capital keys and make them lower case</a></p></li>
+<li>
+<p><a href="https://docs.python.org/3/library/configparser.html">configparser - Configuration file parser</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/19359556/configparser-reads-capital-keys-and-make-them-lower-case">ConfigParser reads capital keys and make them lower case</a></p>
+</li>
 </ol></article>
     <footer class="post-footer">
       
@@ -240,7 +249,7 @@ cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>589</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -269,7 +278,7 @@ cfgparser<span style="color:#f92672">.</span>optionxform <span style="color:#f92
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>© 2017-2021 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

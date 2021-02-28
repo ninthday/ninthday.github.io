@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>用 Git Submodule 管理 Hugo Theme</title>
+  <title>Ubuntu 上使用 Wacom Intuos 繪圖板</title>
 
   
   
@@ -25,27 +25,39 @@
   
 
   
-  
-  <meta name="description" content="通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
-">
+  <meta name="author" content="Tuvix Shih">
+  <meta name="description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jeffyshih">
-    <meta name="twitter:title" content="用 Git Submodule 管理 Hugo Theme">
-    <meta name="twitter:description" content="通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
-">
-    <meta name="twitter:image" content="https://ninthday.github.io/images/hugo.png">
+    <meta name="twitter:title" content="Ubuntu 上使用 Wacom Intuos 繪圖板">
+    <meta name="twitter:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
+    <meta name="twitter:image" content="https://ninthday.github.io/images/ubuntu.png">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="用 Git Submodule 管理 Hugo Theme">
-  <meta property="og:description" content="通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
-">
-  <meta property="og:url" content="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
-  <meta property="og:image" content="https://ninthday.github.io/images/hugo.png">
+  <meta property="og:title" content="Ubuntu 上使用 Wacom Intuos 繪圖板">
+  <meta property="og:description" content="基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &amp;#34;-hwe-[^:]*&amp;#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定">
+  <meta property="og:url" content="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">
+  <meta property="og:image" content="https://ninthday.github.io/images/ubuntu.png">
 
 
 
@@ -53,7 +65,7 @@
 <meta name="generator" content="Hugo 0.80.0">
 
 
-<link rel="canonical" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">
+<link rel="canonical" href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -211,78 +223,56 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">用 Git Submodule 管理 Hugo Theme</h1>
-      <p class="post-meta">@Tuvix Shih · Jul 12, 2019 · 2 min read</p>
+      <h1 class="post-title">Ubuntu 上使用 Wacom Intuos 繪圖板</h1>
+      <p class="post-meta">@Tuvix Shih · May 17, 2020 · 2 min read</p>
     </header>
-    <article class="post-content"><p>通常在 Hugo 目錄下會有一個 <code>theme</code> 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。</p>
-<h1 id="git-submodule">Git Submodule</h1>
-<p>什麼是 git submodule？時常我們一個專案上工作時，有可能會使用到另一個 Repo 的內容，或許是一個函式庫或許是另一個套件工具，這些我們專案使用到的外部資源，都有可能是在自己的 Repo 上持續的進行中。
-如果把外部的資源複製到自己的專案下，每次在外部程式碼有更新的時候，都會需要一再重複的複製，管理上變得困難。</p>
-<p>Git 能夠通過 submodule 處理這樣問題。submodule 允許我們將一個 Git repo 當作另外一個 Git repo 的子目錄。這允許我們 clone 另外一個 repository 到自己的專案中，並且仍然保持我們的提交相對獨立。</p>
-<p>Git submodule 加入語法雷同於 clone</p>
+    <article class="post-content"><p>基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。</p>
+<h2 id="1-安裝-xf86-input-wacom-驅動程式">1. 安裝 xf86-input-wacom 驅動程式</h2>
+<p>首先在系統上安裝 <code>xf86-input-wacom</code> 驅動程式</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add &lt;repository&gt; <span style="color:#f92672">[</span>&lt;path&gt;<span style="color:#f92672">]</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev<span style="color:#66d9ef">$(</span>dpkg -S <span style="color:#66d9ef">$(</span>which Xorg<span style="color:#66d9ef">)</span> | grep -Eo -- <span style="color:#e6db74">&#34;-hwe-[^:]*&#34;</span><span style="color:#66d9ef">)</span> libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="hugo-theme-以-git-submodule-方式加入">Hugo theme 以 git submodule 方式加入</h1>
-<p>將 Hugo theme 以 <strong>git submodule</strong> 方式加入，我們同樣以 m10c 作為說明範例。</p>
-<h2 id="新增-submodule">新增 submodule</h2>
-<p>在 Hugo 的根目錄下，輸入下列指令</p>
+</div><p>安裝完成後，重新啓動電腦。</p>
+<hr>
+<h2 id="2-設定-wacam-設備">2. 設定 wacam 設備</h2>
+<p>使用 <code>xsetwacom</code> 指令列出目前的 wacom 設備</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 列出目前的設備</span>
+$ xsetwacom --list devices 
 </code></pre></td></tr></table>
 </div>
-</div><p>當指令完成之後，於根目錄下會生成一個 <code>.gitmodules</code> 設定檔，裡面記錄了 git submodule 的一些設定訊息。將這個檔案一起加入到自己的 repo 中，就能夠方便管理。<code>.gitmodules</code> 內容如下</p>
+</div><p>在我的電腦上輸出的結果：</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[submodule &#34;themes/m10c&#34;]</span>
-	<span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">themes/m10c
-</span><span style="color:#e6db74">	url = https://github.com/vaga/hugo-theme-m10c.git</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Wacom Intuos PT S Pen stylus    	id: 12	type: STYLUS    
+Wacom Intuos PT S Finger touch  	id: 13	type: TOUCH     
+Wacom Intuos PT S Pad pad       	id: 14	type: PAD       
+Wacom Intuos PT S Pen eraser    	id: 16	type: ERASER
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>如果以 submodule 加入多個 theme，<code>.gitmodules</code> 中就會有多條相關的設定內容。</p>
+<p><code>Wacom Intuos PT S Pen stylus</code> 為繪圖筆的設定
+繪圖板上面的按鍵，可以透過 <code>Wacom Intuos PT S Pad pad</code> 設定</p>
 </blockquote>
-<h2 id="更新-submodule">更新 submodule</h2>
-<p>如果專案下的 submodule 不多，可以進入個別的 submodule 資料夾中，執行 <code>git pull</code> 的方式去拉下更新的內容。若一次要全部一起更新所有 submodule，可以使用 <code>foreach</code></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule foreach --recursive git pull --rebase origin master
-</code></pre></td></tr></table>
-</div>
-</div><p>這個方式將會遞迴進入每個 submodule 中執行 <code>git pull --rebase origin master</code> 指令 。另一個方式直接使用 <code>--remote</code> 的方式一次更新。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule update --remote --rebase
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="刪除-submodule">刪除 submodule</h2>
-<p>Submodule 的刪除比加入麻煩。沒有 rm 的指令，必須要手動刪除。</p>
-<ol>
-<li>要先進入 <code>.gitmodules</code> 中將不要的 submodule 區段刪除。</li>
-<li>用 <code>git rm –cached</code> 方式</li>
-<li>刪除 submodule 資料夾</li>
-<li>修改 <code>.git/config</code> 刪除不要的 submodule</li>
-</ol>
+<hr>
+<h2 id="3-設定對應的螢幕">3. 設定對應的螢幕</h2>
+<p>在螢幕很便宜的世代，大部分的使用者應該跟我一樣有兩個螢幕，並且設定為延伸螢幕讓整個視野可以很大。而繪圖板在預設情形下，會對應到整個延伸之後的大小。</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -300,24 +290,22 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .gitmodules 刪除 submodule 區段</span>
-$ vim .gitmodules
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 取得螢幕資訊</span>
+$ xrandr -q
 
-$ git rm –cached themes/m10c
-$ rm -rf themes/m10c
+Screen 0: minimum <span style="color:#ae81ff">320</span> x 200, current <span style="color:#ae81ff">3840</span> x 1080, maximum <span style="color:#ae81ff">16384</span> x <span style="color:#ae81ff">16384</span>
+DisplayPort-0 connected primary 1920x1080+1920+0 <span style="color:#f92672">(</span>normal left inverted right x axis y axis<span style="color:#f92672">)</span> 598mm x 336mm
+   1920x1080     60.00*+  74.97    50.00    59.94  
+   1680x1050     59.95  
+...
+HDMI-A-0 connected 1920x1080+0+0 <span style="color:#f92672">(</span>normal left inverted right x axis y axis<span style="color:#f92672">)</span> 598mm x 336mm
+   1920x1080     60.00*+  50.00    59.94  
+   1680x1050     59.88  
+... 
 
-<span style="color:#75715e"># .git/config 刪除 submodule</span>
-$ vim .git/config
-
-<span style="color:#75715e"># 提交到 GitHub</span>
-$ git add .
-$ git commit -m <span style="color:#e6db74">&#34;remove submodule&#34;</span>
-$ git push origin master
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="clone-hugo-專案-submodule-為空">Clone Hugo 專案 submodule 為空？</h1>
-<p>若像我有在不同電腦進行 Hugo Blog 內文撰寫（就是懶得把電腦帶來帶去的），在另一臺用 <code>git clone</code> 下載自己的 Hugo 專案時，會發現 submodule 對應的資料夾雖然存在，但是 submodule 資料夾都是空的。<code>git clone</code>指令並不會一起下載 submodule 中的內容。</p>
-<p>可以使用下面的指令可以將 <code>.gitmodules</code> 中的內容寫入 <code>.git/config</code>，然後再更新下載 submodule 內容。</p>
+</div><p>這裏我們可以看到電腦目前接着的螢幕資訊，一個是接在 <code>DisplayPort-0</code> 一個是接在 <code>HDMI-A-0</code> 上。使用 <code>xsetwacom</code> 指令，將繪圖板限定在 <code>DisplayPort-0</code> 這個螢幕。</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -328,49 +316,101 @@ $ git push origin master
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git submodule init
-$ git submodule update --recursive
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 以編號方式設定</span>
+$ xsetwacom --set <span style="color:#ae81ff">12</span> MapToOutput DisplayPort-0 
 
 or
-<span style="color:#75715e"># 或是合併成一行</span>
-$ git submodule update --init --recursive
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<ul>
-<li><code>git submodule init</code>：根據 <code>.gitmodules</code> 的名稱和設定將資訊註冊到 <code>.git/config</code> 內。（但 <code>.gitmodules</code> 內移除的 submodule 並不會自動刪除 <code>.git/config</code> 的相關內容，需手動刪除）</li>
-<li><code>git submodule update</code>：根據已註冊 <code>.git/config</code> 的 submodule 進行更新，執行這個指令前最好可以加上 <code>--init</code>。</li>
-</ul>
-</blockquote>
-<p>當然我們自己知道專案中已經包含 submodule 的時候，就可以在 clone 的時候一次一起更新下來。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone --recurse-submodules git@github.com:ninthday/ninthday-blog.git
+<span style="color:#75715e"># 以名稱方式設定</span>
+$ xsetwacom --set <span style="color:#e6db74">&#34;Wacom Intuos PT S Pen stylus&#34;</span> MapToOutput DisplayPort-0 
 </code></pre></td></tr></table>
 </div>
 </div><hr>
+<h2 id="4-設定繪圖板作業區域與螢幕比例">4. 設定繪圖板作業區域與螢幕比例</h2>
+<p>繪圖板作用的區域和螢幕的比例並不相同，在使用時就有可能因為比例關係，讓畫正圓變成橢圓，正方形變成長方形。</p>
+<p>以 <code>xsetwacom --get</code> 取得繪圖板操作區域</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 取得操作區域</span>
+$ xsetwacom --get <span style="color:#ae81ff">12</span> area 
+
+<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">15200</span> <span style="color:#ae81ff">9500</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>也可以使用名稱 <code>xsetwacom --get &quot;Wacom Intuos PT S Pen stylus&quot; area </code></p>
+</blockquote>
+<p>接下來就是計算繪圖作業區域與螢幕區域，然後換算成正確的高度：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">繪圖板比例：15200/9500 = 1.6 = 16:10
+螢幕畫面比例：1920/1080 = 1.7778 = 16:9
+</code></pre></td></tr></table>
+</div>
+</div><p>繪圖板的作業區域範圍與螢幕畫面對應，也就是 <code>15200 x 9500(16:10)</code> 對應 <code>1920 x 1080 (16:9)</code>。為了能夠正常使用，我們要將繪圖板的作業區域從 16:10 限定為 16:9，讓兩個的比例相同。</p>
+<p>我們要將大的縮小，在寬度比例相同下，繪圖板的高度比例由 10 縮小到 9，所以將繪圖板設定的作業高度調整縮小。</p>
+<p>繪圖板的作業區域高度計算：
+<code>高度 = (1080/1920) * 15200 = 8550</code></p>
+<p>計算完高度後，我們把新的繪圖板作業高度寫回設定。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 設定繪圖板作業區域範圍</span>
+$ xsetwacom --set <span style="color:#ae81ff">12</span> area <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">15200</span> <span style="color:#ae81ff">8550</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-設定繪圖軟體-gimp">5. 設定繪圖軟體 GIMP</h2>
+<p>繪圖板有感壓功能，在 Linux 最常用的繪圖軟體 <code>GIMP</code> 上使用時卻沒有。我們需要到軟體裡去設定使用感壓繪圖功能。</p>
+<ol>
+<li>
+<p>開啓繪圖軟體 GIMP</p>
+</li>
+<li>
+<p><code>Edit</code> → <code>Preferences</code></p>
+</li>
+<li>
+<p><code>Input Devices</code> → <code>Configure Extended Input Devices</code></p>
+<p>選擇 device 名稱 <code>Wacom Intuos PT S Pen stylus</code>，設定至 <strong>screen</strong> mode</p>
+</li>
+<li>
+<p>儲存設定，關閉對話視窗</p>
+</li>
+</ol>
 <p>參考資料：</p>
 <ol>
-<li><a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E7%B5%84-Submodules">Git 工具 - 子模組 (Submodules)</a></li>
-<li><a href="https://blog.csdn.net/wangjia55/article/details/24400501">git submodule的使用</a></li>
-<li><a href="https://blog.chh.tw/posts/git-submodule/">Git Submodule 用法筆記</a></li>
-<li><a href="https://stackoverflow.com/questions/11420701/git-submodule-is-returning-blank">Git submodule is returning blank?</a></li>
-</ol></article>
+<li><a href="http://evanlab.blogspot.com/2018/12/wacom-intuos-bt-m-ctl-6100wl-ubuntu-1804.html">http://evanlab.blogspot.com/2018/12/wacom-intuos-bt-m-ctl-6100wl-ubuntu-1804.html</a></li>
+<li><a href="https://askubuntu.com/questions/48771/how-to-set-pressure-sensitivity-in-gimp-to-control-line-thickness">https://askubuntu.com/questions/48771/how-to-set-pressure-sensitivity-in-gimp-to-control-line-thickness</a></li>
+<li><a href="https://joshuawoehlke.com/wacom-intuos-and-xsetwacom-on-ubuntu-18-04/">https://joshuawoehlke.com/wacom-intuos-and-xsetwacom-on-ubuntu-18-04/</a></li>
+<li><a href="https://github.com/linuxwacom/xf86-input-wacom/wiki/Building-The-Driver">https://github.com/linuxwacom/xf86-input-wacom/wiki/Building-The-Driver</a></li>
+</ol>
+</article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="https://ninthday.github.io/tags/hugo"><span class="tag">Hugo</span></a></li>
+          <li><a href="https://ninthday.github.io/tags/ubuntu"><span class="tag">Ubuntu</span></a></li>
         
-          <li><a href="https://ninthday.github.io/tags/git"><span class="tag">Git</span></a></li>
+          <li><a href="https://ninthday.github.io/tags/wacom"><span class="tag">Wacom</span></a></li>
         
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>596</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>286</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

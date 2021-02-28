@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Python 套件相依性管理工具 Poetry</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Tuvix Shih">
+  <meta name="description" content="Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeffyshih">
+    <meta name="twitter:title" content="Python 套件相依性管理工具 Poetry">
+    <meta name="twitter:description" content="Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.">
+    <meta name="twitter:image" content="https://ninthday.github.io/images/python.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Python 套件相依性管理工具 Poetry">
+  <meta property="og:description" content="Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.">
+  <meta property="og:url" content="https://ninthday.github.io/2020/06/python-poetry/">
+  <meta property="og:image" content="https://ninthday.github.io/images/python.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0">
+
+
+<link rel="canonical" href="https://ninthday.github.io/2020/06/python-poetry/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="have a NINTHDAY">
+<meta name="msapplication-tooltip" content="have a NINTHDAY">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://ninthday.github.io/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+
+
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://ninthday.github.io"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://ninthday.github.io">have a NINTHDAY</a></h2>
+  
+  <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://ninthday.github.io/post">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/ninthday">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/tags">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:tuvix@ninthday.me" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/ninthday" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/jeffyshih" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/shiuh-feng-shih" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Python 套件相依性管理工具 Poetry</h1>
+      <p class="post-meta">@Tuvix Shih · Jun 21, 2020 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 <a href="https://pypi.org/project/pipenv/">Pipenv</a>，同時處理套件相依性及虛擬環境。</p>
+<p>後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音</p>
+<blockquote>
+<p>Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。</p>
+</blockquote>
+<p>讓我想嘗試看看 <a href="https://python-poetry.org/">Poetry</a>，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。</p>
+<ul>
+<li>官方網站：https://python-poetry.org/</li>
+<li>GitHub：https://github.com/python-poetry/poetry</li>
+<li>Document：https://python-poetry.org/docs/</li>
+</ul>
+<hr>
+<h2 id="1-安裝-peotry">1. 安裝 Peotry</h2>
+<p>官方推薦的方法</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+</code></pre></td></tr></table>
+</div>
+</div><p>官方建議不要使用 <code>pip</code> 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。</p>
+<pre><code>$ poetry --version 
+
+Poetry version 1.0.9
+</code></pre><blockquote>
+<p>Note:</p>
+<p>如果出現下面錯誤，可以修改 <code>~/.poetry/bin/poetry</code>，將 <code>/usr/bin/env python</code> 修改為 <code>/usr/bin/env python3</code> 就可以修復。希望之後的 patch 能夠修復。</p>
+<pre><code>/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used. Child process reliability may suffer if your program uses threads.
+&quot;program uses threads.&quot;, RuntimeWarning)
+</code></pre><p>參考：
+<a href="https://github.com/python-poetry/poetry/issues/1257">issue#1257-Problem vendoring subprocess32 in Ubuntu</a></p>
+</blockquote>
+<h2 id="2-環境設定">2. 環境設定</h2>
+<p>Poetry 在 Linux 系統的安裝路徑為 <code>$HOME/.poetry/bin</code>，需要把路徑加入到 <code>PATH</code> 環境變數中。若要立即套用至目前的 shell session，可以使用 <code>source $HOME/.poetry/env</code> 指令。</p>
+<p>建議將上述路徑加到 bashrc 或是 zshrc 中，在開啓 terminal 的時候，就直接套用至 PATH 中。</p>
+<pre><code>export PATH=$PATH:$HOME/.poetry/bin
+</code></pre><p>zplug 套件</p>
+<p><a href="https://github.com/darvid/zsh-poetry">zsh-poetry</a> 這個套件，檢查資料夾中是否存在合法的 <code>pyproject.toml</code>，在切換至資料夾時自動啓動虛擬環境（virtual environment）</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vim ~/.zshrc
+
+<span style="color:#75715e"># python-poetry</span>
+zplug <span style="color:#e6db74">&#34;darvid/zsh-poetry&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-開始-poetry">3. 開始 Poetry</h2>
+<h3 id="31-專案設定">3.1 專案設定</h3>
+<h4 id="現有專案">現有專案</h4>
+<p>在已經存在的專案中可以使用 <code>poetry init</code> 初始化 poetry，跟著提示輸入詢問的回應，不確定的回應可以直接 <code>Enter</code> 使用預設內容，之後都可以再編輯，完成後便會在專案中建立 <code>pyproject.toml</code> 檔案。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 現有專案</span>
+$ poetry init
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="創建新專案">創建新專案</h4>
+<p>如果要透過 poetry 創建一個新的 python 專案，使用 <code>poetry new &lt;專案名稱&gt;</code> 即可建立一個專案模板的資料夾結構。如果建立的時候需要 <code>src</code> 資料夾，可以加上 <code>--src</code> 選項。套件名稱弱想與資料架不同，可以使用 <code>--name</code> 指定。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 建立新專案 poetry-demo</span>
+$ poetry new poetry-demo
+
+<span style="color:#75715e"># 建立含 src 的新專案</span>
+$ poetry new  --src poetry-demo
+
+<span style="color:#75715e"># 建立新專案時專案名稱和資料夾不同</span>
+$ poetry new my-folder --name poetry-demo
+</code></pre></td></tr></table>
+</div>
+</div><p>在專案建立後，poetry 安排的資料夾目錄結構。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 目錄結構</span>
+poetry-demo
+├── pyproject.toml
+├── README.rst
+├── poetry_demo
+│   └── __init__.py
+└── tests
+    ├── __init__.py
+    └── test_poetry_demo.py
+</code></pre></td></tr></table>
+</div>
+</div><p>Python 在 PEP 518 引入了新的標準，使用 <code>pyproject.toml</code> 檔案來管理各項 meta 資訊，peotry 使用 <code>pyproject.toml</code> 作為配置的設定檔，專案建立後的 <code>pyproject.toml</code> 初始內容如下：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># 專案基本資料</span>
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">poetry</span>]
+<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;poetry-demo&#34;</span>
+<span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;0.1.0&#34;</span>
+<span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;測試&#34;</span>
+<span style="color:#a6e22e">authors</span> = [<span style="color:#e6db74">&#34;Tuvix Shih &lt;tuvix@ninthday.info&gt;&#34;</span>]
+
+<span style="color:#75715e"># 項目依賴</span>
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">poetry</span>.<span style="color:#a6e22e">dependencies</span>]
+<span style="color:#a6e22e">python</span> = <span style="color:#e6db74">&#34;*&#34;</span>
+
+<span style="color:#75715e"># 開發時的依賴</span>
+[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">poetry</span>.<span style="color:#a6e22e">dev</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">dependencies</span>]
+<span style="color:#a6e22e">pytest</span> = <span style="color:#e6db74">&#34;^3.6&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>初始設定的內容為基礎資訊內容，提供的資訊有限，更完整的 <code>pyproject.toml</code> 內容會像：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#75715e"># 專案基本資料</span>
+<span style="color:#66d9ef">[tool.poetry]</span>
+<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;poetry-demo&#34;</span>
+<span style="color:#a6e22e">version</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.1.0&#34;</span>
+<span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;測試&#34;</span>
+<span style="color:#a6e22e">authors</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">[&#34;Tuvix Shih &lt;tuvix@ninthday.info&gt;&#34;]</span>
+<span style="color:#a6e22e">maintainers</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">[&#34;Tuvix Shih &lt;tuvix@ninthday.info&gt;&#34;]</span>
+<span style="color:#a6e22e">license</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MIT&#34;</span>
+<span style="color:#a6e22e">readme</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;README.md&#34;</span>
+<span style="color:#a6e22e">homepage</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#a6e22e">repository</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://github.com/ninthday/poetry-demo/&#34;</span>
+<span style="color:#a6e22e">documentation</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://example.com/python-poetry/&#34;</span>
+<span style="color:#a6e22e">keywords</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">[&#34;Poetry&#34;,&#34;Virtual Environments&#34;,&#34;Tutorial&#34;,&#34;Packages&#34;]</span>
+
+<span style="color:#75715e"># 項目依賴</span>
+<span style="color:#66d9ef">[tool.poetry.dependencies]</span>
+<span style="color:#a6e22e">python</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*&#34;</span>
+<span style="color:#a6e22e">loguru</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*&#34;</span>
+
+<span style="color:#75715e"># 開發時的依賴</span>
+<span style="color:#66d9ef">[tool.poetry.dev-dependencies]</span>
+<span style="color:#a6e22e">pytest</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;^3.6&#34;</span>
+
+<span style="color:#66d9ef">[build-system]</span>
+<span style="color:#a6e22e">requires</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">[&#34;poetry&gt;=0.12&#34;]</span>
+<span style="color:#a6e22e">build-backend</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;poetry.masonry.api&#34;</span>
+
+<span style="color:#75715e"># 選擇性，對專案使用者有用的連結</span>
+<span style="color:#66d9ef">[tool.poetry.urls]</span>
+<span style="color:#a6e22e">issues</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://github.com/ninthday/poetry-demo/issues&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="32-建立及啓動虛擬環境">3.2 建立及啓動虛擬環境</h3>
+<p>確認資料夾中有 <code>pyproject.toml</code> 檔案，使用 <code>poetry install</code> 建立虛擬環境，這個指令會讀取 <code>pyproject.toml</code> 裡的依賴並且安裝套件。不想安裝開發時才會用到的依賴，可以加上 <code>--no-dev</code>。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 建立虛擬環境並安裝套件</span>
+$ poetry install
+
+<span style="color:#75715e"># 建立虛擬環境不安裝開發時的依賴項目</span>
+$ poetry install --no-dev
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="33-虛擬環境執行">3.3 虛擬環境執行</h3>
+<p>想要即時的在虛擬環境中執行指令，可以使用 <code>poetry run &lt;執行的指令&gt;</code> 的方式。如果要進入虛擬環境則可以用 <code>poetry shell</code>。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 即時的在虛擬環境中執行指令</span>
+$ poetry run python3 demo.py
+
+<span style="color:#75715e"># 進入啓動的虛擬環境</span>
+$ poetry shell
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-套件管理">4. 套件管理</h2>
+<p>Python 條件管理，<code>poetry</code> 相較於 <code>pip</code> 更為符合人性也做得更好，對於套件相依性在升級或是移除後的處理都做的更好，也更為精簡。</p>
+<h3 id="41-安裝套件">4.1 安裝套件</h3>
+<p>poetry 可以透過 <code>poetry add &lt;套件名稱&gt;</code> 指令來安裝套件，如果有些套件是開發時才需要，例如 pytest ，可以在安裝時加入 &ndash;dev 參數，將該套件標記為 dev 環境才需要安裝。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安裝套件</span>
+$ poetry add requests
+
+<span style="color:#75715e"># 安裝開發時的依賴套件</span>
+$ poetry add pytest --dev
+
+<span style="color:#75715e"># 安裝特定版本</span>
+$ poetry add pyspark<span style="color:#f92672">=</span>2.4.1
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="42-追蹤套件">4.2 追蹤套件</h3>
+<p>使用 <code>poetry show</code> 可以查看目前所有安裝套件的依賴，加上 <code>--tree</code> 可以以樹狀圖的方式查看套件依賴。<code>--no-dev</code> 不顯示開發時的依賴。<code>--latest (-l)</code> 顯示目前版本及套件最後版本。<code>--outdated</code> 僅顯示有新版本的依賴套件。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查看安裝的套件</span>
+$ poetry show 
+
+<span style="color:#75715e"># 樹狀圖查看套件的依賴關係</span>
+$ poetry show --tree
+
+<span style="color:#75715e"># 查詢時不顯示開發環境版本</span>
+$ poetry show --no-dev
+
+<span style="color:#75715e"># 查詢套件版本及最後版本</span>
+$ poetry show --latest
+
+<span style="color:#75715e"># 查詢有新版本的依賴</span>
+$ poetry show --outdated
+</code></pre></td></tr></table>
+</div>
+</div><p>如果想要查詢特定套件的詳細資訊，可以在指令後接套件名稱 <code>poetry show &lt;套件名稱&gt;</code>。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查詢特定套件</span>
+$ poetry show requests
+
+name         : requests
+version      : 2.24.0
+description  : Python HTTP <span style="color:#66d9ef">for</span> Humans.
+
+dependencies
+ - certifi &gt;<span style="color:#f92672">=</span>2017.4.17
+ - chardet &gt;<span style="color:#f92672">=</span>3.0.2,&lt;<span style="color:#ae81ff">4</span>
+ - idna &gt;<span style="color:#f92672">=</span>2.5,&lt;<span style="color:#ae81ff">3</span>
+ - urllib3 &gt;<span style="color:#f92672">=</span>1.21.1,&lt;1.25.0 <span style="color:#f92672">||</span> &gt;1.25.0,&lt;1.25.1 <span style="color:#f92672">||</span> &gt;1.25.1,&lt;1.26
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="43-更新套件">4.3 更新套件</h3>
+<p>獲得最新套件的版本及依賴關係，並更新 <code>poetry.lock</code> 檔案，使用 <code>poetry update</code> 指令。如果要更新特定套件而不是全部，在上述指令後接着套件名稱 <code>poetry update &lt;套件名稱&gt;</code>。
+其他參數，<code>--dry-run</code> 輸出操作過程但沒有真的執行。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 更新專案中所有套件及依賴</span>
+$ poetry update
+
+<span style="color:#75715e"># 更新特定套件</span>
+$ poetry update requests
+
+<span style="color:#75715e"># 更新時不包含開發環境版本</span>
+$ poetry update --no-dev
+
+<span style="color:#75715e"># 輸出更新操作過程但不執行</span>
+$ poetry update --dry-run
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="44-移除套件">4.4 移除套件</h3>
+<p>使用 <code>poetry remove &lt;套件名稱&gt;</code> 來移除指定的套件。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 移除套件</span>
+poetry remove requests
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-建立套件及發佈">5. 建立套件及發佈</h2>
+<h3 id="51-建立套件">5.1 建立套件</h3>
+<p>使用 <code>poetry build</code> 建立 <code>source</code> 和 <code>wheels</code> 檔案，可加上 <code>--format (-f)</code> 建立 <code>wheel</code> 或是 <code>sdist</code>。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 建立套件</span>
+$ poetry build
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="52-發佈套件">5.2 發佈套件</h3>
+<p><code>publish</code> 指令將會把 <code>build</code> 指令建立的套件發佈到遠程的儲存庫，如果是第一次發佈上傳前將會自動的註冊套件。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 發佈套件到遠端</span>
+$ poetry publish
+
+<span style="color:#75715e"># 發不到指定的遠端</span>
+$ poetry publish --repository my-repository
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6-poetry-指令說明">6. Poetry 指令說明</h2>
+<p><code>poetry</code> 提供了相當多的功能，都可以使用指令來控制</p>
+<pre><code># poetry v.1.0.9
+about          -- 關於 Poetry 的資訊
+add            -- 在 pyproject.toml 中新增一個新的依賴
+build          -- 建立一個套件，預設為生成 tarball 和 wheel
+cache          -- 互動方式處理 poetry 暫存
+check          -- 驗證 pyproject.tml 檔案的有效性
+config         -- 設定或是取得 poetry 配置項目
+debug          -- Debug poetry 變數
+env            -- 操作/取得 poetry 的虛擬環境
+export         -- 匯出 lock 檔案
+help           -- 顯示指令的說明
+init           -- 在目前的資料夾中建立一個基礎的 pyproject.toml 檔案
+install        -- 安裝依賴項目
+lock           -- 鎖定依賴項目
+new            -- 建立一個新的 Python 專案
+publish        -- 將套件發佈到遠端的程式庫
+remove         -- 移除依賴項目
+run            -- 在適當的環境中運行指令
+search         -- 在遠端程式庫中搜尋套件
+self           -- 操作 poetry 本身
+shell          -- 進入虛擬環境的 shell
+show           -- 顯示套件資訊
+update         -- 依照 pyproject.toml 檔案更新依賴項目
+version        -- 顯示 poetry 版本資訊
+</code></pre><h2 id="7-升级-poetry">7. 升级 poetry</h2>
+<p>使用 <code>self update</code> 指令可以將 poetry 升級到最後的穩定版本，如果想嘗試看看較新的預覽版本（可能不穩定）可以加上 <code>--preview</code> 選項。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 升級至最後穩定版本</span>
+$ poetry self update
+
+<span style="color:#75715e"># 升級至預覽版本</span>
+$ poetry self update --preview
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="8-匯出-requirementstxt">8. 匯出 requirements.txt</h2>
+<p>有時候佈署運行的環境沒有提供 poetry，也可以匯出 <code>requirements.txt</code> 的方式透過 <code>pip</code> 安裝套件。匯出的指令為 <code>poetry export</code>，目前只有提供 <code>requirements.txt</code> 的格式。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 匯出 requirements.txt</span>
+$ poetry export -f requirements.txt -o requirements.txt
+
+<span style="color:#75715e"># 匯出包含開發環境會使用的內容</span>
+$ poetry export --dev -f requirements.txt -o requirements.txt
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>參考資料：</p>
+<ol>
+<li><a href="https://python-poetry.org/docs/">Poetry Document</a></li>
+<li><a href="https://myapollo.com.tw/zh-tw/python-poerty/">https://myapollo.com.tw/zh-tw/python-poerty/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/81025311">https://zhuanlan.zhihu.com/p/81025311</a>.</li>
+<li><a href="https://shazi.info/pip-pipenv-%E5%92%8C-poetry-%E7%9A%84%E9%81%B8%E6%93%87/">https://shazi.info/pip-pipenv-%E5%92%8C-poetry-%E7%9A%84%E9%81%B8%E6%93%87/</a></li>
+<li><a href="https://www.escapelife.site/posts/fc616494.html">https://www.escapelife.site/posts/fc616494.html</a></li>
+<li><a href="https://myoceane.fr/index.php/python-poetry/">https://myoceane.fr/index.php/python-poetry/</a></li>
+<li><a href="https://hackersandslackers.com/python-poetry-package-manager/">https://hackersandslackers.com/python-poetry-package-manager/</a></li>
+</ol>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://ninthday.github.io/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://ninthday.github.io/tags/poetry"><span class="tag">Poetry</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>252</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ninthday" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2021 have a NINTHDAY</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

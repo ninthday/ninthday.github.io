@@ -48,7 +48,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.3">
+<meta name="generator" content="Hugo 0.80.0">
 
 
 <link rel="canonical" href="https://ninthday.github.io/post/">
@@ -132,9 +132,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -152,7 +152,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -206,6 +206,49 @@
     </header>
     
     
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="https://ninthday.github.io/2020/06/python-poetry/" class="post-link">Python 套件相依性管理工具 Poetry</a></h3>
+    <p class="post-meta">@Tuvix Shih · Jun 21, 2020 · 5 min read</p>
+  </header>
+  
+    <img class="post-cover" src="https://ninthday.github.io/images/python.png" alt="Python 套件相依性管理工具 Poetry" lazyload="on">
+  
+  <p class="post-summary">Python 在開發時常使用 venv 及 pip 當作開發時的環境管理，後來網路上發現其他開發者推薦的撒尿牛丸 Pipenv，同時處理套件相依性及虛擬環境。
+後來因為套件鎖定仍會更新、更新 LOCK 速度太慢、其他開發者的貢獻沒有併入 master 等問題，造成社群中不少的聲音。社群中於是有了這樣的聲音
+ Pipenv 描繪了一個美夢，讓我們為 Python 也有了其他語言一樣的套件管理方式，不過卻在後來的 Poetry 的到了更好的實踐。
+ 讓我想嘗試看看 Poetry，Poetry 和 Pipenv 雷同能夠做虛擬環境及套件依賴的管理，除此之外，也提供了套件打包和發佈管理的功能。
+ 官方網站：https://python-poetry.org/ GitHub：https://github.com/python-poetry/poetry Document：https://python-poetry.org/docs/   1. 安裝 Peotry 官方推薦的方法
+1  $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3   官方建議不要使用 pip 的方式安裝，因為有可能會在全域環境中安裝 Poetry 的相依套件，造成套件污染的情形。
+$ poetry --version Poetry version 1.0.9  Note:
+如果出現下面錯誤，可以修改 ~/.poetry/bin/poetry，將 /usr/bin/env python 修改為 /usr/bin/env python3 就可以修復。希望之後的 patch 能夠修復。
+/home/tuvix/.poetry/lib/poetry/_vendor/py2.7/subprocess32.py:149: RuntimeWarning: The _posixsubprocess module is not being used.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://ninthday.github.io/2020/06/python-poetry/">Read More →</a>
+  </footer>
+</article>
+
+      
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/" class="post-link">Ubuntu 上使用 Wacom Intuos 繪圖板</a></h3>
+    <p class="post-meta">@Tuvix Shih · May 17, 2020 · 2 min read</p>
+  </header>
+  
+    <img class="post-cover" src="https://ninthday.github.io/images/ubuntu.png" alt="Ubuntu 上使用 Wacom Intuos 繪圖板" lazyload="on">
+  
+  <p class="post-summary">基本上 Ubuntu 18.04 在接上 INTOUS 繪圖板之後，已經可以偵測到並且能夠直接使用。但是只能當作滑鼠一般使用，無法發揮繪圖板功能。必須要再安裝驅動程式來控制。
+1. 安裝 xf86-input-wacom 驅動程式 首先在系統上安裝 xf86-input-wacom 驅動程式
+1  $ sudo apt-get install autoconf pkg-config make xutils-dev libtool xserver-xorg-dev$(dpkg -S $(which Xorg) | grep -Eo -- &#34;-hwe-[^:]*&#34;) libx11-dev libxi-dev libxrandr-dev libxinerama-dev libudev-dev   安裝完成後，重新啓動電腦。
+ 2. 設定 wacam 設備 使用 xsetwacom 指令列出目前的 wacom 設備
+1 2  # 列出目前的設備 $ xsetwacom --list devices   在我的電腦上輸出的結果：
+1 2 3 4  Wacom Intuos PT S Pen stylus id: 12	type: STYLUS Wacom Intuos PT S Finger touch id: 13	type: TOUCH Wacom Intuos PT S Pad pad id: 14	type: PAD Wacom Intuos PT S Pen eraser id: 16	type: ERASER    Wacom Intuos PT S Pen stylus 為繪圖筆的設定 繪圖板上面的按鍵，可以透過 Wacom Intuos PT S Pad pad 設定</p>
+  <footer class="post-footer">
+    <a class="read-more" href="https://ninthday.github.io/2020/05/wacom-intous-on-ubuntu/">Read More →</a>
+  </footer>
+</article>
+
       
         <article class="post-entry">
   <header class="post-header">
@@ -264,12 +307,11 @@
     <img class="post-cover" src="https://ninthday.github.io/images/hugo.png" alt="Hugo 靜態網頁部署至 GitHub Page" lazyload="on">
   
   <p class="post-summary">1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
- Snap Package
-snap install hugo --channel=extended or snap install hugo apt install
-sudo apt install hugo 檢查 Hugo 安裝的版本
-hugo version  2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
-# blog 為站臺名稱 hugo new site blog 初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構
-. ├── archetypes # 放生成網頁內容的模板 ├── config.toml # TOML 格式設定檔 ├── content # 放 markdown 文件 ├── data # 放 Hugo 處理的數據資料 ├── layouts # 放佈局相關內容 ├── static # 放靜態文件、圖片、CSS和JS └── themes # 佈景主题 2.</p>
+  Snap Package
+1 2 3  snap install hugo --channel=extended or snap install hugo     apt install
+1  sudo apt install hugo     檢查 Hugo 安裝的版本
+1  hugo version     2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
+1 2  # blog 為站臺名稱 hugo new site blog   初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構</p>
   <footer class="post-footer">
     <a class="read-more" href="https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/">Read More →</a>
   </footer>
@@ -297,7 +339,7 @@ hugo version  2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指�
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>© 2017-2021 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

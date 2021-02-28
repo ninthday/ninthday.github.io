@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.3">
+<meta name="generator" content="Hugo 0.80.0">
 
 
 <link rel="canonical" href="https://ninthday.github.io/2019/08/github-two-factor-authentication/">
@@ -141,9 +141,9 @@
     
     
   <header class="site-header">
-  <a href="https://ninthday.github.io/"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  <a href="https://ninthday.github.io"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://ninthday.github.io/">have a NINTHDAY</a></h2>
+  <h2 class="title"><a href="https://ninthday.github.io">have a NINTHDAY</a></h2>
   
   <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -161,7 +161,7 @@
           
           
            is-active">
-          <a href="https://ninthday.github.io/">Home</a>
+          <a href="https://ninthday.github.io/post">Home</a>
         </li>
       
         <li class="menu-item
@@ -215,69 +215,56 @@
       <p class="post-meta">@Tuvix Shih · Aug 5, 2019 · 1 min read</p>
     </header>
     <article class="post-content"><p>越來越多的詐騙、盜用帳號，讓網路使用者受到名譽或是財物上的損失，傳統單純使用帳號密碼的方式已經不夠安全，今日一個帳號走天下（ex: 使用 gmail or facebook 登入）的各種應用情境，讓雙因素認證（Two-factor authentication）或是兩階段驗證（Two-step verification）來提高帳號使用安全性顯得更為重要。</p>
-
 <h1 id="雙因素認證">雙因素認證</h1>
-
-<p>進行登入的時候，認證目前的登入對象是不是「你」是很重要的，必須不容易被他人複製，也不容易與他人重複。現在常見的認證方式：
-- 一種是我們已經知道的，例如密碼或者 PIN 碼；
-- 一種是我們身邊有的，例如手機或者特殊的 USB 鑰匙；
-- 一種是我們與生俱來的，例如指紋、臉部特徵或者其他特徵。</p>
-
+<p>進行登入的時候，認證目前的登入對象是不是「你」是很重要的，必須不容易被他人複製，也不容易與他人重複。現在常見的認證方式：</p>
+<ul>
+<li>一種是我們已經知道的，例如密碼或者 PIN 碼；</li>
+<li>一種是我們身邊有的，例如手機或者特殊的 USB 鑰匙；</li>
+<li>一種是我們與生俱來的，例如指紋、臉部特徵或者其他特徵。</li>
+</ul>
 <p>雙因素認證（Two-factor authentication），主要是結合兩種不同的認證方式。例如結合帳號密碼與指紋，或是結合帳號密碼與手機。如果是使用手機，我們可以利用簡訊或是 TOTP 產生的密碼來作為另一個登入認證的因素。</p>
-
 <h1 id="totp">TOTP</h1>
-
-<p>基於時間的一次性密碼演算法（Time-based One-Time Password algorithm， TOTP）是一種根據預共用的金鑰與目前時間計算一次性密碼的演算法，結合一個私鑰與目前時間戳，使用一個密碼雜湊函式來生成一次性密碼。通常 30 秒為間隔產生新的密碼。
-&gt;參考： <a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm">wiki: Time-based One-Time Password algorithm</a></p>
-
+<p>基於時間的一次性密碼演算法（Time-based One-Time Password algorithm， TOTP）是一種根據預共用的金鑰與目前時間計算一次性密碼的演算法，結合一個私鑰與目前時間戳，使用一個密碼雜湊函式來生成一次性密碼。通常 30 秒為間隔產生新的密碼。</p>
+<blockquote>
+<p>參考： <a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm">wiki: Time-based One-Time Password algorithm</a></p>
+</blockquote>
 <h1 id="開啓-github-雙因素認證">開啓 GitHub 雙因素認證</h1>
-
-<p>GitHub two-factor authentication（以下簡稱 2FA）主要有兩種方式：
-1. 透過 <strong>TOTP Apps</strong>：使用 App 登入推薦使用 Authy 這個 App，可以設定備份機制不用擔心手機更換或是重置的時候造成無法登入的情形。</p>
-
+<p>GitHub two-factor authentication（以下簡稱 2FA）主要有兩種方式：</p>
 <ol>
-<li>透過 <strong>SMS</strong>：SMS 方式會因為手機收訊的情形而收到限制，安全性上也是較為容易被攔截的方式。</li>
+<li>
+<p>透過 <strong>TOTP Apps</strong>：使用 App 登入推薦使用 Authy 這個 App，可以設定備份機制不用擔心手機更換或是重置的時候造成無法登入的情形。</p>
+</li>
+<li>
+<p>透過 <strong>SMS</strong>：SMS 方式會因為手機收訊的情形而收到限制，安全性上也是較為容易被攔截的方式。</p>
+</li>
 </ol>
-
 <p>相較於 SMS 建議使用 TOTP mobile app 的方式有較高的安全性，而官方文件（<a href="https://help.github.com/en/articles/configuring-two-factor-authentication">Configuring two-factor authentication</a>）中提到的三個軟體中，我覺得 <strong>Authy</strong> 在設定上相對簡單。我想就以 Authy 作為這次設定雙因素認證的說明。</p>
-
 <h2 id="1-github-頁面中雙因素認證設定">1. GitHub 頁面中雙因素認證設定</h2>
-
 <p>1.1 登入 Github 之後在右上方點選帳號圖片，在下拉視窗中選擇 &ldquo;settings&rdquo;（如下圖）
-<img src="https://ninthday.github.io/images/2019080401.png" alt="Setting" /></p>
-
+<img src="https://ninthday.github.io/images/2019080401.png" alt="Setting"></p>
 <p>1.2 在設定的左方選單中，選擇 &ldquo;Security&rdquo; 項目
-<img src="https://ninthday.github.io/images/2019080402.png" alt="Security" /></p>
-
-<p>1.3 尚未設定 2FA 會出現如下圖的畫面，點擊 &ldquo;<strong>Enable two-factor authentication</strong>&ldquo;
-<img src="https://ninthday.github.io/images/2019080403.png" alt="Enable 2FA" /></p>
-
-<p>1.4 接下來的畫面，選擇左邊的 &ldquo;<strong>Set up using an app</strong>&ldquo;
-<img src="https://ninthday.github.io/images/2019080404.png" alt="Set up using an app" /></p>
-
+<img src="https://ninthday.github.io/images/2019080402.png" alt="Security"></p>
+<p>1.3 尚未設定 2FA 會出現如下圖的畫面，點擊 &ldquo;<strong>Enable two-factor authentication</strong>&rdquo;
+<img src="https://ninthday.github.io/images/2019080403.png" alt="Enable 2FA"></p>
+<p>1.4 接下來的畫面，選擇左邊的 &ldquo;<strong>Set up using an app</strong>&rdquo;
+<img src="https://ninthday.github.io/images/2019080404.png" alt="Set up using an app"></p>
 <p>1.5 接着會出現 Recovery codes 畫面，recovery codes 是讓我們在沒有 App 時可以透過出現在螢幕上的這些號碼做登入自己的帳號。避免手機有什麼狀況的時候會無法登入。
 可以選擇下載（Download）或是印出來（Print）收好
-<img src="https://ninthday.github.io/images/2019080405.png" alt="Recovery codes" /></p>
-
+<img src="https://ninthday.github.io/images/2019080405.png" alt="Recovery codes"></p>
 <p>1.6 儲存 Recovery codes 後點擊 &ldquo;Next&rdquo; 進入 Scan QR code 頁面
-<img src="https://ninthday.github.io/images/2019080406.png" alt="Scan QR code" /></p>
-
+<img src="https://ninthday.github.io/images/2019080406.png" alt="Scan QR code"></p>
 <h2 id="2-安裝-authy-mobile-app">2. 安裝 Authy mobile app</h2>
-
 <p>2.1 下載 Authy mobile app</p>
-
-<p>從平臺的線上軟體商店下載 app
-- Google Play: <a href="https://play.google.com/store/apps/details?id=com.authy.authy">https://play.google.com/store/apps/details?id=com.authy.authy</a>
-- App Store: <a href="https://itunes.apple.com/us/app/authy/id494168017">https://itunes.apple.com/us/app/authy/id494168017</a></p>
-
+<p>從平臺的線上軟體商店下載 app</p>
+<ul>
+<li>Google Play: <a href="https://play.google.com/store/apps/details?id=com.authy.authy">https://play.google.com/store/apps/details?id=com.authy.authy</a></li>
+<li>App Store: <a href="https://itunes.apple.com/us/app/authy/id494168017">https://itunes.apple.com/us/app/authy/id494168017</a></li>
+</ul>
 <p>2.2 完成下載後，開啓 Authy App，依照指示輸入資料及電話，完成整個註冊程序。跟著軟體引導的步驟進行，這裏就不再多做說明。</p>
-
 <p>2.3 在 Authy App 中，點選新增 Account，選擇 &ldquo;Scan QR Code&rdquo;
-<img src="https://ninthday.github.io/images/2019080407.png" alt="Scan QR code" /></p>
-
+<img src="https://ninthday.github.io/images/2019080407.png" alt="Scan QR code"></p>
 <p>2.4 將相機對準 step 1.6 的 QR Code 畫面，將 App 畫面中出現的 6 位數字，輸入至 QR Code 畫面下方的欄位。
-<img src="https://ninthday.github.io/images/2019080408.png" alt="Six dis-digit code" /></p>
-
+<img src="https://ninthday.github.io/images/2019080408.png" alt="Six dis-digit code"></p>
 <p>2.5 按下 &ldquo;<strong>Continue</strong>&rdquo; 就完成開啓 GitHub 2FA 的步驟了。</p></article>
     <footer class="post-footer">
       
@@ -288,7 +275,7 @@
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>573</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -317,7 +304,7 @@
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2019 have a NINTHDAY</p>
+  <p>© 2017-2021 have a NINTHDAY</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>
