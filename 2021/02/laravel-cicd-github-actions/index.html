@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Laravel CICD with Github Actions</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Tuvix Shih">
+  <meta name="description" content="GitHub Actions 為 2019 年 11 月 GitHub 推出的服務，可以用來測試、封裝、發佈或是部署程式碼，一連串的動作建立自動化的流程，達到持續整合/持續部署（CI/CD）的目的。
+Github 讓開發者能將一些重複的動作寫成腳本，使其他開發者也可以引用這些 Action，把這些 Action 組合起來執行，就能夠完成前述 CI/CD 的過程。GitHub 為此成立了一個 Action 的 Marketplace，可以搜尋到其他人上傳的 Action。
+這篇文章中，將使用 GitHub Actions 將 Laravel 專案測試及部署至自己的 Linux 伺服器上。
+1. GitHub Actions 名詞  Workflow（工作流程）：可設定為一個自動化流程的程序，Workflow 由一個或多個 Job 組成，可經由事件觸發執行，是 YAML 格式檔案放在 .github/workflows 資料夾中。 Job（任務）：每個 Job 由多個 Step 組成，一個 Job 會在一個新的執行實例中（instance）執行。不同的 Job 可以同時執行，也可以依照前面的 Job 狀態依順序執行。 Step（步驟）：每個 Step 都是在相同的執行實例中執行，Step 可以是執行指令或是 Action。每個 Step 可以執行一個或多個 Action。 Action（動作）：Workflow 最小單位。  2. Workflow 文件 GitHub Actions 的 workflow 文件為 YAML 格式，文件名稱可以自定但副檔名為 .">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeffyshih">
+    <meta name="twitter:title" content="Laravel CICD with Github Actions">
+    <meta name="twitter:description" content="GitHub Actions 為 2019 年 11 月 GitHub 推出的服務，可以用來測試、封裝、發佈或是部署程式碼，一連串的動作建立自動化的流程，達到持續整合/持續部署（CI/CD）的目的。
+Github 讓開發者能將一些重複的動作寫成腳本，使其他開發者也可以引用這些 Action，把這些 Action 組合起來執行，就能夠完成前述 CI/CD 的過程。GitHub 為此成立了一個 Action 的 Marketplace，可以搜尋到其他人上傳的 Action。
+這篇文章中，將使用 GitHub Actions 將 Laravel 專案測試及部署至自己的 Linux 伺服器上。
+1. GitHub Actions 名詞  Workflow（工作流程）：可設定為一個自動化流程的程序，Workflow 由一個或多個 Job 組成，可經由事件觸發執行，是 YAML 格式檔案放在 .github/workflows 資料夾中。 Job（任務）：每個 Job 由多個 Step 組成，一個 Job 會在一個新的執行實例中（instance）執行。不同的 Job 可以同時執行，也可以依照前面的 Job 狀態依順序執行。 Step（步驟）：每個 Step 都是在相同的執行實例中執行，Step 可以是執行指令或是 Action。每個 Step 可以執行一個或多個 Action。 Action（動作）：Workflow 最小單位。  2. Workflow 文件 GitHub Actions 的 workflow 文件為 YAML 格式，文件名稱可以自定但副檔名為 .">
+    <meta name="twitter:image" content="https://ninthday.github.io/images/github.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Laravel CICD with Github Actions">
+  <meta property="og:description" content="GitHub Actions 為 2019 年 11 月 GitHub 推出的服務，可以用來測試、封裝、發佈或是部署程式碼，一連串的動作建立自動化的流程，達到持續整合/持續部署（CI/CD）的目的。
+Github 讓開發者能將一些重複的動作寫成腳本，使其他開發者也可以引用這些 Action，把這些 Action 組合起來執行，就能夠完成前述 CI/CD 的過程。GitHub 為此成立了一個 Action 的 Marketplace，可以搜尋到其他人上傳的 Action。
+這篇文章中，將使用 GitHub Actions 將 Laravel 專案測試及部署至自己的 Linux 伺服器上。
+1. GitHub Actions 名詞  Workflow（工作流程）：可設定為一個自動化流程的程序，Workflow 由一個或多個 Job 組成，可經由事件觸發執行，是 YAML 格式檔案放在 .github/workflows 資料夾中。 Job（任務）：每個 Job 由多個 Step 組成，一個 Job 會在一個新的執行實例中（instance）執行。不同的 Job 可以同時執行，也可以依照前面的 Job 狀態依順序執行。 Step（步驟）：每個 Step 都是在相同的執行實例中執行，Step 可以是執行指令或是 Action。每個 Step 可以執行一個或多個 Action。 Action（動作）：Workflow 最小單位。  2. Workflow 文件 GitHub Actions 的 workflow 文件為 YAML 格式，文件名稱可以自定但副檔名為 .">
+  <meta property="og:url" content="https://ninthday.github.io/2021/02/laravel-cicd-github-actions/">
+  <meta property="og:image" content="https://ninthday.github.io/images/github.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0">
+
+
+<link rel="canonical" href="https://ninthday.github.io/2021/02/laravel-cicd-github-actions/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="have a NINTHDAY">
+<meta name="msapplication-tooltip" content="have a NINTHDAY">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://ninthday.github.io/bee.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ninthday.github.io/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ninthday.github.io/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://ninthday.github.io/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://ninthday.github.io/icons/icon-152x152.png">
+<link rel="manifest" href="https://ninthday.github.io/manifest.json">
+
+
+<link rel="preload" href="https://ninthday.github.io/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Gochi+Hand" as="style">
+<link rel="preload" href="https://ninthday.github.io/images/avatar.png" as="image">
+<link rel="preload" href="https://ninthday.github.io/images/manycats.jpg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/manycats.jpg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://ninthday.github.io/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://ninthday.github.io"><img class="avatar" src="https://ninthday.github.io/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://ninthday.github.io">have a NINTHDAY</a></h2>
+  
+  <p class="subtitle">~ Live Long and Prosper 🖖 ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://ninthday.github.io/post">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/ninthday">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/tags">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://ninthday.github.io/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:tuvix@ninthday.me" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/ninthday" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/jeffyshih" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/shiuh-feng-shih" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Laravel CICD with Github Actions</h1>
+      <p class="post-meta">@Tuvix Shih · Feb 28, 2021 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>GitHub Actions 為 2019 年 11 月 GitHub 推出的服務，可以用來測試、封裝、發佈或是部署程式碼，一連串的動作建立自動化的流程，達到持續整合/持續部署（CI/CD）的目的。</p>
+<p>Github 讓開發者能將一些重複的動作寫成腳本，使其他開發者也可以引用這些 Action，把這些 Action 組合起來執行，就能夠完成前述 CI/CD 的過程。GitHub 為此成立了一個 Action 的 <a href="https://github.com/marketplace?type=actions">Marketplace</a>，可以搜尋到其他人上傳的 Action。</p>
+<p>這篇文章中，將使用 GitHub Actions 將 Laravel 專案測試及部署至自己的 Linux 伺服器上。</p>
+<h2 id="1-github-actions-名詞">1. GitHub Actions 名詞</h2>
+<ul>
+<li>Workflow（工作流程）：可設定為一個自動化流程的程序，Workflow 由一個或多個 Job 組成，可經由事件觸發執行，是 YAML 格式檔案放在 <code>.github/workflows</code> 資料夾中。</li>
+<li>Job（任務）：每個 Job 由多個 Step 組成，一個 Job 會在一個新的執行實例中（instance）執行。不同的 Job 可以同時執行，也可以依照前面的 Job 狀態依順序執行。</li>
+<li>Step（步驟）：每個 Step 都是在相同的執行實例中執行，Step 可以是執行指令或是 Action。每個 Step 可以執行一個或多個 Action。</li>
+<li>Action（動作）：Workflow 最小單位。</li>
+</ul>
+<h2 id="2-workflow-文件">2. Workflow 文件</h2>
+<p>GitHub Actions 的 workflow 文件為 YAML 格式，文件名稱可以自定但副檔名為 <code>.yml</code>。GitHub 只要在 <code>.github/workflows</code> 資料夾中發現有 <code>.yml</code> 文件就會自動執行。</p>
+<p>這個 YAML 文件的語法分為幾個部分</p>
+<ul>
+<li><strong>name</strong>: workflow 名稱</li>
+<li><strong>on</strong>
+指定觸發 workflow 的條件（事件）</li>
+<li><strong>jobs</strong>
+workflow YAML 文件的主要部分，<code>jobs</code> 中包含一或多個 <code>job</code>，列出每一個 <code>job_id</code>，可以使用 <code>needs</code> 關鍵字指定和其他 <code>job</code> 的依賴關係。使用 <code>runs-on</code> 來指定執行的實例
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">my_first_job</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">My first job</span>
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-20.04</span>
+  <span style="color:#f92672">my_second_job</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">My second job</span>
+    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">my_first_job</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre><code> &gt; 上面例子有兩個 `job`，`job_id` 分別為 `my_first_job` 和 `my_second_job`，`my_second_job` 依賴於 `my_first_job`，`my_second_job` 需要等待 `my_second_job` 完成才能執行。
+</code></pre></li>
+<li><strong>step</strong>
+每個 <code>job</code> 下有多個 <code>step</code>，每個 <code>step</code> 主要有三個部分 ，
+<ul>
+<li><code>jobs.&lt;job_id&gt;.steps.name</code>:  <code>step</code> 名稱</li>
+<li><code>jobs.&lt;job_id&gt;.steps.run</code>: <code>step</code>執行的指令或是 action</li>
+<li><code>jobs.&lt;job_id&gt;.steps.env</code>: <code>step</code> 執行時的環境變數</li>
+</ul>
+</li>
+</ul>
+<p>綜合以上的基本結構，一個基本的 workflow YAML 結構如下：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Greet Everyone</span>
+<span style="color:#f92672">on</span>: <span style="color:#ae81ff">push</span>
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">my-job</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">My Job</span>
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">steps</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Print a greeting</span>
+      <span style="color:#f92672">env</span>:
+        <span style="color:#f92672">MY_VAR</span>: <span style="color:#ae81ff">Hi there! My name is</span>
+        <span style="color:#f92672">FIRST_NAME</span>: <span style="color:#ae81ff">Mona</span>
+        <span style="color:#f92672">MIDDLE_NAME</span>: <span style="color:#ae81ff">The</span>
+        <span style="color:#f92672">LAST_NAME</span>: <span style="color:#ae81ff">Octocat</span>
+      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">        </span>        <span style="color:#ae81ff">echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-建立-workflow">3. 建立 Workflow</h2>
+<p>在 GitHub Actions 的 Workflow 的設計上，我會趨向把持續整合（CI）及持續部署（CD）分為兩個獨立的 Workflow YAML  檔，在每次整合是都能先經過測試程序，在程式碼較為穩定的時候再部署至指定的伺服器。</p>
+<h3 id="31-持續整合ci-continuous-integration">3.1 持續整合（CI: Continuous Integration）</h3>
+<p>軟體開發的過程中，測試是相當重要的一環。以目前軟體開發逐漸提高的複雜度，已經不容易使用傳統長時間的測試方式，需要更即時的測試。加上軟體開發大都以團隊協同合作進行，在彼此程式碼整合前需要先經過持續的測試。</p>
+<p>在 <code>.github/workflows</code> 資料夾中建立 <code>laravel-ci.yml</code> 內容如後。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Laravel 6 Continuous Integration </span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">push</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">laravel-tests</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-20.04</span>
+    <span style="color:#f92672">steps</span>:
+      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup PHP version</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">shivammathur/setup-php@v2</span>
+        <span style="color:#f92672">with</span>:
+          <span style="color:#f92672">php-version</span>: <span style="color:#e6db74">&#34;7.4&#34;</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Copy ENV Laravel Configuration for CI</span>
+        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">          </span>          <span style="color:#ae81ff">php -r &#34;file_exists(&#39;.env&#39;) || copy(&#39;.env.ci&#39;, &#39;.env&#39;);&#34;</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install Dependencies (PHP vendors)</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Generate key</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">php artisan key:generate</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Directory Permissions</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">chmod -R 777 storage bootstrap/cache</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Create DB and schemas</span>
+        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">          mkdir -p database
+</span><span style="color:#e6db74">          touch database/database.sqlite
+</span><span style="color:#e6db74">          php artisan migrate</span>          
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run PHPCS Coding Standards</span>
+        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">          </span>          <span style="color:#ae81ff">vendor/bin/phpcs --colors</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Execute tests (Unit and Feature tests) via PHPUnit</span>
+        <span style="color:#f92672">env</span>:
+          <span style="color:#f92672">DB_CONNECTION</span>: <span style="color:#ae81ff">sqlite</span>
+          <span style="color:#f92672">DB_DATABASE</span>: <span style="color:#ae81ff">database/database.sqlite</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">vendor/bin/phpunit --testdox</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="32-持續部署cd-continuous-deployment">3.2 持續部署（CD: Continuous Deployment）</h3>
+<p>在前段的說明中有提到在程式碼穩定之後再部署，「穩定」這裡我的定義會是在 PR 確認 merge 完成關閉時進行。主要是透過 SSH 的方式，連結至指定伺服器執行部署的腳本 (shell script)。</p>
+<h4 id="321-準備工作">3.2.1 準備工作：</h4>
+<ol>
+<li>
+<p>設定部署帳號
+由於是使用 SSH  方式讓 GitHub Action 可以訪問我們的伺服器部署，在目標伺服器上開啟一個部署專用的帳號，限制帳號的權限不要太大提高安全性。</p>
+</li>
+<li>
+<p>建立伺服器登入憑證
+在目標伺服器上產生使用 <code>ssh-keygen</code> 指令產生公私鑰，將公鑰加入 <code>authorized_keys</code>，私鑰加入 GitHub 的加密變數中，做為連線登入使用的憑證。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd ~/.ssh/
+$ ssh-keygen -f cicd-github
+$ cat ~/.ssh/cicd-github.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改 sudoer 權限
+因為我使用 <code>nginx</code> 作為 Web Server，<code>nginx</code> 本身無法處理 PHP 程式，需要透過 PHP-FPM (FastCGI Process Manager) 來解譯處理 ，部署的最後會需要重新 Reload PHP-FPM Service，<code>systemctl reload</code> 為 root 才能執行的權限，修改 <code>sudoer</code> 讓 <code>cicd-github</code> 可以執行 PHP-FPM Service Reload。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo visudo
+cicd-github  ALL<span style="color:#f92672">=</span>NOPASSWD: /bin/systemctl reload php7.4-fpm.service
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>於 GitHub Actions 執行時無法於 sudo 過程中輸入密碼，在這裡設定為 <code>NOPASSWD</code>，同時也限制帳號只能執行 reload 這個指令</p>
+</blockquote>
+</li>
+<li>
+<p>GitHub 設定加密變數
+GitHub Actions 執行的過程中，不會中斷執行等待輸入，因此設定加密變數 (Secrets) 讓 Actions 執行期間帶入需要的變數內容。
+加入加密變數的方法：GitHub Repo &ndash;&gt; Settings &ndash;&gt; Secrets &ndash;&gt; New repository secret
+主要需要的參數有 <code>SSH_HOST</code>、<code>SSH_USERNAME</code>、<code>SSH_PRIVATE_KEY</code></p>
+<ul>
+<li>SSH_HOST：伺服器位址</li>
+<li>SSH_USERNAME：登入伺服器的帳號名稱</li>
+<li>SSH_PRIVATE_KEY：登入的私鑰，由伺服器 <code>cat ~/.ssh/cicd-github</code> 取得前面第2步驟的私鑰內容</li>
+</ul>
+<blockquote>
+<p>若 SSH 使用的不是預設的 Port，可以增加 <code>SSH_PORT</code> 變數存入 Port 號碼</p>
+</blockquote>
+</li>
+<li>
+<p>新增 Personal access token
+在部署腳本中主要使用 Git 的方式，來拉取程式碼至伺服器上，對於私人儲存庫 (private repositories) 執行期間將要求必須輸入 GitHub 帳號密碼，將會造成執行中斷。我們可以透過建立  GitHub <strong>Personal access tokens</strong>，讓 Token 代表 GitHub Account 可以存取 GitHub API，同時也可以增加安全性，當懷疑 Token 外洩時，可以重新產生新的 Token 棄用舊的。
+建立 Personal access token方法：<a href="https://github.com/settings/tokens">GitHub Personal access token</a> &ndash;&gt; Generate new token</p>
+</li>
+<li>
+<p>Git Clone Repository
+在目標伺服器上，以部署用帳號 (cicd-github) 使用 https 方式 Clone Repository 至本地。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://&lt;Github Account&gt;:&lt;Personal access token&gt;@github.com/&lt;Repository&gt;.git
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="322-伺服器部署腳本">3.2.2 伺服器部署腳本</h4>
+<p>建立一個 Shell Script ，並將檔案名稱設定為 <code>server_deploy.sh</code>，腳本內容如後。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>set -e
+
+echo <span style="color:#e6db74">&#34;Deploying application ...&#34;</span>
+
+<span style="color:#75715e"># Enter maintenance mode</span>
+<span style="color:#f92672">(</span>php artisan down --message <span style="color:#e6db74">&#39;The app is being (quickly!) updated. Please try again in a minute.&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">||</span> true
+    <span style="color:#75715e"># Update codebase</span>
+    git checkout deploy
+    git fetch origin deploy
+    git reset --hard origin/deploy
+
+    <span style="color:#75715e"># Install dependencies based on lock file</span>
+    composer install --no-interaction --prefer-dist --optimize-autoloader
+
+    <span style="color:#75715e"># Migrate database</span>
+    php artisan migrate --force
+
+    <span style="color:#75715e"># Clear cache</span>
+    php artisan cache:clear
+    php artisan route:clear
+    php artisan config:clear
+    php artisan view:clear
+
+    <span style="color:#75715e"># Update database classmap</span>
+    composer dump-autoload
+
+    <span style="color:#75715e"># Optimizing Configuration Loading</span>
+    php artisan config:cache
+
+    <span style="color:#75715e"># Reload PHP to update opcache</span>
+    sudo systemctl reload php7.4-fpm.service
+<span style="color:#75715e"># Exit maintenance mode</span>
+php artisan up
+
+echo <span style="color:#e6db74">&#34;Application deployed!&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>記得讓 <code>server_deploy.sh</code> 檔案有執行權限才能部署。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ chmod u+x server_deploy.sh
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="323-建立部署-github-action">3.2.3 建立部署 GitHub Action</h4>
+<p>在 <code>.github/workflows</code> 資料夾中建立 <code>laravel-cd.yml</code> 檔案。Deployment Action 在 GitHub deploy 分支 PR (pull request) 關閉時觸發，並在確認 <code>merge</code> 後才執行部署。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Continuous Deployment Laravel 6</span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">deploy</span>
+    <span style="color:#f92672">types</span>: [<span style="color:#ae81ff">closed]</span>
+
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">laravel-deploy</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-20.04</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event.pull_request.merged == true</span>
+    <span style="color:#f92672">steps</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deployment</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">appleboy/ssh-action@master</span>
+        <span style="color:#f92672">with</span>:
+          <span style="color:#f92672">host</span>: <span style="color:#ae81ff">${{ secrets.SSH_HOST }}</span>
+          <span style="color:#f92672">key</span>: <span style="color:#ae81ff">${{ secrets.SSH_PRIVATE_KEY }}</span>
+          <span style="color:#f92672">username</span>: <span style="color:#ae81ff">${{ secrets.SSH_USERNAME }}</span>
+          <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">            cd /var/www//html/repository-path
+</span><span style="color:#e6db74">            ./server_deploy.sh</span>            
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Note:
+若需要 SSH Action 其他輸入參數可以參考 <a href="https://github.com/appleboy/ssh-action">SSH for GitHub Actions</a></p>
+</blockquote>
+<hr>
+<p>參考資料：</p>
+<ol>
+<li><a href="https://ibe.tw/getting-started-with-github-actions/">GitHub Actions 基礎介紹</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></li>
+<li><a href="https://www.twilio.com/blog/build-test-deploy-laravel-application-github-actions">Build, Test, and Deploy Your Laravel Application With GitHub Actions</a></li>
+<li><a href="https://blog.logrocket.com/how-to-create-a-ci-cd-for-a-laravel-application-using-github-actions/">How to create a CI/CD for a Laravel application using GitHub Actions</a></li>
+<li><a href="https://laravel-news.com/push-deploy-with-github-actions">Push deploy a Laravel app for free with GitHub Actions</a></li>
+</ol>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://ninthday.github.io/tags/laravel"><span class="tag">Laravel</span></a></li>
+        
+          <li><a href="https://ninthday.github.io/tags/github"><span class="tag">Github</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ninthday" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2021 have a NINTHDAY</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://ninthday.github.io/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

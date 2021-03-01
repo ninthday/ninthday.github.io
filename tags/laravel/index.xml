@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>github on have a NINTHDAY</title>
-    <link>https://ninthday.github.io/tags/github/</link>
-    <description>Recent content in github on have a NINTHDAY</description>
+    <title>laravel on have a NINTHDAY</title>
+    <link>https://ninthday.github.io/tags/laravel/</link>
+    <description>Recent content in laravel on have a NINTHDAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 28 Feb 2021 15:57:46 +0800</lastBuildDate><atom:link href="https://ninthday.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Feb 2021 15:57:46 +0800</lastBuildDate><atom:link href="https://ninthday.github.io/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Laravel CICD with Github Actions</title>
       <link>https://ninthday.github.io/2021/02/laravel-cicd-github-actions/</link>
@@ -18,29 +18,6 @@
 Github 讓開發者能將一些重複的動作寫成腳本，使其他開發者也可以引用這些 Action，把這些 Action 組合起來執行，就能夠完成前述 CI/CD 的過程。GitHub 為此成立了一個 Action 的 Marketplace，可以搜尋到其他人上傳的 Action。
 這篇文章中，將使用 GitHub Actions 將 Laravel 專案測試及部署至自己的 Linux 伺服器上。
 1. GitHub Actions 名詞  Workflow（工作流程）：可設定為一個自動化流程的程序，Workflow 由一個或多個 Job 組成，可經由事件觸發執行，是 YAML 格式檔案放在 .github/workflows 資料夾中。 Job（任務）：每個 Job 由多個 Step 組成，一個 Job 會在一個新的執行實例中（instance）執行。不同的 Job 可以同時執行，也可以依照前面的 Job 狀態依順序執行。 Step（步驟）：每個 Step 都是在相同的執行實例中執行，Step 可以是執行指令或是 Action。每個 Step 可以執行一個或多個 Action。 Action（動作）：Workflow 最小單位。  2. Workflow 文件 GitHub Actions 的 workflow 文件為 YAML 格式，文件名稱可以自定但副檔名為 .</description>
-    </item>
-    
-    <item>
-      <title>開啓 Github 雙因素認證</title>
-      <link>https://ninthday.github.io/2019/08/github-two-factor-authentication/</link>
-      <pubDate>Mon, 05 Aug 2019 00:10:22 +0800</pubDate>
-      
-      <guid>https://ninthday.github.io/2019/08/github-two-factor-authentication/</guid>
-      <description>&lt;p&gt;越來越多的詐騙、盜用帳號，讓網路使用者受到名譽或是財物上的損失，傳統單純使用帳號密碼的方式已經不夠安全，今日一個帳號走天下（ex: 使用 gmail or facebook 登入）的各種應用情境，讓雙因素認證（Two-factor authentication）或是兩階段驗證（Two-step verification）來提高帳號使用安全性顯得更為重要。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Hugo 靜態網頁部署至 GitHub Page</title>
-      <link>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</link>
-      <pubDate>Wed, 26 Jun 2019 23:25:47 +0800</pubDate>
-      
-      <guid>https://ninthday.github.io/2019/06/ubuntu-hugo-github-page/</guid>
-      <description>1. 在 ubuntu 上安裝 Hugo 在 ubuntu 上能夠使用 apt 的方式安裝，套件庫的關係版本會比較舊。建議使用 snap 的方式安裝，snap 目前也通用於各種版本的 Linux。
-  Snap Package
-1 2 3  snap install hugo --channel=extended or snap install hugo     apt install
-1  sudo apt install hugo     檢查 Hugo 安裝的版本
-1  hugo version     2. 初始化建立網站 2.1 新增網站 利用 hugo cli 的指令建立檔案結構及必要的檔案。
-1 2  # blog 為站臺名稱 hugo new site blog   初始化網站之後，在 bolg 資料夾下就會產生下面的文件結構</description>
     </item>
     
   </channel>
