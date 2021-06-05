@@ -6,7 +6,7 @@
 
   
   <title>
-  Tag → git
+  Tag → GCP
   
    | Ninthday Blog
 </title>
@@ -43,7 +43,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ninthday Blog">
   <meta property="og:description" content="Ninthday 的部落格">
-  <meta property="og:url" content="https://ninthday.github.io/tags/git/">
+  <meta property="og:url" content="https://ninthday.github.io/tags/gcp/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -52,8 +52,8 @@
 <meta name="generator" content="Hugo 0.83.1">
 
 
-<link rel="canonical" href="https://ninthday.github.io/tags/git/">
-<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/tags/git/index.xml" title="have a NINTHDAY">
+<link rel="canonical" href="https://ninthday.github.io/tags/gcp/">
+<link rel="alternate" type="application/rss+xml" href="https://ninthday.github.io/tags/gcp/index.xml" title="have a NINTHDAY">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -210,16 +210,19 @@
       
         <article class="post-entry">
   <header class="post-header">
-    <h3 class="post-title"><a href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/" class="post-link">用 Git Submodule 管理 Hugo Theme</a></h3>
-    <p class="post-meta">@Tuvix Shih · Jul 12, 2019 · 2 min read</p>
+    <h3 class="post-title"><a href="https://ninthday.github.io/2021/05/gce-copy-to-gcs-accessdeny/" class="post-link">修正 GCE 複製檔案至 GCS 權限錯誤</a></h3>
+    <p class="post-meta">@Tuvix Shih · May 30, 2021 · 1 min read</p>
   </header>
   
-    <img class="post-cover" src="https://ninthday.github.io/images/hugo.png" alt="用 Git Submodule 管理 Hugo Theme" lazyload="on">
+    <img class="post-cover" src="https://ninthday.github.io/images/gcp.png" alt="修正 GCE 複製檔案至 GCS 權限錯誤" lazyload="on">
   
-  <p class="post-summary">通常在 Hugo 目錄下會有一個 theme 資料夾，用來放置使用的佈景主題。然而每個佈景主題通常都會有自己的 GitHub Repository，而我們的 Hugo 內容也會有自己的 Repository，在內容管理上容易相互干擾，佈景主題及我們自己的 Repo 都仍然會持續更新。為了在佈景主題更新時能夠更方便的同步，和我們自己的 Repo 間的同步能夠更好的協作，可以使用 git submodule 方式加入 Hugo Theme。
-</p>
+  <p class="post-summary">複製出現 403 錯誤 GCE (Google Compute Engine) 在預設初始的狀態下，雖然硬碟映像檔中已經預先安裝 google cloud 工具在系統中，沒有調整權限的情形下利用 gsutil 工具複製檔案至 GCS (Google Cloud Storage) ，如下面語法：
+1  $ gsutil cp /home/you/yourfile.txt gs://your-bucket   執行後會出現 AccessDeniedException: 403 Insufficient Permission 的錯誤訊息，即使在相同的專案及區域中也無法複製檔案至 GCS 上。
+開啟 GCE Instance 的 Cloud API 存取 預設下 GCE 虛擬機器可以對同一個專案下的 GCS 具有讀取權限，如果需要寫入 GCS 就需要先進行配置調整。瀏覽器開啟 GCP Console，在下拉選單中選擇專案，在進行調整前需要先停止虛擬機，然後才能進行編輯。
+確定 GCE 的虛擬機器停止後，點選虛擬機的名稱進入這臺虛擬機的詳細內容 (Detail)，點選上方的編輯，在編輯狀態中向下拉動畫面到存取權範圍 (Access Scopes)，可以看到預設是選在 允許預設存取權，如果對於各項API熟悉，可以選擇 針對各個 API 設定存取權 然後在儲存空間部分將預設 唯讀 更改成 讀寫。
+如果不想一個一個調整，可以直接選擇 允許所有 Cloud API 的完整存取權 這個項目。完成設定儲存後重新啟動 GCE 虛擬機器。</p>
   <footer class="post-footer">
-    <a class="read-more" href="https://ninthday.github.io/2019/07/git-submodule-hugo-theme/">Read More →</a>
+    <a class="read-more" href="https://ninthday.github.io/2021/05/gce-copy-to-gcs-accessdeny/">Read More →</a>
   </footer>
 </article>
 
