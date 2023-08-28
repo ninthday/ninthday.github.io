@@ -1,0 +1,557 @@
+<!doctype html><html lang=zh-tw class=lang-zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=keywords content="linux,docker,security,Hugo,Hugo Theme,Luna,"><meta name=description content="OpenVAS（Open Vulnerability Assessment Scanner）是一款開源的弱點掃描檢測工具，目前是由 Greenbone 維護，能夠持續的更新 NVT，SCAP&amp;hellip;等弱"><meta itemprop=description content="OpenVAS（Open Vulnerability Assessment Scanner）是一款開源的弱點掃描檢測工具，目前是由 Greenbone 維護，能夠持續的更新 NVT，SCAP&amp;hellip;等弱"><meta http-equiv=x-ua-compatible content="ie=edge"><meta itemprop=name content="Openvas Community Container - have a Ninthday"><link href=https://blog.ninthday.me/index.xml title="Openvas Community Container - have a Ninthday" type=application/rss+xml rel=alternate><title>Openvas Community Container - have a Ninthday</title><link rel=stylesheet href="/main.4d813f19ba728a838e82de1f1d03860d238d99917f906436d35984574c08e1a6.css" integrity="sha256-TYE/GbpyioOOgt4fHQOGDSONmZF/kGQ201mEV0wI4aY="><meta property="og:site_name" content="Openvas Community Container - have a Ninthday"><meta property="og:type" content="article"><meta property="og:title" content="Openvas Community Container"><meta property="og:description" content="OpenVAS（Open Vulnerability Assessment Scanner）是一款開源的弱點掃描檢測工具，目前是由 Greenbone 維護，能夠持續的更新 NVT，SCAP&amp;hellip;等弱"><meta property="og:url" content="https://blog.ninthday.me/2023/04/openvas-community-container/"><meta property="og:image" content="https://blog.ninthday.me/2023/04/openvas-community-container/greenbone-banner.jpg"><meta property="og:image:width" content="1920"><meta property="og:image:height" content="751"><meta property="article:publisher" content="https://blog.ninthday.me/2023/04/openvas-community-container/"><meta property="article:published_time" content="2023-04-22T14:55:01+08:00"><meta property="article:modified_time" content="2023-08-28T09:46:31+08:00"><meta name=theme-color content="#fcca46"><meta name=mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-title content="Openvas Community Container - have a Ninthday"><meta name=apple-mobile-web-app-status-bar-style content="white"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@JeffyShih"><meta name=twitter:creator content="@JeffyShih"><meta name=twitter:title content="Openvas Community Container - have a Ninthday"><meta name=twitter:description content="OpenVAS（Open Vulnerability Assessment Scanner）是一款開源的弱點掃描檢測工具，目前是由 Greenbone 維護，能夠持續的更新 NVT，SCAP&amp;hellip;等弱"><meta name=twitter:url content="https://blog.ninthday.me/2023/04/openvas-community-container/"><meta name=twitter:image content="https://blog.ninthday.me/2023/04/openvas-community-container/greenbone-banner.jpg"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=manifest href=/manifest.json><link href=/icon.png rel="shortcut icon"><link href=/icon.png rel=bookmark><link rel=apple-touch-icon href=/icon.png><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Openvas Community Container","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.ninthday.me\/2023\/04\/openvas-community-container\/"},"genre":"posts","keywords":"linux, docker","wordcount":2324,"url":"https:\/\/blog.ninthday.me\/2023\/04\/openvas-community-container\/","datePublished":"2023-04-22T14:55:01\u002b08:00","dateModified":"2023-08-28T09:46:31\u002b08:00","author":{"@type":"Person","name":"Tuvix Shih"},"description":""}</script></head><body class="dark:bg-darkBg dark:text-darkText"><div class="relative mx-auto shadow-lg md:max-w-4xl xl:max-w-4xl 2xl:max-w-4xl"><div class="main flex flex-col justify-between bg-white dark:bg-darkFg"><header class=relative><nav id=nav class="navbar top-0 z-10 flex items-center border-b px-5 py-6 dark:border-darkBorder md:px-10"><div class="route-items flex w-full items-center justify-around"><a title=首頁 data-active-link=/ href=/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-home flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">首頁</span>
+</a><a title=關於我 data-active-link=/about/ href=/about/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-person flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">關於我</span>
+</a><a title=連結 data-active-link=/links/ href=/links/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-link-2 flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">連結</span>
+</a><a title=歸檔 data-active-link=/archives/ href=/archives/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-archive flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">歸檔</span>
+</a><a title=標籤 data-active-link=/tags/ href=/tags/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-pricetags flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">標籤</span>
+</a><a title=GitHub data-active-link=/github/ href=/github/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-github flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">GitHub</span>
+</a><a title=搜尋 data-active-link=/search/ href=/search/ class="relative flex cursor-pointer flex-col items-center text-gray-700 transition duration-150 ease-[ease]"><i class="eva eva-search flex h-8 w-8 items-center justify-center text-3xl leading-none text-gray-500 transition duration-150 ease-[ease] dark:text-darkTextPlaceholder"></i>
+<span class="mt-1 block text-xs text-gray-400 dark:text-darkText sm:text-sm md:hidden">搜尋</span></a></div></nav><div class="dark-mode-switch absolute right-0 top-0 z-10 cursor-pointer pr-2 pt-2 text-xl leading-none"><i class="eva eva-moon opacity-20 dark:opacity-70"></i></div></header><main class="relative flex flex-grow" id=swup><style>:root{--font:Lato,'Roboto Condensed','Noto Sans TC','PingFang TC','Helvetica Neue','SF Pro TC',Helvetica,arial,'Microsoft JhengHei','Microsoft YaHei',Arial,sans-serif}</style><div class="type-posts layout- w-full"><div class="relative h-full"><div class="relative h-full"><div class="page-view-article flex h-full flex-col bg-white dark:bg-darkFg"><div class=relative><div style=background-image:linear-gradient(180deg,#0c3e4b,#1d936a);padding-bottom:42% class="article-cover h-0Page(/posts/openvas-community-container/index.md) relative w-full"><picture class=noscript-hidden><source data-srcset="/2023/04/openvas-community-container/greenbone-banner_hufa769403f16ee8b723a52fa65558c71f_149764_1440x0_resize_q95_h2_catmullrom.webp 1440w" type=image/webp><img data-src=https://blog.ninthday.me/2023/04/openvas-community-container/greenbone-banner.jpg src=/2023/04/openvas-community-container/greenbone-banner_hufa769403f16ee8b723a52fa65558c71f_149764_ad727686b7644aace991c06829b267b2.jpg width=1920 height=751 data-srcset="/2023/04/openvas-community-container/greenbone-banner_hufa769403f16ee8b723a52fa65558c71f_149764_1440x0_resize_q95_catmullrom.jpg 1440w" alt="Openvas Community Container" class="absolute left-0 top-0 h-full w-full object-cover object-center" data-lazyload data-lazyload-blur></picture><noscript><picture><source srcset="/2023/04/openvas-community-container/greenbone-banner_hufa769403f16ee8b723a52fa65558c71f_149764_1440x0_resize_q95_h2_catmullrom.webp 1440w" type=image/webp><img src=https://blog.ninthday.me/2023/04/openvas-community-container/greenbone-banner.jpg srcset="/2023/04/openvas-community-container/greenbone-banner_hufa769403f16ee8b723a52fa65558c71f_149764_1440x0_resize_q95_catmullrom.jpg 1440w" alt="Openvas Community Container" width=1920 height=751 class="absolute left-0 top-0 h-full w-full object-cover object-center"></picture></noscript></div><h1 class="article-title absolute bottom-0 left-0 w-full px-6 pb-8 pt-32 text-3xl text-white dark:text-darkText md:px-10 md:text-4xl">Openvas Community Container</h1></div><div class="article-info border-b p-6 pb-3 text-sm dark:border-darkBorder md:px-10"><div><div class="mb-3 mr-4 inline-flex items-center sm:rounded-full"><i class="eva eva-clock-outline mr-1"></i>
+<span><time title="發佈於 2023年4月22日 14:55:01" datetime=2023-04-22T14:55:01+08:00>2023年4月22日</time></span></div><span class="mb-3 mr-4 inline-flex items-center sm:rounded-full"><i class="eva eva-edit-2-outline mr-1"></i>
+<span><time title="最後編輯時間：2023年8月28日 09:46:31" datetime=2023-08-28T09:46:31+08:00>2023年8月28日</time></span></span><div class="mb-3 mr-4 inline-flex items-center sm:rounded-full"><i class="eva eva-flag-outline mr-1"></i>
+<span>5 分鐘</span></div></div><div class="mb-3 flex items-center"><i class="eva eva-pricetags-outline mr-1"></i>
+<span class=mr-3>標籤</span><a href=/tags/linux title=linux class="group mr-2 flex items-center text-sm">
+<i class="mr-1 text-gray-400 group-hover:text-theme">#</i>
+<span class="text-gray-400 group-hover:text-theme">linux</span>
+</a><a href=/tags/docker title=docker class="group mr-2 flex items-center text-sm"><i class="mr-1 text-gray-400 group-hover:text-theme">#</i>
+<span class="text-gray-400 group-hover:text-theme">docker</span></a></div><div class="mb-3 flex items-center"><i class="eva eva-folder-outline mr-1"></i>
+<span class=mr-3>分類</span><a href=/categories/security title=security class="group flex items-center text-sm">
+<span class="text-gray-400 group-hover:text-theme">security</span>
+<span class="mx-0.5 group-last:hidden">,</span>
+</a><a href=/categories/docker title=docker class="group flex items-center text-sm"><span class="text-gray-400 group-hover:text-theme">docker</span>
+<span class="mx-0.5 group-last:hidden">,</span></a></div></div><aside class="toc border-b border-gray-300 px-5 py-5 dark:border-darkBorder md:px-10 2xl:fixed 2xl:top-10 2xl:m-0 2xl:-ml-72 2xl:w-72 2xl:border-none 2xl:p-0 2xl:py-4 2xl:pr-4"><header><h1 class="mb-3 text-2xl font-bold 2xl:mb-4">文章目錄</h1></header><nav id=TableOfContents><ul><li><a href=#軟硬體需求>軟硬體需求</a><ul><li><a href=#軟體版本>軟體版本</a></li><li><a href=#硬體需求>硬體需求</a></li></ul></li><li><a href=#使用-setup-and-start-script-安裝>使用 Setup and Start Script 安裝</a></li><li><a href=#自行依照步驟安裝>自行依照步驟安裝</a><ul><li><a href=#1-下載-docker-compose-yaml-檔>1. 下載 docker-compose YAML 檔</a></li><li><a href=#2-下載及啓動-containers>2. 下載及啓動 containers</a></li><li><a href=#3-設定-admin-密碼>3. 設定 Admin 密碼</a></li><li><a href=#4-開啓瀏覽器開始使用>4. 開啓瀏覽器開始使用</a></li></ul></li><li><a href=#更新內容>更新內容</a><ul><li><a href=#1-更新-containers>1. 更新 Containers</a></li><li><a href=#2-greenbone-community-feed-更新>2. Greenbone Community Feed 更新</a></li></ul></li><li><a href=#結語>結語</a></li></ul></nav></aside><section class="article-content typo relative flex-grow px-6 py-5 md:px-10"><i title=更快的閱讀 id=bionicReading class="absolute right-0 top-0 cursor-pointer p-3"><svg class="w-4 h-4 fill-current text-gray-400" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="10811"><path d="M480 192c-19.2.0-32-12.8-32-32V32c0-19.2 12.8-32 32-32s32 12.8 32 32v128c0 19.2-12.8 32-32 32zM160 1024c-6.4.0-19.2.0-25.6-6.4l-128-128c0-6.4-6.4-19.2-6.4-25.6s6.4-19.2 6.4-25.6l512-512c12.8-6.4 38.4-6.4 51.2.0l128 128c0 6.4 6.4 19.2 6.4 25.6s-6.4 19.2-6.4 25.6l-512 512c-6.4 6.4-19.2 6.4-25.6 6.4zM76.8 864l83.2 83.2L627.2 480 544 396.8 76.8 864zM992 576H864c-19.2.0-32-12.8-32-32s12.8-32 32-32h128c19.2.0 32 12.8 32 32s-12.8 32-32 32zM768 288c-6.4.0-19.2.0-25.6-6.4-12.8-12.8-12.8-32 0-44.8l96-96c12.8-12.8 32-12.8 44.8.0s12.8 32 0 44.8l-96 96c0 6.4-12.8 6.4-19.2 6.4zm-512 0c-6.4.0-19.2.0-25.6-6.4l-96-96c-6.4-12.8-6.4-38.4.0-51.2s32-12.8 44.8.0l96 96c12.8 12.8 12.8 32 0 44.8.0 12.8-12.8 12.8-19.2 12.8zM864 896c-6.4.0-19.2.0-25.6-6.4l-96-96c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8.0l96 96c12.8 12.8 12.8 32 0 44.8.0 6.4-12.8 6.4-19.2 6.4z" p-id="10812"/><path d="M544 640c-6.4.0-19.2.0-25.6-6.4l-128-128c-6.4-12.8-6.4-38.4.0-51.2s32-12.8 44.8.0l128 128c12.8 12.8 12.8 38.4 6.4 51.2-6.4 6.4-19.2 6.4-25.6 6.4z" p-id="10813"/></svg></i><p>OpenVAS（Open Vulnerability Assessment Scanner）是一款開源的弱點掃描檢測工具，目前是由 <a class=link href=https://www.greenbone.net/ target=_blank rel=noopener>Greenbone</a>
+維護，能夠持續的更新 NVT，SCAP&mldr;等弱點資料庫，對已知的漏洞及弱點進行掃描。OpenVAS 同時有 community 及 commercial 版本，community 使用的是 Greenbone Community Feed，沒有官方的技術性支援。</p><p>依據前人的經驗，OpenVAS 安裝不容易，建議如果要本機安裝，可以使用 Kali Linux 這個發行版本，已經包含於 Kali 套件庫中。如果不是使用 Kali Linux，像我的開發環境是 Ubuntu，就可以使用 docker container 的方式來安裝。</p><h2 class=group id=軟硬體需求>軟硬體需求<a href=#%e8%bb%9f%e7%a1%ac%e9%ab%94%e9%9c%80%e6%b1%82><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h2><h3 class=group id=軟體版本>軟體版本<a href=#%e8%bb%9f%e9%ab%94%e7%89%88%e6%9c%ac><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>Greenbone Community Documentation 官方的文件支援下面這幾個 Linux 發行版本的安裝：</p><ul><li>Debian stable <a class=link href=https://www.debian.org/releases/stable target=_blank rel=noopener>(bullseye)</a></li><li>Ubuntu 22.04 LTS</li><li>Fedora 35 and 36</li><li>CentOS 9 Stream</li></ul><p>必須先安裝完 <code>docker-ce</code> 及 <code>docker compose</code>。</p><h3 class=group id=硬體需求>硬體需求<a href=#%e7%a1%ac%e9%ab%94%e9%9c%80%e6%b1%82><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>官方對於 <code>Greenbone Community Containers</code> 給出的執行需求建議。</p><p>最小需求:</p><ul><li>CPU Cores: 2</li><li>Random-Access Memory: 4GB</li><li>Hard Disk: 20GB free</li></ul><p>建議需求:</p><ul><li>CPU Cores: 4</li><li>Random-Access Memory: 8GB</li><li>Hard Disk: 60GB free</li></ul><h2 class=group id=使用-setup-and-start-script-安裝>使用 Setup and Start Script 安裝<a href=#%e4%bd%bf%e7%94%a8-setup-and-start-script-%e5%ae%89%e8%a3%9d><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h2><p>官方 Greenbone Community Documentation <a class=link href=https://greenbone.github.io/docs/latest/22.4/container/index.html#setup-and-start-script target=_blank rel=noopener>頁面</a>
+上，很貼心的提供了 Setup and Start Script，讓使用者可以透過執行這個 <code>setup-and-start-greenbone-community-edition.sh</code> 的方式，就能夠快速的安裝。</p><p>一開始我選擇以 script 的方式進行安裝，但在下載執行後會出現如下的錯誤訊息。觀察了一下 shell script 中的內容，我認為很有可能是因為 <code>docker compose</code> 的版本不同，我使用的是 docker compose v2，v2 已經被規劃為 docker CLI 的一部分，所以發生這些錯誤。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>...
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Pulling Greenbone Community Containers 22.4
+</span></span><span style=display:flex><span>ERROR: The Compose file <span style=color:#f1fa8c>&#39;.../GreenboneCommunityEdition/docker-compose-22.4.yml&#39;</span> is invalid because:
+</span></span><span style=display:flex><span>Unsupported config option <span style=color:#ff79c6>for</span> volumes: <span style=color:#f1fa8c>&#39;cert_data_vol&#39;</span>
+</span></span><span style=display:flex><span>Unsupported config option <span style=color:#ff79c6>for</span> services: <span style=color:#f1fa8c>&#39;vulnerability-tests&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></td></tr></table></div></div><p>我電腦中的 <code>docker</code> 及 <code>docker compose</code> 版本為：</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker --version
+</span></span><span style=display:flex><span>Docker version 23.0.3, build 3e7cbfd
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ docker compose version
+</span></span><span style=display:flex><span>Docker Compose version v2.17.2
+</span></span></code></pre></td></tr></table></div></div><p>最後，沒有透過 <code>setup-and-start-greenbone-community-edition.sh</code>，依照同頁文件前面的內容自行一個個步驟改變一下指令執行，還是可以順利完成安裝。</p><h2 class=group id=自行依照步驟安裝>自行依照步驟安裝<a href=#%e8%87%aa%e8%a1%8c%e4%be%9d%e7%85%a7%e6%ad%a5%e9%a9%9f%e5%ae%89%e8%a3%9d><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h2><h3 class=group id=1-下載-docker-compose-yaml-檔>1. 下載 docker-compose YAML 檔<a href=#1-%e4%b8%8b%e8%bc%89-docker-compose-yaml-%e6%aa%94><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>在這<a class=link href=https://greenbone.github.io/docs/latest/22.4/container/index.html# target=_blank rel=noopener>官方說明的頁面</a>
+中主要使用 <code>docker compose</code> 方式來安裝 <strong>Greenbone Community Edition</strong> 的 containers。這個方式主要是透過一個 YAML 設定檔，依照檔案裡面設定的服務內容，來安裝所需要的 containers。</p><p>可以直接使用下面語法，下載官方在 GitHub 準備好的 <code>docker-compose.yml</code> 檔案。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
+</span></span></code></pre></td></tr></table></div></div><p>或是複製下面 YAML 內容（版本為 22.4），存成 <code>docker-compose.yml</code> 檔案。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">112
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">113
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">114
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">115
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">116
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">117
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">118
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">119
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">120
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">121
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">122
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">123
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">124
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">126
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">127
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">128
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">129
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">130
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">131
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">132
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">133
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">134
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">135
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">136
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">137
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">138
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">139
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">140
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">141
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">142
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">143
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">144
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">145
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">146
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">147
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">148
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">149
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">150
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">151
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">152
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">153
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">154
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">155
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">156
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">157
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">158
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">159
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">160
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">161
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">162
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">163
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">164
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">165
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">166
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">167
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">168
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">169
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">170
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">171
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">172
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">173
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">174
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">175
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">176
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">177
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">178
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">179
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">180
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">181
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">182
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ff79c6>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>vulnerability-tests</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/vulnerability-tests
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>environment</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>STORAGE_PATH</span>: /var/lib/openvas/22.04/vt-data/nasl
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - vt_data_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>notus-data</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/notus-data
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - notus_data_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>scap-data</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/scap-data
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - scap_data_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>cert-bund-data</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/cert-bund-data
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - cert_data_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>dfn-cert-data</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/dfn-cert-data
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - cert_data_vol:/mnt
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      - cert-bund-data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>data-objects</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/data-objects
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - data_objects_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>report-formats</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/report-formats
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - data_objects_vol:/mnt
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      - data-objects
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gpg-data</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/gpg-data
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - gpg_data_vol:/mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>redis-server</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/redis-server
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - redis_socket_vol:/run/redis/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>pg-gvm</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/pg-gvm:stable
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - psql_data_vol:/var/lib/postgresql
+</span></span><span style=display:flex><span>      - psql_socket_vol:/var/run/postgresql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gvmd</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/gvmd:stable
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - gvmd_data_vol:/var/lib/gvm
+</span></span><span style=display:flex><span>      - scap_data_vol:/var/lib/gvm/scap-data/
+</span></span><span style=display:flex><span>      - cert_data_vol:/var/lib/gvm/cert-data
+</span></span><span style=display:flex><span>      - data_objects_vol:/var/lib/gvm/data-objects/gvmd
+</span></span><span style=display:flex><span>      - vt_data_vol:/var/lib/openvas/plugins
+</span></span><span style=display:flex><span>      - psql_data_vol:/var/lib/postgresql
+</span></span><span style=display:flex><span>      - gvmd_socket_vol:/run/gvmd
+</span></span><span style=display:flex><span>      - ospd_openvas_socket_vol:/run/ospd
+</span></span><span style=display:flex><span>      - psql_socket_vol:/var/run/postgresql
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>pg-gvm</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_started
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>scap-data</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>cert-bund-data</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>dfn-cert-data</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>data-objects</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>report-formats</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gsa</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/gsa:stable
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#bd93f9>9392</span>:<span style=color:#bd93f9>80</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - gvmd_socket_vol:/run/gvmd
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      - gvmd
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>ospd-openvas</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/ospd-openvas:stable
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>init</span>: <span style=color:#ff79c6>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>hostname</span>: ospd-openvas.local
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>cap_add</span>:
+</span></span><span style=display:flex><span>      - NET_ADMIN <span style=color:#6272a4># for capturing packages in promiscuous mode</span>
+</span></span><span style=display:flex><span>      - NET_RAW <span style=color:#6272a4># for raw sockets e.g. used for the boreas alive detection</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>security_opt</span>:
+</span></span><span style=display:flex><span>      - seccomp=unconfined
+</span></span><span style=display:flex><span>      - apparmor=unconfined
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>command</span>:
+</span></span><span style=display:flex><span>      [
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;ospd-openvas&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;-f&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;--config&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;/etc/gvm/ospd-openvas.conf&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;--mqtt-broker-address&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;mqtt-broker&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;--notus-feed-dir&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;/var/lib/notus/advisories&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;-m&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;666&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - gpg_data_vol:/etc/openvas/gnupg
+</span></span><span style=display:flex><span>      - vt_data_vol:/var/lib/openvas/plugins
+</span></span><span style=display:flex><span>      - notus_data_vol:/var/lib/notus
+</span></span><span style=display:flex><span>      - ospd_openvas_socket_vol:/run/ospd
+</span></span><span style=display:flex><span>      - redis_socket_vol:/run/redis/
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>redis-server</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_started
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>gpg-data</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>vulnerability-tests</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>condition</span>: service_completed_successfully
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>mqtt-broker</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/mqtt-broker
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#bd93f9>1883</span>:<span style=color:#bd93f9>1883</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>networks</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>default</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>aliases</span>:
+</span></span><span style=display:flex><span>          - mqtt-broker
+</span></span><span style=display:flex><span>          - broker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>notus-scanner</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>restart</span>: <span style=color:#ff79c6>on</span>-failure
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/notus-scanner:stable
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - notus_data_vol:/var/lib/notus
+</span></span><span style=display:flex><span>      - gpg_data_vol:/etc/openvas/gnupg
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>environment</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>NOTUS_SCANNER_MQTT_BROKER_ADDRESS</span>: mqtt-broker
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>NOTUS_SCANNER_PRODUCTS_DIRECTORY</span>: /var/lib/notus/products
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      - mqtt-broker
+</span></span><span style=display:flex><span>      - gpg-data
+</span></span><span style=display:flex><span>      - vulnerability-tests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gvm-tools</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>image</span>: greenbone/gvm-tools
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - gvmd_socket_vol:/run/gvmd
+</span></span><span style=display:flex><span>      - ospd_openvas_socket_vol:/run/ospd
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>depends_on</span>:
+</span></span><span style=display:flex><span>      - gvmd
+</span></span><span style=display:flex><span>      - ospd-openvas
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gpg_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>scap_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>cert_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>data_objects_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gvmd_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>psql_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>vt_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>notus_data_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>psql_socket_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>gvmd_socket_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>ospd_openvas_socket_vol</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>redis_socket_vol</span>:
+</span></span></code></pre></td></tr></table></div></div><h3 class=group id=2-下載及啓動-containers>2. 下載及啓動 containers<a href=#2-%e4%b8%8b%e8%bc%89%e5%8f%8a%e5%95%93%e5%8b%95-containers><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>透過下面的語法，直接下載 Greenbone Community Containers，下載過程會需要一下下時間。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition pull
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>[</span>+<span style=color:#ff79c6>]</span> Running 111/16
+</span></span><span style=display:flex><span> ✔ redis-server <span style=color:#bd93f9>4</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                            86.7s 
+</span></span><span style=display:flex><span> ✔ ospd-openvas <span style=color:#bd93f9>21</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                         165.9s 
+</span></span><span style=display:flex><span> ✔ gpg-data <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                                  62.3s 
+</span></span><span style=display:flex><span> ✔ notus-data <span style=color:#bd93f9>4</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                              98.7s 
+</span></span><span style=display:flex><span> ✔ scap-data <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                                 74.7s 
+</span></span><span style=display:flex><span> ✔ mqtt-broker <span style=color:#bd93f9>3</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                              92.6s 
+</span></span><span style=display:flex><span> ✔ gvmd <span style=color:#bd93f9>10</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                            144.5s 
+</span></span><span style=display:flex><span> ✔ dfn-cert-data <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                             43.3s 
+</span></span><span style=display:flex><span> ✔ gvm-tools <span style=color:#bd93f9>7</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                           127.8s 
+</span></span><span style=display:flex><span> ✔ cert-bund-data <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                            44.4s 
+</span></span><span style=display:flex><span> ✔ vulnerability-tests <span style=color:#bd93f9>3</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                      86.0s 
+</span></span><span style=display:flex><span> ✔ gsa <span style=color:#bd93f9>11</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                            139.8s 
+</span></span><span style=display:flex><span> ✔ notus-scanner <span style=color:#bd93f9>9</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                     147.7s 
+</span></span><span style=display:flex><span> ✔ report-formats <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                            31.6s 
+</span></span><span style=display:flex><span> ✔ pg-gvm <span style=color:#bd93f9>11</span> layers <span style=color:#ff79c6>[</span>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                         158.9s 
+</span></span><span style=display:flex><span> ✔ data-objects <span style=color:#bd93f9>2</span> layers <span style=color:#ff79c6>[</span>⣿⣿<span style=color:#ff79c6>]</span>      0B/0B      Pulled                                                              33.3s 
+</span></span></code></pre></td></tr></table></div></div><p>都出現 Pulled 下載完成後，就可以透過下面的方式進行啓動。</p><blockquote><p>Note: <code>-d</code> 以背景方式啓動</p></blockquote><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition up -d
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>[</span>+<span style=color:#ff79c6>]</span> Running 29/29
+</span></span><span style=display:flex><span> ✔ Network greenbone-community-edition_default                   Created                                           0.1s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_gvmd_socket_vol&#34;</span>          Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_scap_data_vol&#34;</span>            Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_psql_data_vol&#34;</span>            Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_redis_socket_vol&#34;</span>         Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_data_objects_vol&#34;</span>         Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_vt_data_vol&#34;</span>              Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_cert_data_vol&#34;</span>            Created                                           0.1s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_psql_socket_vol&#34;</span>          Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_ospd_openvas_socket_vol&#34;</span>  Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_gvmd_data_vol&#34;</span>            Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_gpg_data_vol&#34;</span>             Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Volume <span style=color:#f1fa8c>&#34;greenbone-community-edition_notus_data_vol&#34;</span>           Created                                           0.0s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-mqtt-broker-1           Started                                           9.2s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-redis-server-1          Started                                          10.5s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-vulnerability-tests-1   Exited                                           70.4s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-gpg-data-1              Exited                                           70.4s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-cert-bund-data-1        Exited                                           70.3s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-notus-data-1            Started                                          15.5s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-pg-gvm-1                Started                                          12.7s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-data-objects-1          Exited                                           70.4s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-scap-data-1             Exited                                           70.4s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-report-formats-1        Exited                                           69.7s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-dfn-cert-data-1         Exited                                           69.7s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-notus-scanner-1         Started                                          43.8s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-ospd-openvas-1          Started                                          70.7s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-gvmd-1                  Started                                          68.6s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-gvm-tools-1             Started                                          69.7s 
+</span></span><span style=display:flex><span> ✔ Container greenbone-community-edition-gsa-1                   Started                                          69.9s
+</span></span></code></pre></td></tr></table></div></div><h3 class=group id=3-設定-admin-密碼>3. 設定 Admin 密碼<a href=#3-%e8%a8%ad%e5%ae%9a-admin-%e5%af%86%e7%a2%bc><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>如果要使用自己定義的 Admin 密碼，可以使用下面的語法來做修改。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>    <span style=color:#8be9fd;font-style:italic>exec</span> -u gvmd gvmd gvmd --user<span style=color:#ff79c6>=</span>admin --new-password<span style=color:#ff79c6>=</span>&lt;admin-password&gt;
+</span></span></code></pre></td></tr></table></div></div><h3 class=group id=4-開啓瀏覽器開始使用>4. 開啓瀏覽器開始使用<a href=#4-%e9%96%8b%e5%95%93%e7%80%8f%e8%a6%bd%e5%99%a8%e9%96%8b%e5%a7%8b%e4%bd%bf%e7%94%a8><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>在完成前述步驟後，就可打開瀏覽器開始使用 Greenbone Community Edition 了。下面語法可以開啓系統預設的瀏覽器。或是自行打開瀏覽器，在網址列輸入 <code>http://127.0.0.1:9392</code> 就可以看到登入畫面。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ xdg-open <span style=color:#f1fa8c>&#34;http://127.0.0.1:9392&#34;</span> 2&gt;/dev/null &gt;/dev/null &amp;
+</span></span></code></pre></td></tr></table></div></div><h2 class=group id=更新內容>更新內容<a href=#%e6%9b%b4%e6%96%b0%e5%85%a7%e5%ae%b9><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h2><h3 class=group id=1-更新-containers>1. 更新 Containers<a href=#1-%e6%9b%b4%e6%96%b0-containers><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>更新 Greenbone Community Containers 的方式，只要重新拉取 images 然後再重新啓動 container 就可以了。</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition pull
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition up -d
+</span></span></code></pre></td></tr></table></div></div><h3 class=group id=2-greenbone-community-feed-更新>2. Greenbone Community Feed 更新<a href=#2-greenbone-community-feed-%e6%9b%b4%e6%96%b0><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h3><p>Greenbone Community Feed 的同步更新有兩個部分組成：</p><ol><li>拉取新的 data container images</li><li>透過 daemon 加載到記憶體和資料庫中</li></ol><p>Greenbone Community Feed 資料是透過幾個 container images 提供的，當這些 images 被啓動之後會自動複製到 docker volume，然後 daemon 會從 docker volume 中取得資料。</p><p>下面的語法可以下載 Greenbone Community Feed 的 data container images</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+</span></span></code></pre></td></tr></table></div></div><p>下面的語法啓動 container images 來複製資料至 docker volume</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose -f docker-compose.yml -p greenbone-community-edition up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+</span></span></code></pre></td></tr></table></div></div><h2 class=group id=結語>結語<a href=#%e7%b5%90%e8%aa%9e><i class="eva eva-link ml-3 align-middle text-theme opacity-0 transition ease-in-out group-hover:opacity-100"></i></a></h2><p>使用 docker compose 方式，來安裝 Greenbone Community Edition Containers 以使用 OpenVAS 弱點掃描工具，是一個相對容易且馬上可以進行弱點掃描的方法。
+網頁應用軟體的普及和方便性，身為開發者的我們，對於資安更需要多些重視。定期利用 OpenVAS 這類弱點掃描工具，來發覺系統或程式的漏洞，即時的進行修補及更正，會是我們該常駐的理念，以保障使用者的安全性。</p><p>參考資料：</p><ol><li><a class=link href=https://greenbone.github.io/docs/latest/22.4/container/index.html# target=_blank rel=noopener>Greenbone Community Containers 22.4 - Greenbone Community Documentation</a></li><li><a class=link href=https://greenbone.github.io/docs/latest/22.4/container/workflows.html target=_blank rel=noopener>Workflows - Greenbone Community Documentation</a></li></ol></section><div class="flex items-center justify-center px-6 pb-5 pt-4 text-center text-xl text-gray-500 md:px-10 md:pb-10 md:pt-14"><a class="mr-4 inline-flex h-5 w-5 items-center" title="分享到 Twitter" href="https://twitter.com/share?&text=OpenVAS%ef%bc%88Open%20Vulnerability%20Assessment%20Scanner%ef%bc%89%e6%98%af%e4%b8%80%e6%ac%be%e9%96%8b%e6%ba%90%e7%9a%84%e5%bc%b1%e9%bb%9e%e6%8e%83%e6%8f%8f%e6%aa%a2%e6%b8%ac%e5%b7%a5%e5%85%b7%ef%bc%8c%e7%9b%ae%e5%89%8d%e6%98%af%e7%94%b1%20Greenbone%20%e7%b6%ad%e8%ad%b7%ef%bc%8c%e8%83%bd%e5%a4%a0%e6%8c%81%e7%ba%8c%e7%9a%84%e6%9b%b4%e6%96%b0%20NVT%ef%bc%8cSCAP&amp;hellip;%e7%ad%89%e5%bc%b1&url=https://blog.ninthday.me/2023/04/openvas-community-container/" target=_blank rel="noopener noreferrer"><i class="eva eva-twitter hover:text-theme"></i></a><a class="mr-4 inline-flex h-5 w-5 items-center" title="分享到 Facebook" href="https://www.facebook.com/sharer.php?u=https://blog.ninthday.me/2023/04/openvas-community-container/" target=_blank rel="noopener noreferrer"><i class="eva eva-facebook hover:text-theme"></i></a><i class="eva eva-copy mr-4 cursor-pointer hover:text-theme" title=複製文章連結 data-clipboard-text=https://blog.ninthday.me/2023/04/openvas-community-container/></i><div class="group relative hidden h-5 w-5 cursor-pointer sm:inline-block"><i title=二維條碼 class="eva show-qrcode eva-smartphone hover:text-theme"></i><div class="qrcode-wrapper pointer-events-none absolute left-2/4 bottom-10 h-32 w-32 -translate-x-1/2 overflow-hidden rounded border border-gray-300 bg-white p-2 opacity-0 transition duration-300 ease-[ease] group-hover:opacity-100"><img class="h-full w-full" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://blog.ninthday.me/2023/04/openvas-community-container/" alt=二維條碼></div></div></div><div class="border-b dark:border-darkBorder"></div><div class="flex justify-between px-2 py-4 text-xl md:px-6 md:text-2xl"><div><a href=/2023/03/change-docker-data-directory/ title="修改 Docker 預設資料目錄路徑" class="invisible flex cursor-pointer items-center text-gray-500 transition duration-300 ease-[ease] hover:text-theme dark:text-darkTextPlaceholder dark:hover:text-darkText" style=visibility:visible><span class="flex items-center text-5xl opacity-70 dark:bg-opacity-100"><i class="eva eva-chevron-left-outline"></i></span>
+<span>上一篇</span></a></div><div class="hidden items-center text-xs xl:flex">除了特殊聲明之外，本部落格一律使用以下版權協議授權 「
+<a href=https://creativecommons.org/licenses/by-nc-nd/3.0/tw/ target=_blank rel="noopener noreferrer" class=text-theme>姓名標示-非商業性-禁止改作 3.0 台灣</a>
+」</div><div class="flex items-center text-sm xl:hidden"><a href=https://creativecommons.org/licenses/by-nc-nd/3.0/tw/ target=_blank rel="noopener noreferrer" class=text-theme><img src=/Cc-by-nc-nd.svg alt="姓名標示-非商業性-禁止改作 3.0 台灣" title="姓名標示-非商業性-禁止改作 3.0 台灣" class=w-24></a></div><a href=/2023/05/install-openvas-gcp/ title="Install Openvas on Google Cloud" class="invisible flex cursor-pointer items-center text-gray-500 transition duration-300 ease-[ease] hover:text-theme dark:text-darkTextPlaceholder dark:hover:text-darkText" style=visibility:visible><span>下一篇</span>
+<span class="flex items-center text-5xl opacity-70 dark:bg-opacity-100"><i class="eva eva-chevron-right-outline"></i></span></a></div><div class="border-t py-6 px-6 dark:border-darkBorder md:px-8"><script src=https://giscus.app/client.js data-repo=ninthday/ninthday.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxOTM1NDU1MjU=" data-category=Comments data-category-id=DIC_kwDOC4lFNc4CTHi_ data-mapping=title data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=light data-lang=zh-TW data-loading=false crossorigin=anonymous data-swup-reload-script async></script>
+<script data-swup-reload-script>(function(){addEventListener("message",t=>{if(event.origin!=="https://giscus.app")return;e()}),window.addEventListener("onThemeChange",e);function e(){setGiscusTheme(document.documentElement.dataset.scheme==="light"?"light":"dark")}})();function setGiscusTheme(e){let t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}</script></div></div></div></div></div></main><footer><div class="com-footer flex flex-col items-center border-t py-4 px-4 text-sm leading-none text-gray-600 dark:border-darkBorder dark:text-darkTextPlaceholder md:flex-row md:justify-between"><div class="mb-2 flex items-center justify-between text-center md:mb-0"><span>© 2020 - 2023</span>
+<span class="mx-1.5 opacity-50">| </span>以 <a data-no-swup class="mx-1 font-bold hover:text-theme" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> <span class="text-xs opacity-70">❤</span> <a data-no-swup class="mx-1 font-bold hover:text-theme" href=https://github.com/Ice-Hazymoon/hugo-theme-luna target=_blank rel="noopener noreferrer">Luna</a> 製作</div><div class="flex items-center"><span class="noscript-hidden mx-1.5 hidden opacity-50 md:block">| </span><a data-no-swup href=https://blog.ninthday.me/index.xml target=_blank class="mr-1.5 hover:text-theme"><span class="md:hidden lg:inline"><svg t="1650887361919" class="mr-0.5 w-3 fill-current text-inherit inline-block align-top" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="3091"><path d="M320.16155 831.918c0 70.738-57.344 128.082-128.082 128.082S63.99955 902.656 63.99955 831.918s57.344-128.082 128.082-128.082 128.08 57.346 128.08 128.082zm351.32 94.5c-16.708-309.2-264.37-557.174-573.9-573.9C79.31155 351.53 63.99955 366.21 63.99955 384.506v96.138c0 16.83 12.98 30.944 29.774 32.036 223.664 14.568 402.946 193.404 417.544 417.544 1.094 16.794 15.208 29.774 32.036 29.774h96.138c18.298.002 32.978-15.31 31.99-33.58zm288.498.576c-16.788-467.64-393.05-846.104-862.974-862.974C78.94555 63.372 63.99955 77.962 63.99955 96.032v96.136c0 17.25 13.67 31.29 30.906 31.998 382.358 15.678 689.254 322.632 704.93 704.93.706 17.236 14.746 30.906 31.998 30.906h96.136c18.068-.002 32.658-14.948 32.01-33.008z" p-id="3092"/></svg></span><span>RSS</span>
+</a><a data-no-swup href=https://blog.ninthday.me/sitemap.xml target=_blank class="mr-1.5 hover:text-theme"><span class="md:hidden lg:inline"><svg t="1650887940556" class="mr-0.5 w-3 fill-current text-inherit inline-block align-top" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="6291"><path d="M950.044 625.778h-68.266v-56.89c0-45.51-39.822-85.332-85.334-85.332h-256v-85.334h68.267c39.822.0 73.956-34.133 73.956-73.955V130.844c0-39.822-34.134-73.955-73.956-73.955H415.29c-39.822.0-73.956 34.133-73.956 73.955v193.423c0 39.822 34.134 73.955 73.956 73.955h68.267v85.334h-256c-45.512.0-85.334 39.822-85.334 85.333v56.889H73.956C34.133 625.778.0 659.91.0 699.733v193.423c0 39.822 34.133 73.955 73.956 73.955h193.422c39.822.0 73.955-34.133 73.955-73.955V699.733c0-39.822-34.133-73.955-73.955-73.955H199.11v-56.89c0-17.066 11.378-28.444 28.445-28.444h568.888c17.067.0 28.445 11.378 28.445 28.445v56.889h-68.267c-39.822.0-73.955 34.133-73.955 73.955v193.423c0 39.822 34.133 73.955 73.955 73.955h193.422c39.823.0 73.956-34.133 73.956-73.955V699.733c0-39.822-34.133-73.955-73.956-73.955z" p-id="6292"/></svg></span><span>Sitemap</span></a><div id=google_translate_element class="overflow-hidden rounded border dark:border-darkBorder"></div></div><div id=run-time class="mt-2 flex-grow text-right md:mt-0"><span>運行時間： </span><b id=run-time-d>0</b>
+<span class=text-xs>天</span>
+<b id=run-time-h>0</b>
+<span class=text-xs>小時</span>
+<b id=run-time-m>0</b>
+<span class=text-xs>分鐘</span>
+<b id=run-time-s>0</b>
+<span class=text-xs>秒</span></div></div><script type=text/javascript>window.__theme={cdn:"",pjax:!0,isServer:!1,$version:"c0f78e84c93b068240f8f518c6d702c5bca1d85c",lang:"zh-tw",imageZoom:!0,lazyload:!0,bionicReading:{enabled:!0,skipLinks:!1,autoBionic:!1,excludeWords:[],excludeClasses:["github"],excludeNodeNames:[]},katex:!0,search:!0,backtop:!0,pangu:!0,autoDarkMode:!1,googleAnalytics:!1,hugoEncrypt:{wrongPasswordText:"密碼錯誤",userStorage:window.sessionStorage},console:{enabled:!0,leftColor:"#dd6065",rightColor:"#feb462",leftText:"Have a ninthday",rightText:"Powered by Hugo ❤ Luna"},assets:{error_svg:"/images/error.svg",search_svg:"/images/search.svg"},i18n:{copy:{success:"複製成功",failed:"複製失敗，請手動複製",copyCode:"複製程式碼"},search:{untitled:"無標題",loadFailure:"初始化搜尋引擎失敗",input:"請輸入搜尋內容..."},darkMode:{dark:"切換至深色模式",light:"切換至淺色模式"}},creatTime:"2022/12/12"}</script><script type=text/javascript src=/ts/main.87f7c8b63611018af8120b2d8a793a74d38e1639b720cb8b25ef14136e2a6b22.js defer integrity="sha256-h/fItjYRAYr4Egstink6dNOOFjm3IMuLJe8UE24qayI="></script><script>"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")})</script>
+<script type=text/javascript src=/translate-google.ecd37c3cc8f7e1b08910201dd0d9fc3e5f4b1395fb8ebead3141b931f036f777.js defer integrity="sha256-7NN8PMj34bCJECAd0Nn8Pl9LE5X7jr6tMUG5MfA293c="></script><script type=text/javascript>window.translateelement_styles="/sass/translateelement.min.c65796c6c3e4d48c75f72776948be83c5c448d1c5cc466b996b00657c558d28a.css";function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh-tw",includedLanguages:"af,ga,sq,it,ar,ja,az,kn,eu,ko,bn,la,be,lv,bg,lt,ca,mk,zh-CN,ms,zh-TW,mt,hr,no,cs,fa,da,pl,nl,pt,en,ro,eo,ru,et,sr,tl,sk,fi,sl,fr,es,gl,sw,ka,sv,de,ta,el,te,gu,th,ht,tr,iw,uk,hi,ur,hu,vi,is,cy,id,yi",autoDisplay:!1},"google_translate_element")}</script>
+<script></script><script data-swup-reload-script></script></footer></div></div><a href=#nav title=返回頁首 id=back-top class="fixed right-6 bottom-9 z-10 translate-y-3 scale-90 cursor-pointer rounded-full bg-white opacity-0 transition duration-300 ease-[ease] dark:bg-darkBgAccent sm:scale-100"><div class=relative><div class="absolute left-0 top-0 flex h-full w-full items-center justify-center text-xl"><i class="eva eva-arrow-upward-outline"></i></div><svg id="svg" width="54" height="54" viewBox="0 0 54 54" preserveAspectRatio="xMinYMin meet"><circle transform="rotate(-90, 27 , 27)" style="stroke-dasharray:157,157;stroke-dashoffset:157" cx="27" cy="27" r="25" fill="none" stroke-width="4" stroke-linecap="round" stroke="var(--theme)"/></svg></div></a><noscript><style>.dark-mode-switch,#run-time,#bionicReading,.noscript-hidden,[data-clipboard-text],[data-lazyload]{display:none}#back-top{opacity:1}.noscript-show{display:initial}</style></noscript></body></html>

@@ -1,0 +1,36 @@
+{
+    "theme_color": "#fcca46",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/ja/",
+    "name": "have a Ninthday",
+    "short_name": "Tuvix Shih",
+    "description": "have a Ninthday",
+    "icons": [
+        {
+            "src": "/icon_hubcf7883d97b8679c3a5c5bd06aa31860_18845_192x192_resize_catmullrom_3.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon_hubcf7883d97b8679c3a5c5bd06aa31860_18845_256x256_resize_catmullrom_3.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon_hubcf7883d97b8679c3a5c5bd06aa31860_18845_384x384_resize_catmullrom_3.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon_hubcf7883d97b8679c3a5c5bd06aa31860_18845_512x512_resize_catmullrom_3.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
